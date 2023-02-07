@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7022588674879485086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7022588674879485072}
+  - component: {fileID: 7022588674879485073}
+  m_Layer: 0
+  m_Name: ElementSkinApplier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7022588674879485072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022588674879485086}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7022588674879485073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022588674879485086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50473e108488c3f45bdd36014163aed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {fileID: 21300000, guid: 224048cdc8546cc4c8e3201ac1223c03, type: 3}
+  earth: {fileID: 21300000, guid: c491be7d808e56140a4b74b77f343c63, type: 3}
+  wind: {fileID: 21300000, guid: 8f1c3283dafcf6a45809ea45631db653, type: 3}
+  firePlusEarth: {fileID: 21300000, guid: 7818add903da19e42a89b1e0b5211e7b, type: 3}
+  firePlusWind: {fileID: 21300000, guid: 8717d8f73c1243e4aa7d4e425da4fe9f, type: 3}
+  earthPlusWind: {fileID: 21300000, guid: 244a39c2f8a9f2e4eae1f24f4c33a190, type: 3}
+  firePlusEarthPlusWind: {fileID: 21300000, guid: 921071e0db14e98499951cbd6aafbb82,
+    type: 3}

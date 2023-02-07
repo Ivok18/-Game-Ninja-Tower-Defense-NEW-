@@ -1,0 +1,71 @@
+using System;
+using UnityEngine;
+
+namespace TD.Entities.Towers.States
+{
+    public class StationaryState : MonoBehaviour
+    {
+        private Vector2 startPosition;
+        private TowerStateSwitcher towerStateSwitcher;
+
+        public Vector2 StartPosition
+        {
+            get => startPosition;
+            set => startPosition = value;
+        }
+
+        private void OnEnable()
+        {
+            TowerStateSwitcher.OnTowerEnterState += Undefined;
+        }
+
+        private void OnDisable()
+        {
+            TowerStateSwitcher.OnTowerEnterState -= Undefined;
+        }
+
+        private void Undefined(Transform tower, TowerState state)
+        {
+            if(state == TowerState.Stationary && tower == transform)
+            {
+                RadiusDetectionBehaviour radius = GetComponent<RadiusDetectionBehaviour>();
+                radius.enabled = true;
+            }          
+        }
+
+        private void Awake()
+        {
+            towerStateSwitcher = GetComponent<TowerStateSwitcher>();
+
+        }
+        private void Start()
+        {
+            StartPosition = transform.position;
+        }
+        
+        private void Update()
+        {
+            if (towerStateSwitcher.CurrentTowerState != TowerState.Stationary) return;
+
+            ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
+
+            //if this tower has let someone else kill an enemy before, show that next enemy will get attacked right back (full bar)
+            if (chargeAttackState.TimeUntilNextAttack <= 0)
+            {
+                chargeAttackState.ChargeAttackBar.gameObject.SetActive(true);
+            }
+
+            LockTargetState lockTargetState = GetComponent<LockTargetState>();
+            if (lockTargetState.Target != null)
+            {
+                lockTargetState.Target = null;
+            }
+
+            ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
+            if (listOfTargets.EnemiesToAttack.Count <= 0) return;
+            towerStateSwitcher.SwitchTo(TowerState.LockingTarget);
+
+        }
+    }
+
+}

@@ -1,0 +1,24 @@
+/////////////////////////////
+// Cursors made by Sky Ops //
+/////////////////////////////
+
+-> Work in windows for all 15 cursor size.
+
+-> Perfect for high monitor resolution users!
+
+-> How to install the cursors to avoid losing them after restart:
+1. Copie ergo-cur folder or the cursors you want.
+2. Navigate to your Windows Cursors folder normally at \Windows\Cursors
+3. Past it in that folder.
+
+-> How to change the cursor in windows:
+1. Press windows key plus R key
+2. Type in the box main.cpl
+3. Click Pointers tab
+4. Choose the cursor mode you want to change.
+5. Click Browser button
+6. Navigate to the cursor you want.
+7. Click ok and voila enjoy the customization!
+
+For a tutorial with image go to the upload website:
+https://skyops.itch.io/ergonomic-cursors
