@@ -18,14 +18,25 @@ namespace TD.TowersManager.TowerSelectionManager
 
         private void Update()
         {
-            if (TowerStateSwitcher.CurrentTowerState == TowerState.Undeployed) return;
-            if (!IsSelected) radiusVizualizer.enabled = false;
-            else radiusVizualizer.enabled = true;
+            bool isTowerInUndeployedState = TowerStateSwitcher.CurrentTowerState == TowerState.Undeployed;
+            if (isTowerInUndeployedState) 
+                return;
+
+            if (!IsSelected)
+            {
+                radiusVizualizer.enabled = false;
+            }
+            else
+            {
+                radiusVizualizer.enabled = true;
+            }        
         }
 
         private void OnMouseDown()
         {
-            if (TowerStateSwitcher.CurrentTowerState == TowerState.Undeployed) return;
+            bool isTowerInUndeployedState = TowerStateSwitcher.CurrentTowerState == TowerState.Undeployed;
+            if (isTowerInUndeployedState) 
+                return;
 
             SelectionAreaBehaviour selectionAreaBehaviour = this;
             OnTowerSelected?.Invoke(selectionAreaBehaviour);          

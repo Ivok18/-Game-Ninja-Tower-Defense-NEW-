@@ -36,18 +36,33 @@ namespace TD.Entities.Towers.AttackPattern
     
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.transform == tower)
+            bool isCollidingWhithHolder = collision.transform == tower;
+            if (!isCollidingWhithHolder)
             {
-                AttackState attackState = tower.GetComponent<AttackState>();
-                if (attackState.NextPattern == this)
-                {
-                    if (Vector2.Distance(transform.position, tower.position) <= minReachDistance)
-                    {
-                        HasBeenReached = true;
-                    }
-                }
-
+                //Debug.Log("is not colliding with holder");
+                return;
             }
+                
+
+            AttackState attackState = tower.GetComponent<AttackState>();
+            bool isNextPatternToReach = attackState.NextPattern == this;
+            if (!isNextPatternToReach)
+            {
+                //Debug.Log("is not next pattern to reach");
+                return;
+            }
+               
+
+            bool isVeryCloseToHolder = Vector2.Distance(transform.position, tower.position) <= minReachDistance;
+            if (!isVeryCloseToHolder)
+            {
+                //Debug.Log("is not close to holder");
+                return;
+            }
+                
+            
+            HasBeenReached = true;
+            
         }
     }
 

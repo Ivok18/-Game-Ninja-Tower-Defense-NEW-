@@ -42,8 +42,6 @@ namespace TD.Entities.Towers.AfterImageDashEffect
 
                
             var afterImage = availableObjects.Dequeue();
-               
-
             return afterImage;
         }
     }

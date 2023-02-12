@@ -33,36 +33,44 @@ namespace TD.Entities.Enemies
 
         public void CheckWindElementEffect(Transform enemy, Transform attackingTower)
         {
-            if(enemy == transform && enemy!=null)
+            bool isTargetOfTower = enemy == transform;
+            bool isExisting = enemy != null;
+
+            if (!isExisting)
+                return;
+
+            if(!isTargetOfTower)
+                return;
+
+            ElementsTracker elementsTracker = attackingTower.GetComponent<ElementsTracker>();
+            bool hasElementParams = elementsTracker !=null;
+            if (!hasElementParams)
+                return;
+
+
+            //checks if attacker got wind element
+            bool findWind = false;
+            foreach (TowerElement element in elementsTracker.CurrTowerElements)
             {
-                
-                ElementsTracker elementsTracker = attackingTower.GetComponent<ElementsTracker>();
-                if (elementsTracker != null)
+                if (!findWind)
                 {
-                    bool findWind = false;
-
-                    //checks if attacker got wind element
-                    foreach (TowerElement element in elementsTracker.CurrTowerElements)
+                    if (element == TowerElement.Wind)
                     {
-                        if (!findWind)
-                        {
-                            if (element == TowerElement.Wind)
-                            {
-                                findWind = true;
-                   
-                            }
-                        }
-                    }
+                        findWind = true;
 
-                    //if attacker got wind element, enemy goes goes back to the start of the road
-                    if (findWind)
-                    {
-                        nextWaypointIndex = 0;
-                        currentSpeed = windedSpeed;
-                        IsWinded = true;
                     }
                 }
             }
+
+            //if attacker got wind element, enemy goes goes back to the start of the road
+            if (findWind)
+            {
+                nextWaypointIndex = 0;
+                currentSpeed = windedSpeed;
+                IsWinded = true;
+            }
+
+
         }
 
         void FixedUpdate()
@@ -78,21 +86,26 @@ namespace TD.Entities.Enemies
 
         private void MoveToNextWaypoint()
         {
-            if (nextWaypointIndex < waypointStorer.Waypoints.Length)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, waypointStorer.Waypoints[nextWaypointIndex].position,
+            bool hasReachedLastWaypoint = nextWaypointIndex >= waypointStorer.Waypoints.Length;
+            if (hasReachedLastWaypoint)
+                return;
+
+            transform.position = Vector2.MoveTowards(transform.position, waypointStorer.Waypoints[nextWaypointIndex].position,
                 Time.fixedDeltaTime * currentSpeed);
 
-                if (Vector2.Distance(transform.position, waypointStorer.Waypoints[nextWaypointIndex].position) < 0.1f)
-                {
-                    if(IsWinded && nextWaypointIndex == 0)
-                    {
-                        IsWinded = false;
-                        currentSpeed = Speed;
+            bool hasReachedNextWaypoint = Vector2.Distance(transform.position, waypointStorer.Waypoints[nextWaypointIndex].position) < 0.1f;
 
-                    }
-                    nextWaypointIndex++;
+
+            if (hasReachedNextWaypoint)
+            {
+                bool hasBeenAffectedByWind = IsWinded;
+                bool hasReachedFirstWaypoint = nextWaypointIndex == 0;
+                if (hasBeenAffectedByWind && hasReachedFirstWaypoint)
+                {
+                    IsWinded = false;
+                    currentSpeed = Speed;
                 }
+                nextWaypointIndex++;
             }
         }
     }

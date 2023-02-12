@@ -17,10 +17,12 @@ namespace TD.Entities.Towers.States
         }
         void Update()
         {
-            if (towerStateSwitcher.CurrentTowerState != TowerState.LockingTarget) return;
+            if (towerStateSwitcher.CurrentTowerState != TowerState.LockingTarget) 
+                return;
 
             ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
-            if (listOfTargets.EnemiesToAttack.Count <= 0)
+            bool areThereEnemiesToTarget = listOfTargets.EnemiesToAttack.Count > 0;
+            if (!areThereEnemiesToTarget)
             {
                 towerStateSwitcher.CurrentTowerState = TowerState.Stationary;
             }

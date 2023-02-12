@@ -92,7 +92,10 @@ namespace TD.TowersManager.TowerSelectionManager
 
         private void Update()
         {
-            if (currentSelection == null) return;
+            bool hasATowerBeenSelected = currentSelection != null;
+            if (!hasATowerBeenSelected)
+                return;
+
             currentSelection.IsSelected = true;
 
 
@@ -108,7 +111,8 @@ namespace TD.TowersManager.TowerSelectionManager
             }
 
             //Right click to sell selection
-            if (Input.GetMouseButtonDown(1))
+            bool hasPlayerPressedRightMouseButton = Input.GetMouseButtonDown(1);
+            if (hasPlayerPressedRightMouseButton)
             {
                 SellSelection();
             }

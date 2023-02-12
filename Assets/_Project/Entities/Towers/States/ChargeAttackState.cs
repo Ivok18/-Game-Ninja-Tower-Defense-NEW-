@@ -68,7 +68,8 @@ namespace TD.Entities.Towers.States
             ChargeAttackBar.CurrentValue = TimeUntilNextAttack;
             ChargeAttackBar.MaxValue = CurrentTimeBetweenAttacks;
 
-            if (TimeUntilNextAttack > 0)
+            bool isTowerStillChargingItsAttack = TimeUntilNextAttack > 0;
+            if (isTowerStillChargingItsAttack)
             {
                 TimeUntilNextAttack -= Time.deltaTime;
 
@@ -110,9 +111,11 @@ namespace TD.Entities.Towers.States
             }
             else //when attack is ready to be launched ..
             {
-                if(lockTargetState.Target != null)
+                bool doesTargetOfTowerStillExist = lockTargetState.Target != null;
+                if (doesTargetOfTowerStillExist)
                 {
-                    if (!lockTargetState.Target.CompareTag("Dead")) // if the target is still alive, swicth to attack state
+                    bool isTargetDead = lockTargetState.Target.CompareTag("Dead");
+                    if (!isTargetDead) // if the target is still alive, swicth to attack state
                     {
                         TimeUntilNextAttack = CurrentTimeBetweenAttacks;
                         ChargeAttackBar.gameObject.SetActive(false);

@@ -22,24 +22,28 @@ namespace TD.TowersManager.UselessAttackStopper
 
         private void UpdateTarget(Transform tower, TowerState state)
         {
-            if(tower!=null)
+            bool doesTowerExist = tower != null;
+            if (!doesTowerExist)
+                return;
+
+            bool isTowerAttacking = state == TowerState.Attacking;
+            if (isTowerAttacking)
             {
-                if (state == TowerState.Attacking)
-                {
-                    Transform target = tower.GetComponent<LockTargetState>().Target;
+                Transform target = tower.GetComponent<LockTargetState>().Target;
 
-                    //make a list of towers that share the same target as tower
-                    List<Transform> towersWithSameTarget = FindTowersWithSameTargetAs(tower);
+                //make a list of towers that share the same target as tower
+                List<Transform> towersWithSameTarget = FindTowersWithSameTargetAs(tower);
 
-                    //add tower
-                    towersWithSameTarget.Add(tower);
+                //add tower
+                towersWithSameTarget.Add(tower);
 
-                    FindListOfNecessaryTowersToKillTarget(towersWithSameTarget,target);
-                    towersInAttackState.Add(tower);
-                }
-                else towersInAttackState.Remove(tower);
+                FindListOfNecessaryTowersToKillTarget(towersWithSameTarget, target);
+                towersInAttackState.Add(tower);
             }
-            
+            else 
+                towersInAttackState.Remove(tower);
+
+
         }
 
         private List<Transform> FindTowersWithSameTargetAs(Transform tower)
@@ -49,12 +53,16 @@ namespace TD.TowersManager.UselessAttackStopper
             Transform target = tower.GetComponent<LockTargetState>().Target;
             foreach (Transform mTower in towersInAttackState)
             {
-                if(mTower != null)
-                {
-                    Transform mTarget = mTower.GetComponent<LockTargetState>().Target;
-                    if (mTarget == target) towersWithSameTargetAsTower.Add(mTower);
-                }
-                
+                bool doesTowerExist = mTower != null;
+                if (!doesTowerExist)
+                    continue;
+    
+                Transform mTarget = mTower.GetComponent<LockTargetState>().Target;
+                bool hasTheSameTargetAsTowerParameter = mTarget == target;
+                if (!hasTheSameTargetAsTowerParameter)
+                    continue;
+
+                towersWithSameTargetAsTower.Add(mTower);
             }
             return towersWithSameTargetAsTower;
         }
@@ -67,7 +75,8 @@ namespace TD.TowersManager.UselessAttackStopper
  
             foreach(var tower in towersWithSameTarget)
             {
-                if(towersDamageSum < targetHp)
+                bool isSumOfDamageOfAllTowerInListIsNotEnoughToKillTarget = towersDamageSum < targetHp;
+                if (isSumOfDamageOfAllTowerInListIsNotEnoughToKillTarget)
                 {
                     AttackState towerAttackState = tower.GetComponent<AttackState>();
                     towersDamageSum += towerAttackState.CurrentDamagePerDash + (towerAttackState.CurrentDamagePerDash * towerAttackState.NbOfBonusDashRemaining);

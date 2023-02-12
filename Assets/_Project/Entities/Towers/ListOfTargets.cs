@@ -42,15 +42,17 @@ namespace TD.Entities.Towers
         {
             foreach(Transform enemy in EnemiesToAttack)
             {
-                if (enemy != null)
-                {
-                    EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
-                    if (!enemyMovement.IsWinded)
-                    {
-                        return enemy;
-                    }
-                }
-                    
+                bool doesEnemyExist = enemy != null;
+                if (!doesEnemyExist)
+                    continue;
+
+                EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
+                bool isItAffectedByWind = enemyMovement.IsWinded;
+                if (isItAffectedByWind)
+                    continue;
+
+                return enemy;  
+
             }
 
             return null;
@@ -61,7 +63,8 @@ namespace TD.Entities.Towers
             LockTargetState lockTargetState = GetComponent<LockTargetState>();
 
             int enemyIndex = EnemiesToAttack.IndexOf(enemy);
-            if (enemyIndex + 1 < EnemiesToAttack.Count)
+            bool areThereOtherEnemiesToAttack = enemyIndex + 1 < EnemiesToAttack.Count;
+            if (areThereOtherEnemiesToAttack)
             {
                 lockTargetState.Target = EnemiesToAttack[enemyIndex + 1];
             }

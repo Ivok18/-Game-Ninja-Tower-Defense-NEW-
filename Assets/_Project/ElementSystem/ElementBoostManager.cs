@@ -25,26 +25,27 @@ namespace TD.ElementSystem
             //Find boosted tower in list of deployed towers
             foreach (Transform tower in TowerStorer.Instance.DeployedTowers)
             {
-                if(tower == towerToBoost)
-                {
-                    //Get the scripts holding all the stats
-                    //We use one of them depending on the element boost we wanna give
-                    AttackState attackState = towerToBoost.GetComponent<AttackState>();
-                    ChargeAttackState chargeAttackState = towerToBoost.GetComponent<ChargeAttackState>();
+                bool isItTheTowerToBoost = tower == towerToBoost;
+                if (!isItTheTowerToBoost) 
+                    continue;
+             
+                //Get the scripts holding all the stats
+                //We use one of them depending on the element boost we wanna give
+                AttackState attackState = towerToBoost.GetComponent<AttackState>();
+                ChargeAttackState chargeAttackState = towerToBoost.GetComponent<ChargeAttackState>();
 
-                    if(elementBoost == TowerElement.Fire)
-                    {
-                        attackState.CurrentDashSpeed = attackState.BaseDashSpeed + attackState.ElementBonusDashSpeed;
-                        chargeAttackState.CurrentTimeBetweenAttacks = chargeAttackState.BaseTimeBetweenAttacks 
-                                                                    + chargeAttackState.ElementBonusTimeBetweenAttacks;
+                if(elementBoost == TowerElement.Fire)
+                {
+                    attackState.CurrentDashSpeed = attackState.BaseDashSpeed + attackState.ElementBonusDashSpeed;
+                    chargeAttackState.CurrentTimeBetweenAttacks = chargeAttackState.BaseTimeBetweenAttacks 
+                                                                + chargeAttackState.ElementBonusTimeBetweenAttacks;
                         
-                    }
-                    else if(elementBoost == TowerElement.Earth)
-                    {
-                        attackState.CurrentDamagePerDash = attackState.BaseDamagePerDash 
-                                                         + attackState.ElementBonusDamagePerDash;
-                    } 
                 }
+                else if(elementBoost == TowerElement.Earth)
+                {
+                    attackState.CurrentDamagePerDash = attackState.BaseDamagePerDash 
+                                                        + attackState.ElementBonusDamagePerDash;
+                }              
             }
         }
 
@@ -53,23 +54,24 @@ namespace TD.ElementSystem
             //Find boosted tower on which we wanna remove an element boost in the list of deployed towers
             foreach (Transform tower in TowerStorer.Instance.DeployedTowers)
             {
-                if (tower == towerToRemoveBoostFrom)
-                {
-                    //Get the scripts holding all the stats
-                    //We use one of them depending on the element boost we wanna remove
-                    AttackState attackState = towerToRemoveBoostFrom.GetComponent<AttackState>();
-                    ChargeAttackState chargeAttackState = towerToRemoveBoostFrom.GetComponent<ChargeAttackState>();
+                if (tower != towerToRemoveBoostFrom)
+                    continue;
+                
+                //Get the scripts holding all the stats
+                //We use one of them depending on the element boost we wanna remove
+                AttackState attackState = towerToRemoveBoostFrom.GetComponent<AttackState>();
+                ChargeAttackState chargeAttackState = towerToRemoveBoostFrom.GetComponent<ChargeAttackState>();
 
-                    if (elementBoostToRemove == TowerElement.Fire)
-                    {
-                        attackState.CurrentDashSpeed = attackState.BaseDashSpeed;
-                        chargeAttackState.CurrentTimeBetweenAttacks = chargeAttackState.BaseTimeBetweenAttacks;
-                    }
-                    else if (elementBoostToRemove == TowerElement.Earth)
-                    {
-                        attackState.CurrentDamagePerDash = attackState.BaseDamagePerDash;                                                    
-                    }
+                if (elementBoostToRemove == TowerElement.Fire)
+                {
+                    attackState.CurrentDashSpeed = attackState.BaseDashSpeed;
+                    chargeAttackState.CurrentTimeBetweenAttacks = chargeAttackState.BaseTimeBetweenAttacks;
                 }
+                else if (elementBoostToRemove == TowerElement.Earth)
+                {
+                    attackState.CurrentDamagePerDash = attackState.BaseDamagePerDash;     
+                }
+                
             }
         }
     }

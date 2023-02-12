@@ -35,7 +35,12 @@ namespace TD.TowersManager.LimitBreak
       
         private void Update()
         {
-            if (TowersKillsManager.TowersKillsManager.Instance.NoOfTraineeTowerKills < NoOfKillsForSignal) return;
+            bool haveTheTraineesEnoughKillToGetALimitBreak
+                = TowersKillsManager.TowersKillsManager.Instance.NoOfTraineeTowerKills < NoOfKillsForSignal;
+
+            if (haveTheTraineesEnoughKillToGetALimitBreak) 
+                return;
+
             CanLimitBreak = true;
             if(CanLimitBreak)
             {

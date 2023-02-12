@@ -13,41 +13,45 @@ namespace TD.UI
         //Limit break all trainees towers which haven't limit break (if there are)
         public void LimitBreakTrainees()
         {
-            if(LimitBreakAvailableSignaler.Instance.CanLimitBreak)
+            bool isLimitBreakBarFull = LimitBreakAvailableSignaler.Instance.CanLimitBreak == true;
+            if (!isLimitBreakBarFull)
+                return;
+
+            if (!FindLimitBreakableTower())
+                return;
+
+            foreach (Transform tower in TowerStorer.Instance.DeployedTowers)
             {
-                if(FindLimitBreakableTower())
+                TowerTypeAccessor towerTypeAccessor = tower.GetComponent<TowerTypeAccessor>();
+                LimitBreakTracker limitBreakTracker = tower.GetComponent<LimitBreakTracker>();
+                bool isTowerATrainee = towerTypeAccessor.TowerType == TowerType.Trainee;
+                if (isTowerATrainee && !limitBreakTracker.HasBrokeLimits)
                 {
-                    foreach (Transform tower in TowerStorer.Instance.DeployedTowers)
-                    {
-                        TowerTypeAccessor towerTypeAccessor = tower.GetComponent<TowerTypeAccessor>();
-                        LimitBreakTracker limitBreakTracker = tower.GetComponent<LimitBreakTracker>();
-                        if (towerTypeAccessor.TowerType == TowerType.Trainee && !limitBreakTracker.HasBrokeLimits)
-                        {
-                            LimitBreakActioner limitBreakActioner = tower.GetComponent<LimitBreakActioner>();
-                            limitBreakActioner.LimitBreak();
-                        }
+                    LimitBreakActioner limitBreakActioner = tower.GetComponent<LimitBreakActioner>();
+                    limitBreakActioner.LimitBreak();
+                }
 
-                    }
+            }
 
-                    OnLimitBreakButtonTriggered?.Invoke();
-                }   
-            }          
+            OnLimitBreakButtonTriggered?.Invoke();
         }
 
         //Check if there is at least one tower that can be limit break
         public bool FindLimitBreakableTower()
         {
-            foreach(Transform tower in TowerStorer.Instance.DeployedTowers)
+            foreach (Transform tower in TowerStorer.Instance.DeployedTowers)
             {
                 TowerTypeAccessor towerTypeAccessor = tower.GetComponent<TowerTypeAccessor>();
-                if (towerTypeAccessor.TowerType == TowerType.Trainee)
-                {
-                    LimitBreakTracker limitBreakTracker = tower.GetComponent<LimitBreakTracker>();
-                    if(!limitBreakTracker.HasBrokeLimits)
-                    {
-                        return true;
-                    }
-                }
+                bool isTowerATrainee = towerTypeAccessor.TowerType == TowerType.Trainee;
+                if (!isTowerATrainee)
+                    continue;
+
+                LimitBreakTracker limitBreakTracker = tower.GetComponent<LimitBreakTracker>();
+                bool hasTowerAlreadyBrokeItsLimit = limitBreakTracker.HasBrokeLimits == true;
+                if (hasTowerAlreadyBrokeItsLimit)
+                    continue;
+
+                return true;
             }
 
             return false;

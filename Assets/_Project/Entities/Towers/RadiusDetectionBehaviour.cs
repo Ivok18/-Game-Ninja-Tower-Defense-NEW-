@@ -56,53 +56,64 @@ namespace TD.Entities.Towers
         {
             foreach (Transform enemyOnMap in EnemyStorer.Instance.Enemies)
             {
-                if (enemyOnMap != null)
+                bool doesEnemyObjectFoundExist = enemyOnMap != null;
+                if (!doesEnemyObjectFoundExist)
+                    continue;
+
+                bool isItInTowerRadius = IsInRadius(enemyOnMap);
+                if (isItInTowerRadius)
                 {
-                    if (IsInRadius(enemyOnMap))
-                    {
-                        
-                        /* if (enemyMovement.IsWinded)  //inside radius, remove any enemy affected by wind element from potential targets
-                         {
-                             ListOfTargets.EnemiesToAttack.Remove(enemyOnMap);
-                         }*/
-                        if (enemyOnMap.CompareTag("Dead") || enemyOnMap.CompareTag("Victorious")) //inside radius, remove any enemy flagged "Dead" from potential targets
+
+                    /* if (enemyMovement.IsWinded)  //inside radius, remove any enemy affected by wind element from potential targets
                         {
                             ListOfTargets.EnemiesToAttack.Remove(enemyOnMap);
-                        }
-                        else
-                        {
-                            if (!HasClonesInRadius(enemyOnMap))
-                            {
-                                //Confirm the enemy has entered the radius (not its clones)
-                                RadiusEntrySignaler radiusEntrySignaler = enemyOnMap.GetComponent<RadiusEntrySignaler>();
-                                radiusEntrySignaler.HasEnteredRadius = true;
-
-                                //If an enemy inside the radius has not been hit yet by wind element, add it to
-                                //enemies to attack
-                                ListOfTargets.EnemiesToAttack.Add(enemyOnMap);
-                            }
-                        }              
+                        }*/
+                    bool isItDead = enemyOnMap.CompareTag("Dead");
+                    bool isItHereToAnnounceVictory = enemyOnMap.CompareTag("Victorious");
+                    if (isItDead || isItHereToAnnounceVictory) //inside radius, remove any enemy flagged "Dead" from potential targets
+                    {
+                        ListOfTargets.EnemiesToAttack.Remove(enemyOnMap);
                     }
                     else
                     {
-                        RadiusEntrySignaler radiusEntrySignaler = enemyOnMap.GetComponent<RadiusEntrySignaler>();
-                        RadiusExitSignaler radiusExitSignaler = enemyOnMap.GetComponent<RadiusExitSignaler>();
-                        if (radiusEntrySignaler.HasEnteredRadius)
-                        {
-                            radiusExitSignaler.HasExitedRadius = true;
-                            if (radiusExitSignaler.HasExitedRadius)
-                            {
-                                LockTargetState lockTargetState = TowerHolder.GetComponent<LockTargetState>();
-                                if (lockTargetState.Target == enemyOnMap.transform)
-                                {
-                                    ListOfTargets.SwitchTargetFrom(enemyOnMap);
-                                }
-                            }
+                        bool doesItHaveClonesInTowerRadius = HasClonesInRadius(enemyOnMap);
 
+                        if (!doesItHaveClonesInTowerRadius)                           
+                        {
+                            //Confirm the enemy has entered the radius (not its clones)
+                            RadiusEntrySignaler radiusEntrySignaler = enemyOnMap.GetComponent<RadiusEntrySignaler>();
+                            radiusEntrySignaler.HasEnteredRadius = true;
+
+                            //If an enemy inside the radius has not been hit yet by wind element, add it to
+                            //enemies to attack
+                            ListOfTargets.EnemiesToAttack.Add(enemyOnMap);
                         }
-                        ListOfTargets.EnemiesToAttack.Remove(enemyOnMap);
-                    }
+                    }              
                 }
+                else
+                {
+                    RadiusEntrySignaler radiusEntrySignaler = enemyOnMap.GetComponent<RadiusEntrySignaler>();
+                    RadiusExitSignaler radiusExitSignaler = enemyOnMap.GetComponent<RadiusExitSignaler>();
+
+                    bool hasEnemyEnteredTheTowerRadius = radiusEntrySignaler.HasEnteredRadius;
+                    if (hasEnemyEnteredTheTowerRadius)
+                    {
+                        radiusExitSignaler.HasExitedRadius = true;
+                        bool hasEnemyExitedTheTowerRadius = radiusExitSignaler.HasExitedRadius;
+                        if (hasEnemyExitedTheTowerRadius)
+                        {
+                            LockTargetState lockTargetState = TowerHolder.GetComponent<LockTargetState>();
+                            bool isEnemyTheTargetOfTheTower = lockTargetState.Target == enemyOnMap.transform;
+                            if (isEnemyTheTargetOfTheTower)
+                            {
+                                ListOfTargets.SwitchTargetFrom(enemyOnMap);
+                            }
+                        }
+
+                    }
+                    ListOfTargets.EnemiesToAttack.Remove(enemyOnMap);
+                }
+                
                
             }
         }

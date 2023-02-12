@@ -88,8 +88,8 @@ namespace TD.ElementSystem
 
             else if (
                    FindFire(elementsTracker.CurrTowerElements)
-               && FindEarth(elementsTracker.CurrTowerElements)
-               && FindWind(elementsTracker.CurrTowerElements)
+               &&  FindEarth(elementsTracker.CurrTowerElements)
+               &&  FindWind(elementsTracker.CurrTowerElements)
                 )
             {
                 spriteRenderer.sprite = firePlusEarthPlusWind;

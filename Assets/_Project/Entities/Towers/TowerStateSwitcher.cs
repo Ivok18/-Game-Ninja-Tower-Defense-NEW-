@@ -20,16 +20,21 @@ namespace TD.Entities.Towers
 
         private void Deploy(Transform tower)
         {
-            if(transform == tower)
-            {
-                OnTowerEnterState?.Invoke(transform, TowerState.Stationary);
-            }
+            bool isItTheTowerToDeployOnMap = transform == tower;
+            if (!isItTheTowerToDeployOnMap)
+                return;
+
+            OnTowerEnterState?.Invoke(transform, TowerState.Stationary);
         }
 
         public void SwitchTo(TowerState newState)
         {      
             CurrentTowerState = newState;
-            if (transform != null) OnTowerEnterState?.Invoke(transform, newState);
+            bool doesTransformStillExist = transform != null;
+            if (!doesTransformStillExist)
+                return;
+
+            OnTowerEnterState?.Invoke(transform, newState);
         }
     }
 }

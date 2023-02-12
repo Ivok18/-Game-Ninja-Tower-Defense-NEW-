@@ -15,7 +15,9 @@ namespace TD.Entities.Towers
         // Update is called once per frame
         void Update()
         {
-            if (!isTowerDragged && towerStateSwitcher.CurrentTowerState !=TowerState.Undeployed) return;
+            bool isTowerCanBeDragged = !isTowerDragged && towerStateSwitcher.CurrentTowerState != TowerState.Undeployed;
+            if (isTowerCanBeDragged) 
+                return;
 
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             transform.Translate(mousePosition);

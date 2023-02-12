@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TD.Entities.Enemies;
 using TD.Entities.Towers.States;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -72,32 +73,63 @@ namespace TD.Entities.Towers
         private void OnMouseDown()
         {
             //Do not place tower if it is over UI
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                if (canPlace) PlaceTower();
-            }
-                                  
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            if (canPlace)
+                PlaceTower();
+
         }
 
+        /*
+            SPAGETTHI CODE, I MYSELF DONT KNOW HOW IT ACTUALLY WORKS MDRR
+        */
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed) return;
+            if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed) 
+                return;
 
-            TowerStateSwitcher collisionState = collision.GetComponent<TowerStateSwitcher>();
-
-            if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower")))
+            EnemyMovement enemyMovement = collision.GetComponent<EnemyMovement>();
+            bool isCollisionAnEnemy = enemyMovement != null;
+            if (isCollisionAnEnemy)
+            {
+                bool isEnemyAffectedByWind = enemyMovement.IsWinded;
+                if(isEnemyAffectedByWind)
+                {
+                    if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower"))
+                        && (!collision.CompareTag("Enemy")))
+                    {
+                        collisions.Add(collision.gameObject);
+                    }
+                }
+            }
+            else if(!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower")))
             {
                 collisions.Add(collision.gameObject);
             }
         }
 
+
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed) return;
-           
-            TowerStateSwitcher collisionState = collision.GetComponent<TowerStateSwitcher>();
+            if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed) 
+                return;
 
-            if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower")))
+            EnemyMovement enemyMovement = collision.GetComponent<EnemyMovement>();
+            bool isCollisionAnEnemy = enemyMovement != null;
+            if (isCollisionAnEnemy)
+            {
+                bool isEnemyAffectedByWind = enemyMovement.IsWinded;
+                if (isEnemyAffectedByWind)
+                {
+                    if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower"))
+                        && (!collision.CompareTag("Enemy")))
+                    {
+                        collisions.Remove(collision.gameObject);
+                    }
+                }
+            }
+            else if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower")))
             {
                 collisions.Remove(collision.gameObject);
             }

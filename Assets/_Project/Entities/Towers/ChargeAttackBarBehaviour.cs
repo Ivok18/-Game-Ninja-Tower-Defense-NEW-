@@ -12,7 +12,8 @@ namespace TD.Entities.Towers
         {
             float localScaleY = bar.localScale.y;
             float localScaleZ = bar.localScale.z;
-            if (CurrentValue > 0 && MaxValue > 0)
+            bool uiChargeAttackBarDealsWithPositiveValues = CurrentValue > 0 && MaxValue > 0;
+            if (uiChargeAttackBarDealsWithPositiveValues)
             {
                 bar.localScale = new Vector3(1 - (CurrentValue / MaxValue), localScaleY, localScaleZ);
             }        

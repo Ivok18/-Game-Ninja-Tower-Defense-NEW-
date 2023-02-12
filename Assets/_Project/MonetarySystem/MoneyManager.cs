@@ -80,7 +80,9 @@ namespace TD.MonetarySystem
         private void UpdateMoneyFormat()
         {
             //If money is a thousand(1000) value ..
-            if (money >= 1000 && money < 1000000)
+            bool isMoneyAboveTenThousand = money >= 10000;
+            bool isMoneyStriclyBelowOneMillion = money < 1000000;
+            if (isMoneyAboveTenThousand && isMoneyStriclyBelowOneMillion)
             {
                 //get quotient of division by 1000
                 int formattedMoney = (int)(money / 1000);

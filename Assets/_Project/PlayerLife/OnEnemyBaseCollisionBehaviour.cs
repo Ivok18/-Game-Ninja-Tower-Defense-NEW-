@@ -10,7 +10,9 @@ namespace TD.PlayerLife
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.CompareTag("Enemy")) return;
+            bool hadVillageDoorCollidedWithEnemy = collision.CompareTag("Enemy");
+            if (!hadVillageDoorCollidedWithEnemy) 
+                return;
 
             collision.tag = "Dead";
             collision.gameObject.SetActive(false);

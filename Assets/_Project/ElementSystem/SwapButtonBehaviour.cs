@@ -48,7 +48,7 @@ namespace TD.ElementSystem
         public void PressSwapButton()
         {
             TowerElement elementToBeReplaced = attachedElement;
-            OnElementSwapButtonPressed(elementToBeReplaced);
+            OnElementSwapButtonPressed?.Invoke(elementToBeReplaced);
         }
 
         private void Update()

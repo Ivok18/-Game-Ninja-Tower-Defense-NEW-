@@ -14,7 +14,10 @@ namespace TD.Entities.Enemies
             foreach(var overlapingPattern in patternCollisions)
             {
                 PatternBehaviour patternBehaviour = overlapingPattern.GetComponent<PatternBehaviour>();
-                if (patternBehaviour == pattern) return patternBehaviour;
+                if (patternBehaviour != pattern)
+                    continue;
+
+                return patternBehaviour;
             }
 
             return null;
@@ -23,13 +26,15 @@ namespace TD.Entities.Enemies
         
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.CompareTag("AttackPattern")) return;
+            if (!collision.CompareTag("AttackPattern")) 
+                return;
             patternCollisions.Add(collision.transform);
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (!collision.CompareTag("AttackPattern")) return;
+            if (!collision.CompareTag("AttackPattern")) 
+                return;
             patternCollisions.Remove(collision.transform);
         }
     }

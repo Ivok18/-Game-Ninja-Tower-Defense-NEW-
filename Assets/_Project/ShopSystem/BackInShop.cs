@@ -39,21 +39,25 @@ namespace TD.ShopSystem
         }
 
         private void Update()
-        {       
+        {
             //Right to perform action
-            if (Input.GetMouseButton(1)) PutTowerBackInShop();
+            bool hasPlayerPressedRightMouseButton = Input.GetMouseButton(1);
+            if (hasPlayerPressedRightMouseButton) 
+                PutTowerBackInShop();
         }
 
         public void PutTowerBackInShop()
         {
-            if (towerToPutBack != null)
-            {          
-                TowerStorer.Instance.UndeployedTowers.Remove(towerToPutBack);
-                Destroy(towerToPutBack.gameObject);
-                OnTowerBackInShop?.Invoke(towerToPutBack, cost);
-                towerToPutBack = null;
-                cost = 0;
-            }
+            bool isThereATowerToPutBackInShop = towerToPutBack != null;
+            if (!isThereATowerToPutBackInShop)
+                return;
+
+                    
+            TowerStorer.Instance.UndeployedTowers.Remove(towerToPutBack);
+            Destroy(towerToPutBack.gameObject);
+            OnTowerBackInShop?.Invoke(towerToPutBack, cost);
+            towerToPutBack = null;
+            cost = 0;        
         }
     }
 }

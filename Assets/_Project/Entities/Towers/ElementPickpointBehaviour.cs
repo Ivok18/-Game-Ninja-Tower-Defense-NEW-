@@ -41,19 +41,23 @@ namespace TD.ElementSystem
             Color colorPreviousFrame = visualizer.color;
             float alphaPreviousFrame = colorPreviousFrame.a;
             Color colorNextFrame = colorPreviousFrame;
-            if (alphaPreviousFrame >= glowAlphaMax)
+            bool isAnimAtMaxValue = alphaPreviousFrame >= glowAlphaMax;
+            bool isAnimAtMinValue = alphaPreviousFrame <= glowAlphaMin;
+            bool isAnimTargetValueIsMaxValue = glowDestinationAlpha == glowAlphaMax;
+            bool isAnimTargetValueIsMinValue = glowDestinationAlpha == glowAlphaMin;
+            if (isAnimAtMaxValue)
             {
                 glowDestinationAlpha = glowAlphaMin;
             }
-            if (alphaPreviousFrame <= glowAlphaMin)
+            if (isAnimAtMinValue)
             {
                 glowDestinationAlpha = glowAlphaMax;
             }
-            if (glowDestinationAlpha == glowAlphaMax)
+            if (isAnimTargetValueIsMaxValue)
             {
                 colorNextFrame.a = alphaPreviousFrame + glowAnimationSpeed * Time.deltaTime;
             }
-            else if (glowDestinationAlpha == glowAlphaMin)
+            else if (isAnimTargetValueIsMinValue)
             {
                 colorNextFrame.a = alphaPreviousFrame - glowAnimationSpeed * Time.deltaTime;
             }

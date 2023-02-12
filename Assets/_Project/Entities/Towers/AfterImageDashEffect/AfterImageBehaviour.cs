@@ -8,52 +8,53 @@ namespace TD.Entities.Towers.AfterImageDashEffect
         private float timeActivated;
         private float currentAlpha;
         [SerializeField] private float startAlpha;
-        [SerializeField] private float alphaDecreaseSpeed;
+        private float alphaDecreaseSpeed = 4f;
         [SerializeField] private SpriteRenderer afterImageSpriteRenderer;
         private Color afterImageColor;
         public Transform Holder;
 
         private void OnEnable()
         {
-            if(Holder!=null)
-            {
-
-                SpriteRenderer holderSpriteRenderer = Holder.GetComponent<SpriteGetter>().SpriteRenderer;
-                afterImageColor = holderSpriteRenderer.color;
-                afterImageSpriteRenderer.sprite = holderSpriteRenderer.sprite;
-                currentAlpha = startAlpha;
-                transform.position = Holder.position;
-                transform.rotation = Holder.rotation;
-                timeActivated = Time.time;
-            }
+            bool hasTowerHolder = Holder != null;
            
+            if (!hasTowerHolder)
+                return;
+
+            SpriteRenderer holderSpriteRenderer = Holder.GetComponent<SpriteGetter>().SpriteRenderer;
+            afterImageColor = holderSpriteRenderer.color;
+            afterImageSpriteRenderer.sprite = holderSpriteRenderer.sprite;
+            currentAlpha = startAlpha;
+            transform.position = Holder.position;
+            transform.rotation = Holder.rotation;
+            timeActivated = Time.time;
+
         }
 
         private void Update()
         {
             currentAlpha -= Time.deltaTime * alphaDecreaseSpeed;
-            if(Holder!=null)
+            bool hasTowerHolder = Holder != null;
+            if (!hasTowerHolder)
             {
-                SpriteRenderer holderSpriteRenderer = Holder.GetComponent<SpriteGetter>().SpriteRenderer;
-                afterImageColor = holderSpriteRenderer.color;
+                AfterImagePool.Instance.AddToPool(gameObject);
+                return;
             }
+
+            
+            SpriteRenderer holderSpriteRenderer = Holder.GetComponent<SpriteGetter>().SpriteRenderer;
+            afterImageColor = holderSpriteRenderer.color;
+            
            
             afterImageColor = new Color(afterImageColor.r, afterImageColor.g, afterImageColor.b, currentAlpha);
             afterImageSpriteRenderer.color = afterImageColor;
 
-
-            if (Time.time >= (timeActivated+activeTime))
+            bool hasReachedEndOfItsLifetime = Time.time >= (timeActivated + activeTime);
+            if (hasReachedEndOfItsLifetime)
             {
-                //Add back to pool
                 AfterImagePool.Instance.AddToPool(gameObject);
+                return;
             }
-        }
-
-
-
-      
-
-            
+        } 
     }
 }
 

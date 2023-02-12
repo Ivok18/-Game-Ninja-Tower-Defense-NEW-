@@ -24,7 +24,8 @@ namespace TD.Entities.Enemies
 
         void Update()
         {
-            if (!canShake) return;
+            if (!canShake) 
+                return;
 
             if(timeUntilEndOfShake > 0)
             {

@@ -10,7 +10,7 @@ namespace TD.Entities.Towers.States
         private TowerStateSwitcher towerStateSwitcher;
         public PatternBehaviour NextPattern;
 
-      
+
         public int NbOfHitLanded;
 
         [HideInInspector]
@@ -60,66 +60,90 @@ namespace TD.Entities.Towers.States
         //On entering attack state, detach attack pattern from player so that he can reach attack patterns 
         private void DetachPatternChildren(Transform tower, TowerState state)
         {
-            if(transform == tower && state == TowerState.Attacking)
+            bool hastToDetachChildrenPattern = transform == tower;
+            bool isAttacking = state == TowerState.Attacking;
+            if (hastToDetachChildrenPattern && isAttacking)
             {
-          
                 PatternDetacher patternDetacher = GetComponent<PatternDetacher>();
-                patternDetacher.DetachPaternsFromParent(); 
+                patternDetacher.DetachPaternsFromParent();
             }
         }
 
         //Decide whether to continue attacking or go back to stationary state after hitting target
-        private void OperateNextAttackMove(Transform enemy,Transform attackingTower)
+        private void OperateNextAttackMove(Transform enemy, Transform attackingTower)
         {
-            if(transform == attackingTower)
+            bool hasToDetermineNextCourseOfAction = transform == attackingTower;
+            if (!hasToDetermineNextCourseOfAction) 
+                return;
+            
+
+
+            NbOfHitLanded++;
+            bool
+                towerHasCompletedAllItsDashesAfterIncrementOfCounterOfHitsOnTarget = NbOfHitLanded >= NbOfBonusDash + 1;
+
+            if (towerHasCompletedAllItsDashesAfterIncrementOfCounterOfHitsOnTarget)
             {
-                //Avoiding unknow bug yet
-                if(NbOfHitLanded < NbOfBonusDash + 1)
-                {
-                    NbOfHitLanded++;
-                    if (NbOfHitLanded != NbOfBonusDash + 1)
-                    {
-                        //Find next attack pattern to teleport to
-                        AttackPatternsStorer followAttackPatternBehaviour = GetComponent<AttackPatternsStorer>();
-                        NextPattern = followAttackPatternBehaviour.FindNextPattern();
-                        if (NextPattern != null)
-                        {
-                            //teleport to next pattern
-                            transform.position = NextPattern.transform.position;
-                            //Debug.Log("AH");
+                ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
+                chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
+                towerStateSwitcher.SwitchTo(TowerState.Stationary);
+                return;
 
-                            //if next pattern overlaps with target (fixed)
-                            AttackPatternOverlapTracker attackPatternOverlapTracker = enemy.GetComponent<AttackPatternOverlapTracker>();
-                            if (attackPatternOverlapTracker.FindOverlapingPattern(NextPattern) != null)
-                            {
-                                NextPattern.HasBeenReached = true;
+            }
 
-                                //damage enemy
-                                DamageReceiver damageReceiver = enemy.GetComponent<DamageReceiver>();
-                                damageReceiver.ReceiveDamage(CurrentDamagePerDash, transform);
+            //Find next attack pattern to teleport to
+            AttackPatternsStorer followAttackPatternBehaviour = GetComponent<AttackPatternsStorer>();
+            NextPattern = followAttackPatternBehaviour.FindNextPattern();
+            bool hasNextPattern = NextPattern != null;
+            if (!hasNextPattern)
+            {
+                ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
+                chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
+                towerStateSwitcher.SwitchTo(TowerState.Stationary);
+                return;
+            }
 
-                                //go to next the next attack pattern if there is any
-                                NextPattern = followAttackPatternBehaviour.FindNextPattern();
-                                if (NextPattern != null) transform.position = NextPattern.transform.position;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
-                        chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
-                        towerStateSwitcher.SwitchTo(TowerState.Stationary);
-                    }
-                }
-                else towerStateSwitcher.SwitchTo(TowerState.Stationary);
+            //teleport to next pattern
+            transform.position = NextPattern.transform.position;
+      
 
-            }          
+            //if next pattern overlaps with target (fixed)
+            AttackPatternOverlapTracker attackPatternOverlapTracker = enemy.GetComponent<AttackPatternOverlapTracker>();
+
+            bool nextPatternOverlapsWithAnEnemy =
+                attackPatternOverlapTracker.FindOverlapingPattern(NextPattern) != null;
+
+            if (!nextPatternOverlapsWithAnEnemy)
+                return;
+       
+            NextPattern.HasBeenReached = true;
+
+            //damage enemy
+            DamageReceiver damageReceiver = enemy.GetComponent<DamageReceiver>();
+            damageReceiver.ReceiveDamage(CurrentDamagePerDash, transform);
+
+            //go to next the next attack pattern if there is any
+            bool thereIsOtherPatternToReachAfterOverlapingPattern =
+                followAttackPatternBehaviour.FindNextPattern() != null;
+            if (!thereIsOtherPatternToReachAfterOverlapingPattern)
+            {
+                ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
+                chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
+                towerStateSwitcher.SwitchTo(TowerState.Stationary);
+                return;
+            }
+
+            NextPattern = followAttackPatternBehaviour.FindNextPattern();
+            transform.position = NextPattern.transform.position;
         }
+
 
 
         void Update()
         {
-            if (towerStateSwitcher.CurrentTowerState != TowerState.Attacking) return;
+            if (towerStateSwitcher.CurrentTowerState != TowerState.Attacking) 
+                return;
+
             Attack();
         }
 
@@ -130,14 +154,16 @@ namespace TD.Entities.Towers.States
             Transform target = lockTargetState.Target;
 
             //If target has been destroyed (it may happen when the wave ends)
-            if (target == null)
+            bool isTargetStillValid = target != null;
+            if (!isTargetStillValid)
             {
                 towerStateSwitcher.SwitchTo(TowerState.Stationary);
                 return;
             }
-            
+
             //If target has not been destroyed (it happens when the wave ends)
-            if (!target.CompareTag("Dead"))  //If the target is alive..
+            bool isTargetDead = target.CompareTag("Dead");
+            if (!isTargetDead)  //If the target is alive..
             {
                 //Dash on target
                 transform.position = Vector2.MoveTowards(transform.position, target.position, CurrentDashSpeed * Time.deltaTime);
@@ -149,36 +175,36 @@ namespace TD.Entities.Towers.States
                 bool isTargetAffectedByWind = enemyMovement.IsWinded;
                 bool hasMultipleTargets = !(listOfTargets.EnemiesToAttack.Count == 1);
                 if (isTargetAffectedByWind && hasMultipleTargets)
-                {    
+                {
                     listOfTargets.SwitchTargetFrom(target);
                 }
             }
             else
             {
                 ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
-                    
-                //If tower didnt land all its dashes on target yet and for some reason its target died..
-                if (NbOfHitLanded < NbOfBonusDash + 1)
-                {
-                    if (listOfTargets.EnemiesToAttack.Count > 0) //And if tower has other targets to attack..
-                    {
-                        //attack them
-                        lockTargetState.Target = listOfTargets.FindEnemy();     
 
-                    }
-                    else //If there are no target available..
-                    {
-                        //Go back to staionary state
-                        towerStateSwitcher.SwitchTo(TowerState.Stationary);    
-                    }
-                }
-                else
+                //If tower didnt land all its dashes on target yet and for some reason its target died..
+                bool hasTowerLandedAllItsDashes = NbOfHitLanded >= NbOfBonusDash + 1;
+                if (hasTowerLandedAllItsDashes)
                 {
                     towerStateSwitcher.SwitchTo(TowerState.Stationary);
                 }
+
+
+                bool towerHasOtherTargets = listOfTargets.EnemiesToAttack.Count > 0;
+                if (!towerHasOtherTargets)
+                {
+                    //Go back to staionary state
+                    towerStateSwitcher.SwitchTo(TowerState.Stationary);
+                    return;
+                }
+
+                //if tower has other targets to attack..   
+                //attack them
+                lockTargetState.Target = listOfTargets.FindEnemy();
             }
         }
-            
+
     }
 
 }

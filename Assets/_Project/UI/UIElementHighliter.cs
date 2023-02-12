@@ -31,7 +31,8 @@ namespace TD.UI
 
         private void UpdateSelectionBrackets(TowerElement element, int cost)
         {
-            if(uIElementSelector.Element == element)
+            bool hasThisUIElementBeenSelected = uIElementSelector.Element == element;
+            if (hasThisUIElementBeenSelected)
             {
                 ShowSelectionBrackets();
             }
@@ -48,7 +49,6 @@ namespace TD.UI
         {
              selectionBrackets.SetActive(false);  
         }
-
 
     }
 }

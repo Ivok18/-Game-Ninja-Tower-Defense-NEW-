@@ -21,7 +21,9 @@ namespace TD.Entities.Towers.States
 
         private void Reset(Transform tower, TowerState state)
         {
-            if(state == TowerState.Stationary && tower == transform)
+            bool areWeEnteringSationaryState = state == TowerState.Stationary;
+            bool isItTheTowerEnteringStationatyState = tower == transform;
+            if (areWeEnteringSationaryState && isItTheTowerEnteringStationatyState)
             {
                 //Reset attack pattern
                 PatternAttacher patternAttacher = GetComponent<PatternAttacher>();
@@ -54,7 +56,9 @@ namespace TD.Entities.Towers.States
        
                 //reset target 
                 LockTargetState lockTargetState = GetComponent<LockTargetState>();
-                if (lockTargetState.Target != null) lockTargetState.Target = null;
+                bool isThereAStillATarget = lockTargetState.Target != null;
+                if (isThereAStillATarget) 
+                    lockTargetState.Target = null;
               
             }          
         }
@@ -71,10 +75,15 @@ namespace TD.Entities.Towers.States
         
         private void Update()
         {
-            if (towerStateSwitcher.CurrentTowerState != TowerState.Stationary) return;
+            bool isTowerInStationaryState = towerStateSwitcher.CurrentTowerState == TowerState.Stationary;
+            if (!isTowerInStationaryState) 
+                return;
 
             ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
-            if (listOfTargets.EnemiesToAttack.Count <= 0) return;
+            bool areThereEnemiesToAttack = listOfTargets.EnemiesToAttack.Count > 0;
+            if (!areThereEnemiesToAttack) 
+                return;
+
             towerStateSwitcher.SwitchTo(TowerState.LockingTarget);
         }
     }

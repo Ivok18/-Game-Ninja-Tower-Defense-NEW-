@@ -23,7 +23,8 @@ namespace TD.UI
         //Connected to callback above
         private void SwitchToFillingState()
         {
-            if (!jaugeFillingState.activeSelf)
+            bool isTheJaugeInFillingState = jaugeFillingState.activeSelf;
+            if (!isTheJaugeInFillingState)
             {
                 jaugeFilledState.SetActive(false);
                 jaugeFillingState.SetActive(true);
@@ -32,7 +33,8 @@ namespace TD.UI
 
         public void SwichToFilledState()
         {
-            if(!jaugeFilledState.activeSelf)
+            bool isTheJaugeInFullState = jaugeFilledState.activeSelf;
+            if (!isTheJaugeInFullState)
             {
                 jaugeFilledState.SetActive(true);
                 jaugeFillingState.SetActive(false);

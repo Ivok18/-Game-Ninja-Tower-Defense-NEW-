@@ -34,26 +34,25 @@ namespace TD.ElementSystem
         {
             foreach (UIElementSelector selector in selectorList)
             {
-                if(elementOfButtonPressed == selector.Element)
+                if (elementOfButtonPressed != selector.Element)
                 {
-                    //Unselect if it was already selected
-                    //Select if it was not selected
-                    selector.UIElementIsSelected = !selector.UIElementIsSelected;
+                    selector.UIElementIsSelected = false;
+                    continue;
+                }
+                   
+                //Unselect if it was already selected
+                //Select if it was not selected
+                selector.UIElementIsSelected = !selector.UIElementIsSelected;
 
-                    if (selector.UIElementIsSelected == true)
-                    {
-                        //Notify everyone that it was selected
-                        OnUIElementSelected?.Invoke(selector.Element);
-                    }
-                    else
-                    {
-                        //Notify everyone that it was unselected
-                        OnUIElementUnselected?.Invoke(selector.Element);
-                    }
+                if (selector.UIElementIsSelected == true)
+                {
+                    //Notify everyone that it was selected
+                    OnUIElementSelected?.Invoke(selector.Element);
                 }
                 else
                 {
-                    selector.UIElementIsSelected = false;
+                    //Notify everyone that it was unselected
+                    OnUIElementUnselected?.Invoke(selector.Element);
                 }
             }
         }

@@ -21,14 +21,17 @@ namespace TD.ElementSystem
         private void AnchorElementSwapInterface(Transform towerHoldingElementSwapInterface)
         {
             ElementSwapInterfaceGetter getter = towerHoldingElementSwapInterface.GetComponent<ElementSwapInterfaceGetter>();
-            if(getter!=null)
-            {
-                Transform elementSwapInterfaceToAnchor = getter.SwapInterfaceTransform;
-                elementSwapInterfaceToAnchor.SetParent(transform);
-            }
+            bool doesGetterExist = getter != null;
+            if (!doesGetterExist)
+                return;
 
-
+            Transform elementSwapInterfaceToAnchor = getter.SwapInterfaceTransform;
+            elementSwapInterfaceToAnchor.SetParent(transform);
         }
-    }
 
+
+
+    }
 }
+
+

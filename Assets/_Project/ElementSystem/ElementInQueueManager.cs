@@ -42,8 +42,8 @@ namespace TD.ElementSystem
 
         private void PutInQueue(ElementShopData elementShopData)
         {
-           
-            if(currElementsInQueue.Count > 0)  //Swap if queue is not empty
+            bool isThereAlreadyAnElementInQueue = currElementsInQueue.Count > 0;
+            if (isThereAlreadyAnElementInQueue)  //Swap if queue is not empty
             {
                 elementInQueue = elementShopData.element;
                 OnElementAddedToQueue?.Invoke(elementShopData.element, elementShopData.cost);
@@ -58,8 +58,9 @@ namespace TD.ElementSystem
 
         private void ClearQueue(TowerElement element)
         {
-            if(currElementsInQueue.Count > 0)
-            {
+            bool isQueueEmpty = currElementsInQueue.Count <= 0;
+            if (!isQueueEmpty)
+            { 
                 currElementsInQueue.RemoveAt(0);
                 elementInQueue = TowerElement.None;
 
@@ -70,8 +71,9 @@ namespace TD.ElementSystem
         //Clear queue if it is not emppty
         private void TryClearQueue()
         {
-            if (currElementsInQueue.Count > 0)
-            {
+            bool isQueueEmpty = currElementsInQueue.Count <= 0;
+            if (!isQueueEmpty)
+            { 
                 currElementsInQueue.RemoveAt(0);
                 elementInQueue = TowerElement.None;
 

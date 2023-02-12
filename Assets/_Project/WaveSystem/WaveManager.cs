@@ -22,7 +22,7 @@ namespace TD.WaveSystem
         [SerializeField] private List<Transform> enemiesInCurrentWave;
         [SerializeField] private List<Transform> enemiesToSpawn;
         [SerializeField] private WaveData[] waves;
-        private int currentWaveIndex;
+        private int currentWaveIndex = 17;
 
 
         public delegate void WaveEndCallback(WaveState nextWave);
@@ -50,27 +50,30 @@ namespace TD.WaveSystem
         {
             //This checks resolves an error I got in the inspector although I don't know exactly the cause
             //of the error. But hey, it's still fixed it :)
-            if(enemy!=null)
+            bool doesEnemyExist = enemy != null;
+            if (doesEnemyExist)
             {
                 enemiesInCurrentWave.Remove(enemy);
             }
-            if(enemiesInCurrentWave.Count <= 0 && CanEndCurrentWave())
+            bool haveAllEnemiesBeenKilled = enemiesInCurrentWave.Count <= 0;
+            if (haveAllEnemiesBeenKilled && CanEndCurrentWave())
             {
                 EndWave();
-            }  
-            
+            }             
         }
 
         private void DecreaseEnemiesInCurrentWave2(Transform enemy, int enemyCurrentHealth)
         {
             //This checks resolves an error I got in the inspector although I don't know exactly the cause
             //of the error. But hey, it's still fixed it :)
-            if (enemy != null)
-            {
+            bool doesEnemyExist = enemy != null;
+            if (doesEnemyExist)
+            { 
                 enemiesInCurrentWave.Remove(enemy);
             }
-            if (enemiesInCurrentWave.Count <= 0 && CanEndCurrentWave())
-            {
+            bool haveAllEnemiesBeenKilled = enemiesInCurrentWave.Count <= 0;
+            if (haveAllEnemiesBeenKilled && CanEndCurrentWave())
+            { 
                 EndWave();
             }
         }
@@ -152,7 +155,8 @@ namespace TD.WaveSystem
 
         public void StartNextWave()
         {
-            if(CurrentWave.waveState != WaveState.Victory)
+            bool isCurrentWaveTheVictoryWave = CurrentWave.waveState == WaveState.Victory;
+            if (!isCurrentWaveTheVictoryWave)
             {
                 CurrentWave.waveState = WaveState.LoadEnemies;
                 waveText.text = "WAVE" + (currentWaveIndex + 1).ToString();
@@ -169,35 +173,33 @@ namespace TD.WaveSystem
 
         public void EndWave()
         {
-            bool hasNextWave = currentWaveIndex < waves.Length - 1;
+            bool isThereAWaveAfterThisWave = currentWaveIndex < waves.Length - 1;
             //Prevents out of bounds exception (unknown cause)
-            if (hasNextWave)
-            {
-                waveButton.gameObject.SetActive(true);
-                CurrentWave.waveState = WaveState.Inactive;
-                enemiesToSpawn.Clear();
-                OnWaveEnd?.Invoke(waves[currentWaveIndex+1].waveState);
-                currentWaveIndex++;
+            if (!isThereAWaveAfterThisWave)
+                return;
+            
+            waveButton.gameObject.SetActive(true);
+            CurrentWave.waveState = WaveState.Inactive;
+            enemiesToSpawn.Clear();
+            OnWaveEnd?.Invoke(waves[currentWaveIndex+1].waveState);
+            currentWaveIndex++;
 
-                //Reset the index of enemy to spawn to zero for the next wave
-                Spawner.indexOfEnemyToSpawn = 0;
-               
-            }   
+            //Reset the index of enemy to spawn to zero for the next wave
+            Spawner.indexOfEnemyToSpawn = 0;
         }
 
         public bool CanEndCurrentWave()
         {
-            if (CurrentWave.waveState != WaveState.Victory)
-            {
-                if (enemiesInCurrentWave.Count <= 0)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+            bool isCurrentWaveTheVictoryWave = CurrentWave.waveState == WaveState.Victory;
+            if (isCurrentWaveTheVictoryWave)
+                return false;
 
-        
+            bool haveAllEnemiesBeenKilled = enemiesInCurrentWave.Count <= 0;
+            if (!haveAllEnemiesBeenKilled)
+                return false;
+
+            return true;
+        }  
     }
 
 }

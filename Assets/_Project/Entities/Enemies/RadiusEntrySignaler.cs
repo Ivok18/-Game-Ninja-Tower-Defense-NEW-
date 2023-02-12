@@ -4,6 +4,6 @@ namespace TD.Entities.Enemies
 {
     public class RadiusEntrySignaler : MonoBehaviour
     {
-        public  bool HasEnteredRadius;
+        public bool HasEnteredRadius;
     }
 }

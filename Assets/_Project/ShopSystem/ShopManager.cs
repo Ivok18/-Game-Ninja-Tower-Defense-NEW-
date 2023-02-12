@@ -79,18 +79,22 @@ namespace TD.ShopSystem
 
         public void BuyTower(Transform model)
         {
-            if (backInShop.Tower != null) backInShop.PutTowerBackInShop();
+            if (backInShop.Tower != null) 
+                backInShop.PutTowerBackInShop();
             else
             {
                 foreach (var tower in towersInShop)
                 {
-                    if (tower.towerPrefab == model)
-                    {
-                        if (MoneyManager.Instance.Money >= tower.cost)
-                        {
-                            OnTowerBuy?.Invoke(tower.towerPrefab, tower.cost);
-                        }
-                    }
+                    bool doesShopModelCorrespondToBuyChoice = tower.towerPrefab == model;
+                    if (!doesShopModelCorrespondToBuyChoice)
+                        continue;
+
+                    bool hasEnoughMoney = MoneyManager.Instance.Money >= tower.cost;
+                    if (!hasEnoughMoney)
+                        continue;
+
+                    OnTowerBuy?.Invoke(tower.towerPrefab, tower.cost);
+                    return;
                 }
             }
         }
@@ -101,15 +105,18 @@ namespace TD.ShopSystem
 
             foreach (var shopTower in towersInShop)
             {
-                if (shopTower.towerType == selectedTowerType)
-                {
-                    TowerStorer.Instance.DeployedTowers.Remove(towerSelected);
-                    Destroy(towerSelected.gameObject);
-                    towerSelected = null;
+                bool isTheDataOfTheTowerToSell = shopTower.towerType == selectedTowerType;
+                if (!isTheDataOfTheTowerToSell)
+                    continue;
 
-                    float sellMoney = shopTower.cost / 2;
-                    OnTowerSell?.Invoke(towerSelected, sellMoney);
-                }
+
+                TowerStorer.Instance.DeployedTowers.Remove(towerSelected);
+                Destroy(towerSelected.gameObject);
+                towerSelected = null;
+
+                float sellMoney = shopTower.cost / 2;
+                OnTowerSell?.Invoke(towerSelected, sellMoney);
+                return;
             }
         }
 
@@ -130,7 +137,8 @@ namespace TD.ShopSystem
             Color cannotBuyColor = towerPanelCannotBuyColor;
             foreach(var tower in towersInShop)
             {
-                if (MoneyManager.Instance.Money >= tower.cost)
+                bool hasEnoughMoney = MoneyManager.Instance.Money >= tower.cost;
+                if (hasEnoughMoney)
                 {
                     tower.panel.color = canBuyColor;
                 }
@@ -154,7 +162,8 @@ namespace TD.ShopSystem
                 Sprite canBuyVisualizer = element.canBuyVisualizer;
                 Sprite cannotBuyVisualizer = element.cannotBuyVisualizer;
 
-                if (MoneyManager.Instance.Money >= element.cost)
+                bool hasEnoughMoney = MoneyManager.Instance.Money >= element.cost;
+                if (hasEnoughMoney)
                 {
                     element.panel.color = canBuyColor;
                     element.visualizer.sprite = canBuyVisualizer;             
@@ -171,10 +180,11 @@ namespace TD.ShopSystem
         {
             foreach(var elementData in elementsInShop)
             {
-                if(elementData.element == element)
-                {
-                    return elementData;
-                }
+                bool hasFoundElementInShop = elementData.element == element;
+                if (!hasFoundElementInShop)
+                    continue;
+
+                return elementData;
             }
 
             return null;

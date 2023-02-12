@@ -22,11 +22,13 @@ namespace TD.ElementSystem
         {
             TowerType towerType = towerHoldingPickpoint.GetComponent<TowerTypeAccessor>().TowerType;
 
-            if(towerType!=TowerType.Trainee)
-            {
-                Transform pickpointToAnchor = towerHoldingPickpoint.GetComponent<ElementPickpointGetter>().ElementPickpointTransform;
-                pickpointToAnchor.parent = transform;
-            }
+            bool isTowerATrainee = towerType == TowerType.Trainee;
+            if (isTowerATrainee)
+                return;
+
+            Transform pickpointToAnchor = towerHoldingPickpoint.GetComponent<ElementPickpointGetter>().ElementPickpointTransform;
+            pickpointToAnchor.parent = transform;
+            
             
         }
     }

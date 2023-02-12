@@ -17,15 +17,19 @@ namespace TD.Entities.Towers.AfterImageDashEffect
 
         private void Update()
         {
-           if (towerStateSwitcher.CurrentTowerState != TowerState.Attacking) return;
 
-            if (Vector2.Distance(transform.position, lastImagePos) > distanceBetweenImages)
-            {
-                GameObject afterImage = AfterImagePool.Instance.GetFromPool();
-                afterImage.GetComponent<AfterImageBehaviour>().Holder = transform;
-                lastImagePos = transform.position;
-                afterImage.SetActive(true);
-            }
+            bool towerIsAttaking = towerStateSwitcher.CurrentTowerState == TowerState.Attacking;
+            if (!towerIsAttaking)
+                return;
+
+            bool isFarFromLastAfterImage = Vector2.Distance(transform.position, lastImagePos) > distanceBetweenImages;
+            if (!isFarFromLastAfterImage)
+                return;
+
+            GameObject afterImage = AfterImagePool.Instance.GetFromPool();
+            afterImage.GetComponent<AfterImageBehaviour>().Holder = transform;
+            lastImagePos = transform.position;
+            afterImage.SetActive(true);
            
         }
 

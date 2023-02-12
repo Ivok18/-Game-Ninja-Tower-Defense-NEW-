@@ -545,6 +545,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3296199366315986312, guid: e5a3f8847be555644ac173049938060a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 25.0054
+      objectReference: {fileID: 0}
+    - target: {fileID: 3296199366315986312, guid: e5a3f8847be555644ac173049938060a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -11.3464
+      objectReference: {fileID: 0}
     - target: {fileID: 5069155583028071813, guid: e5a3f8847be555644ac173049938060a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -720,6 +730,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8510015747157162237, guid: e5a3f8847be555644ac173049938060a,
+        type: 3}
+      propertyPath: m_Text
+      value: 10.4K
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510015747157162237, guid: e5a3f8847be555644ac173049938060a,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8981946985011500830, guid: e5a3f8847be555644ac173049938060a,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -792,7 +812,7 @@ PrefabInstance:
     - target: {fileID: -5543446339296192296, guid: dde72e5d40c83ed47b740728f72a9bef,
         type: 3}
       propertyPath: NoOfKillsForSignal
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5543446339296192296, guid: dde72e5d40c83ed47b740728f72a9bef,
         type: 3}
@@ -2626,6 +2646,16 @@ PrefabInstance:
       propertyPath: restartGameButton
       value: 
       objectReference: {fileID: 1130886247}
+    - target: {fileID: 4180018371340840187, guid: bd96f9285d6ac454bace48e39c47a381,
+        type: 3}
+      propertyPath: waves.Array.data[0].spawner.spawnInterval
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180018371340840187, guid: bd96f9285d6ac454bace48e39c47a381,
+        type: 3}
+      propertyPath: waves.Array.data[0].spawner.noOfEnemiesToSpawn
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd96f9285d6ac454bace48e39c47a381, type: 3}
 --- !u!1001 &4855203533419550069
@@ -3554,7 +3584,7 @@ PrefabInstance:
     - target: {fileID: 1819737130331769148, guid: 608e3163f0c544349862d17ed9cd1aea,
         type: 3}
       propertyPath: money
-      value: 100
+      value: 400000
       objectReference: {fileID: 0}
     - target: {fileID: 1819737130331769148, guid: 608e3163f0c544349862d17ed9cd1aea,
         type: 3}

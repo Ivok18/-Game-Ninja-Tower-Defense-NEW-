@@ -28,7 +28,8 @@ namespace TD.Entities.Enemies
         {
             //Avoids unwanted damages
             AttackState attackState = attacker.GetComponent<AttackState>();
-            if (attackState.NbOfHitLanded < attackState.NbOfBonusDash + 1)
+            bool hasTowerNotCompletedAllItsDashesYet = attackState.NbOfHitLanded < attackState.NbOfBonusDash + 1;
+            if (hasTowerNotCompletedAllItsDashesYet)
             {
                 healthBehaviour.CurrentHealth -= amount;
             }
@@ -37,7 +38,8 @@ namespace TD.Entities.Enemies
             //where the tower get stuck on its targets 
             OnEnemyHit?.Invoke(transform, attacker);
 
-            if (healthBehaviour.CurrentHealth <= 0)
+            bool isDead = healthBehaviour.CurrentHealth <= 0;
+            if (isDead)
             {
                 healthBehaviour.CurrentHealth = 0;
 
@@ -54,25 +56,28 @@ namespace TD.Entities.Enemies
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (!collision.CompareTag("Tower")) return;
+            bool hasCollidedWithATower = collision.CompareTag("Tower");
+            if (!hasCollidedWithATower) 
+                return;
 
             LockTargetState lockTargetState = collision.GetComponent<LockTargetState>();
 
             //Receive damage from collision if collision is a tower and the enemy holding this script is its target
             //Also, the tower needs to be in attack state in order to inflict damage to its target
-            if (lockTargetState.Target == transform)
-            {
-                TowerStateSwitcher towerStateSwitcher = collision.GetComponent<TowerStateSwitcher>();
-                if(towerStateSwitcher.CurrentTowerState == TowerState.Attacking)
-                {
-                    AttackState attackState = collision.GetComponent<AttackState>();
-                    ReceiveDamage(attackState.CurrentDamagePerDash, attackState.transform);
+            bool isTargetOfTower = lockTargetState.Target == transform;
+            if (!isTargetOfTower)
+                return;
+            
+            TowerStateSwitcher towerStateSwitcher = collision.GetComponent<TowerStateSwitcher>();
+            bool isTowerAttacking = towerStateSwitcher.CurrentTowerState == TowerState.Attacking;
+            if (!isTowerAttacking)
+                return;
 
-                    ShakeBehaviour shakeBehaviour = GetComponent<ShakeBehaviour>();
-                    shakeBehaviour.StartShake();
-                }
-              
-            }
+            AttackState attackState = collision.GetComponent<AttackState>();
+            ReceiveDamage(attackState.CurrentDamagePerDash, attackState.transform);
+
+            ShakeBehaviour shakeBehaviour = GetComponent<ShakeBehaviour>();
+            shakeBehaviour.StartShake();
         }
       
     }
