@@ -353,7 +353,6 @@ GameObject:
   - component: {fileID: 5403841131360840536}
   - component: {fileID: -5246823870518951627}
   - component: {fileID: 5307909232459915969}
-  - component: {fileID: 5667513190572830983}
   - component: {fileID: 6639325432274559344}
   - component: {fileID: 7246269173885995397}
   - component: {fileID: -4637157059817548249}
@@ -361,6 +360,7 @@ GameObject:
   - component: {fileID: 5565968389938871908}
   - component: {fileID: -3286654645523602001}
   - component: {fileID: 405750062756542371}
+  - component: {fileID: 5502516708778457641}
   m_Layer: 0
   m_Name: Very Advanced
   m_TagString: Enemy
@@ -442,6 +442,7 @@ MonoBehaviour:
   waypointStorer: {fileID: 6186954608119940231, guid: 16523edcc9ad61243bd6fb90af188a6e,
     type: 3}
   Speed: 0
+  currentSpeed: 0
   IsWinded: 0
   CanMove: 0
 --- !u!114 &5307909232459915969
@@ -458,18 +459,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 0
   MaxHealth: 0
---- !u!114 &5667513190572830983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7073972598165122598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6177eee12cc13074295b2d1929214877, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6639325432274559344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,7 +474,7 @@ MonoBehaviour:
   shakeDuration: 0.05
   timeUntilEndOfShake: 0
   shakeIntensity: 0.05
-  alphaWhenShake: 0
+  alphaWhenShake: 0.1
 --- !u!114 &7246269173885995397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,3 +554,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patternCollisions: []
+--- !u!114 &5502516708778457641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220d281bb475c3b47bad741151c3fb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

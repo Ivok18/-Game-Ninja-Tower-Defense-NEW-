@@ -12,13 +12,13 @@ namespace TD.EnemiesManager.Storer
 
         private void OnEnable()
         {
-            DamageReceiver.OnEnemyDead += RemoveEnemy;
+            HealthBehaviour.OnEnemyDead += RemoveEnemy;
             WaveManager.OnWaveEnd += DestroyAllDeadEnemies;
         }
 
         private void OnDisable()
         {
-            DamageReceiver.OnEnemyDead -= RemoveEnemy;
+            HealthBehaviour.OnEnemyDead -= RemoveEnemy;
             WaveManager.OnWaveEnd -= DestroyAllDeadEnemies;
         }
 

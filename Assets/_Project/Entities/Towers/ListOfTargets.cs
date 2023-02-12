@@ -12,11 +12,11 @@ namespace TD.Entities.Towers
 
         private void OnEnable()
         {
-            DamageReceiver.OnEnemyDead += RemoveEnemy;
+            HealthBehaviour.OnEnemyDead += RemoveEnemy;
         }
         private void OnDisable()
         {
-            DamageReceiver.OnEnemyDead -= RemoveEnemy;
+            HealthBehaviour.OnEnemyDead -= RemoveEnemy;
         }
 
         private void RemoveEnemy(Transform enemy, Transform killerTower, float reward)

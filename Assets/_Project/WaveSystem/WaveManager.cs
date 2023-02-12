@@ -36,12 +36,12 @@ namespace TD.WaveSystem
 
         private void OnEnable()
         {
-            DamageReceiver.OnEnemyDead += DecreaseEnemiesInCurrentWave;
+            HealthBehaviour.OnEnemyDead += DecreaseEnemiesInCurrentWave;
             OnEnemyBaseCollisionBehaviour.OnEnemyReachBase += DecreaseEnemiesInCurrentWave2;
         }
         private void OnDisable()
         {
-            DamageReceiver.OnEnemyDead -= DecreaseEnemiesInCurrentWave;
+            HealthBehaviour.OnEnemyDead -= DecreaseEnemiesInCurrentWave;
             OnEnemyBaseCollisionBehaviour.OnEnemyReachBase -= DecreaseEnemiesInCurrentWave2;
         }
 

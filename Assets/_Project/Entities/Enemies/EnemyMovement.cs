@@ -19,11 +19,11 @@ namespace TD.Entities.Enemies
 
         private void OnEnable()
         {
-            DamageReceiver.OnEnemyHit += CheckWindElementEffect;
+            EnemyHitDetection.OnEnemyHit += CheckWindElementEffect;
         }
         private void OnDisable()
         {
-            DamageReceiver.OnEnemyHit -= CheckWindElementEffect;
+            EnemyHitDetection.OnEnemyHit -= CheckWindElementEffect;
         }
 
         private void Start()

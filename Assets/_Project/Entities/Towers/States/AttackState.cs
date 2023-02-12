@@ -47,13 +47,13 @@ namespace TD.Entities.Towers.States
         private void OnEnable()
         {
             TowerStateSwitcher.OnTowerEnterState += DetachPatternChildren;
-            DamageReceiver.OnEnemyHit += OperateNextAttackMove;
+            EnemyHitDetection.OnEnemyHit += OperateNextAttackMove;
         }
 
         private void OnDisable()
         {
             TowerStateSwitcher.OnTowerEnterState -= DetachPatternChildren;
-            DamageReceiver.OnEnemyHit -= OperateNextAttackMove;
+            EnemyHitDetection.OnEnemyHit -= OperateNextAttackMove;
 
         }
 
@@ -119,8 +119,8 @@ namespace TD.Entities.Towers.States
             NextPattern.HasBeenReached = true;
 
             //damage enemy
-            DamageReceiver damageReceiver = enemy.GetComponent<DamageReceiver>();
-            damageReceiver.ReceiveDamage(CurrentDamagePerDash, transform);
+            HealthBehaviour healthBehaviour= enemy.GetComponent<HealthBehaviour>();
+            healthBehaviour.GetDamage(CurrentDamagePerDash, transform);
 
             //go to next the next attack pattern if there is any
             bool thereIsOtherPatternToReachAfterOverlapingPattern =

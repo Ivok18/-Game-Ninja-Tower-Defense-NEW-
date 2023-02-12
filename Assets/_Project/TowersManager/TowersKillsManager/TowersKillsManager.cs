@@ -13,13 +13,13 @@ namespace TD.TowersManager.TowersKillsManager
 
         private void OnEnable()
         {
-            DamageReceiver.OnEnemyDead += UpdateTotalKillCount;
+            HealthBehaviour.OnEnemyDead += UpdateTotalKillCount;
             UILimitBreakTrigger.OnLimitBreakButtonTriggered += ResetNoOfTraineeTowersKills;
         }
 
         private void OnDisable()
         {
-            DamageReceiver.OnEnemyDead -= UpdateTotalKillCount;
+            HealthBehaviour.OnEnemyDead -= UpdateTotalKillCount;
             UILimitBreakTrigger.OnLimitBreakButtonTriggered -= ResetNoOfTraineeTowersKills;
         }
 

@@ -26,14 +26,14 @@ namespace TD.EnemiesManager.DeadEnemiesClearer
        
         private void OnEnable()
         {
-            DamageReceiver.OnEnemyDead += StoreDeadEnemy;
+            HealthBehaviour.OnEnemyDead += StoreDeadEnemy;
             OnEnemyBaseCollisionBehaviour.OnEnemyReachBase += StoreDeadEnemy2;
             WaveManager.OnWaveEnd += ClearListOfDeadEnemies;
             
         }
         private void OnDisable()
         {
-            DamageReceiver.OnEnemyDead -= StoreDeadEnemy;
+            HealthBehaviour.OnEnemyDead -= StoreDeadEnemy;
             OnEnemyBaseCollisionBehaviour.OnEnemyReachBase -= StoreDeadEnemy2;
             WaveManager.OnWaveEnd -= ClearListOfDeadEnemies;
         }

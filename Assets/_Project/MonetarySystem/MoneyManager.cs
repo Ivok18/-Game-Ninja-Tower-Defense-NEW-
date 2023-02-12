@@ -28,7 +28,7 @@ namespace TD.MonetarySystem
         {
             ShopManager.OnTowerSell += GainMoneyOnTowerSell;
             BackInShop.OnTowerBackInShop += GainMoneyOnTowerPutBackInShop;
-            DamageReceiver.OnEnemyDead += GainMoneyOnTowerKillEnemy;
+            HealthBehaviour.OnEnemyDead += GainMoneyOnTowerKillEnemy;
 
             ShopManager.OnTowerBuy += LoseMoneyOnTowerBuy;
             ElementDataApplier.OnElementDataAppliedOnTower += LooseMoneyOnElementAppliedOnTower;
@@ -39,7 +39,7 @@ namespace TD.MonetarySystem
 
             ShopManager.OnTowerSell -= GainMoneyOnTowerSell;
             BackInShop.OnTowerBackInShop -= GainMoneyOnTowerPutBackInShop;
-            DamageReceiver.OnEnemyDead -= GainMoneyOnTowerKillEnemy;
+            HealthBehaviour.OnEnemyDead -= GainMoneyOnTowerKillEnemy;
 
             ShopManager.OnTowerBuy -= LoseMoneyOnTowerBuy;
             ElementDataApplier.OnElementDataAppliedOnTower -= LooseMoneyOnElementAppliedOnTower;

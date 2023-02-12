@@ -13,8 +13,16 @@ namespace TD.Entities.Enemies
         private Color shakeColor;
         private Vector2 startPos;
         private Color startColor;
-        
-        
+
+        private void OnEnable()
+        {
+            EnemyHitDetection.OnEnemyHit += Shake;
+        }
+
+        private void OnDisable()
+        {
+            EnemyHitDetection.OnEnemyHit -= Shake;
+        }
 
         private void Start()
         {
@@ -46,6 +54,14 @@ namespace TD.Entities.Enemies
             }
         }
 
+        public void Shake(Transform enemyAttacked, Transform attackingTower)
+        {
+            bool isTargetOfTower = transform == enemyAttacked;
+            if (!isTargetOfTower)
+                return;
+
+            StartShake();
+        }
         public void StartShake()
         {
             canShake = true;
