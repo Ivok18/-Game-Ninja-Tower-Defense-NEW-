@@ -13,9 +13,9 @@ namespace TD.ElementSystem
         //This variable serves no other puropose than that
         [SerializeField] private TowerElement elementInQueue;
 
-        private List<ElementShopData> currElementsInQueue;
+        private List<ElementScriptableObject> currElementsInQueue;
         
-        public delegate void ElementAddedToQueueCallback(TowerElement element, int cost);
+        public delegate void ElementAddedToQueueCallback(ElementScriptableObject elementData);
         public static event ElementAddedToQueueCallback OnElementAddedToQueue;
 
         public delegate void QueueClearCallback(TowerElement element);
@@ -24,7 +24,7 @@ namespace TD.ElementSystem
 
         private void Awake()
         {
-            currElementsInQueue = new List<ElementShopData>();
+            currElementsInQueue = new List<ElementScriptableObject>();
         }
 
         private void OnEnable()
@@ -40,23 +40,23 @@ namespace TD.ElementSystem
             ClickOnMap.OnMapClick -= TryClearQueue;
         }
 
-        private void PutInQueue(ElementShopData elementShopData)
+        private void PutInQueue(ElementScriptableObject elementData)
         {
             bool isThereAlreadyAnElementInQueue = currElementsInQueue.Count > 0;
             if (isThereAlreadyAnElementInQueue)  //Swap if queue is not empty
             {
-                elementInQueue = elementShopData.element;
-                OnElementAddedToQueue?.Invoke(elementShopData.element, elementShopData.cost);
+                elementInQueue = elementData.Element;
+                OnElementAddedToQueue?.Invoke(elementData);
             }
             else //Add if queue is empty
             {
-                currElementsInQueue.Add(elementShopData);
-                elementInQueue = currElementsInQueue[0].element;
-                OnElementAddedToQueue?.Invoke(elementInQueue, elementShopData.cost);
+                currElementsInQueue.Add(elementData);
+                elementInQueue = currElementsInQueue[0].Element;
+                OnElementAddedToQueue?.Invoke(elementData);
             }               
         }
 
-        private void ClearQueue(TowerElement element)
+        private void ClearQueue(ElementScriptableObject elementData)
         {
             bool isQueueEmpty = currElementsInQueue.Count <= 0;
             if (!isQueueEmpty)

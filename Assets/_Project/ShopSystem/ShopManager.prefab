@@ -44,60 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2743c9f9845274699de91e950ba2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPanelCanBuyColor: {r: 0.2783573, g: 1, b: 0, a: 1}
-  towerPanelCannotBuyColor: {r: 1, g: 0.04518003, b: 0, a: 1}
   towersInShop:
-  - towerType: 0
-    towerPrefab: {fileID: 7231252392401026485, guid: df1c0d2830e516f4da9731a2f7665c68,
-      type: 3}
-    cost: 100
-    costDisplay: {fileID: 0}
-    panel: {fileID: 0}
-  - towerType: 1
-    towerPrefab: {fileID: 7231252392401026485, guid: 9543ad801bd42dd4985e14e2a2f09ef5,
-      type: 3}
-    cost: 200
-    costDisplay: {fileID: 0}
-    panel: {fileID: 0}
-  - towerType: 2
-    towerPrefab: {fileID: 7231252392401026485, guid: 483a8eb541382de4ba40c6ab127a4559,
-      type: 3}
-    cost: 1000
-    costDisplay: {fileID: 0}
-    panel: {fileID: 0}
-  - towerType: 3
-    towerPrefab: {fileID: 7231252392401026485, guid: 8b0a76b1d5ea615488b6099d707f436d,
-      type: 3}
-    cost: 2500
-    costDisplay: {fileID: 0}
-    panel: {fileID: 0}
+  - {fileID: 11400000, guid: 2348ac8b1c1b5484988aa14ecf9da9de, type: 2}
+  - {fileID: 11400000, guid: df3bf3d26fe5c0840b618a987615517e, type: 2}
+  - {fileID: 11400000, guid: e09b3598ae6c137419858749268f4c58, type: 2}
+  - {fileID: 11400000, guid: 6bbe79ad5c6a9b84bb7ca093f0e15651, type: 2}
   elementsInShop:
-  - element: 1
-    cost: 500
-    costDisplay: {fileID: 0}
-    panel: {fileID: 0}
-    visualizer: {fileID: 0}
-    panelCanBuyColor: {r: 1, g: 0.7521507, b: 0, a: 1}
-    panelCannotBuyColor: {r: 0.6980392, g: 0.6980392, b: 0.6980392, a: 1}
-    canBuyVisualizer: {fileID: 21300000, guid: 8d8912fe114840341b241bae8327b7dc, type: 3}
-    cannotBuyVisualizer: {fileID: 21300000, guid: c715149a3aeb09a4b9d84439d3ad806b,
-      type: 3}
-  - element: 2
-    cost: 500
-    costDisplay: {fileID: 0}
-    panel: {fileID: 0}
-    visualizer: {fileID: 0}
-    panelCanBuyColor: {r: 0.59607846, g: 0.31764707, b: 0, a: 1}
-    panelCannotBuyColor: {r: 0.6980392, g: 0.6980392, b: 0.6980392, a: 1}
-    canBuyVisualizer: {fileID: 0}
-    cannotBuyVisualizer: {fileID: 0}
-  - element: 3
-    cost: 500
-    costDisplay: {fileID: 0}
-    panel: {fileID: 0}
-    visualizer: {fileID: 0}
-    panelCanBuyColor: {r: 0.6, g: 1, b: 0.90588236, a: 1}
-    panelCannotBuyColor: {r: 0.6980392, g: 0.6980392, b: 0.6980392, a: 1}
-    canBuyVisualizer: {fileID: 0}
-    cannotBuyVisualizer: {fileID: 0}
+  - {fileID: 11400000, guid: 56490fbad69418647b31ca390ef291cb, type: 2}
+  - {fileID: 11400000, guid: bf42402f5176ff34ea3da59ce98ee018, type: 2}
+  - {fileID: 11400000, guid: 31a880cf669fa10499322a14f5adfe07, type: 2}
   backInShop: {fileID: 0}

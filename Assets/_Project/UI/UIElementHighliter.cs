@@ -29,16 +29,16 @@ namespace TD.UI
             uIElementSelector = GetComponent<UIElementSelector>();
         }
 
-        private void UpdateSelectionBrackets(TowerElement element, int cost)
+        private void UpdateSelectionBrackets(ElementScriptableObject elementData)
         {
-            bool hasThisUIElementBeenSelected = uIElementSelector.Element == element;
+            bool hasThisUIElementBeenSelected = uIElementSelector.ElementData.Element == elementData.Element;
             if (hasThisUIElementBeenSelected)
             {
                 ShowSelectionBrackets();
             }
             else
             {
-                HideSelectionBrackets(element);
+                HideSelectionBrackets(elementData.Element);
             }
         }
         private void ShowSelectionBrackets()

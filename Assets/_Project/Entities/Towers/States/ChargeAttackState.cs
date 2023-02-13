@@ -58,7 +58,8 @@ namespace TD.Entities.Towers.States
 
         void Update()
         {
-            if (towerStateSwitcher.CurrentTowerState != TowerState.ChargingAttack) return;
+            if (towerStateSwitcher.CurrentTowerState != TowerState.ChargingAttack) 
+                return;
             ChargeAttack();
     
         }

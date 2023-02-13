@@ -4,14 +4,14 @@ namespace TD.UI
 {
     public class UIShopModelSelector : MonoBehaviour
     {
-        [SerializeField] private Transform towerPrefab;
+        [SerializeField] private TowerScriptableObject towerData;
 
-        public delegate void TowerModelSelectedCallback(Transform model);
+        public delegate void TowerModelSelectedCallback(TowerScriptableObject towerData);
         public static event TowerModelSelectedCallback OnTowerModelSelected;
 
         public void SelectTowerModel()
         {
-            OnTowerModelSelected?.Invoke(towerPrefab);
+            OnTowerModelSelected?.Invoke(towerData);
         }
    
     }

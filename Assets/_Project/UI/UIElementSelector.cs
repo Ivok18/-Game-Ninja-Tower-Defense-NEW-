@@ -11,18 +11,19 @@ namespace TD.UI
 {
     public class UIElementSelector : MonoBehaviour
     {
-        [SerializeField] private TowerElement element;
+        //[SerializeField] private TowerElement element;
+        [SerializeField] private ElementScriptableObject elementData;
         public bool UIElementIsSelected;
 
-        public TowerElement Element => element;
+        public ElementScriptableObject ElementData => elementData;
 
-        public delegate void UIElementClickCallback(TowerElement element);
+        public delegate void UIElementClickCallback(ElementScriptableObject elementData);
         public static event UIElementClickCallback OnUIElementClick;
       
 
         public void OnClick()
         {
-            OnUIElementClick?.Invoke(Element);
+            OnUIElementClick?.Invoke(ElementData);
         }
     }
 }

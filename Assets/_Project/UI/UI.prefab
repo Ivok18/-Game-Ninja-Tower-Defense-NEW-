@@ -932,7 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a00244533267e949a558820c1fc4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 2
+  elementData: {fileID: 0}
   UIElementIsSelected: 0
 --- !u!1 &714962343782382830
 GameObject:
@@ -1545,8 +1545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bdef477e3204f45b70ca46e893c976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 7231252392401026485, guid: 9543ad801bd42dd4985e14e2a2f09ef5,
-    type: 3}
+  towerData: {fileID: 0}
 --- !u!1 &1237104496178171987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,6 +1770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3199604187998850939}
+  - component: {fileID: 1006383904}
   m_Layer: 5
   m_Name: Elements
   m_TagString: Untagged
@@ -1800,6 +1800,44 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 34.539062}
   m_SizeDelta: {x: 201.7, y: -361.86}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &1006383904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466070695859512702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76600143ea7364498e39f5300e0ec92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopManager: {fileID: 0}
+  elementShopVisuals:
+  - elementData: {fileID: 11400000, guid: 56490fbad69418647b31ca390ef291cb, type: 2}
+    costDisplay: {fileID: 5467071974700609069}
+    backgroundImage: {fileID: 6236731684644163234}
+    elementImage: {fileID: 2403501519474872098}
+    imageCanBuy: {fileID: 21300000, guid: 8d8912fe114840341b241bae8327b7dc, type: 3}
+    imageCannotBuy: {fileID: 21300000, guid: c715149a3aeb09a4b9d84439d3ad806b, type: 3}
+    backgroundCanBuyColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+    backgroundCannotBuyColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  - elementData: {fileID: 11400000, guid: bf42402f5176ff34ea3da59ce98ee018, type: 2}
+    costDisplay: {fileID: 2203774068096371929}
+    backgroundImage: {fileID: 4266815717316616527}
+    elementImage: {fileID: 1747752715893569255}
+    imageCanBuy: {fileID: 21300000, guid: 894fc57a8c0d2504ba0e53682a0415c8, type: 3}
+    imageCannotBuy: {fileID: 21300000, guid: 03536f7ca69010045ba7ed893723e462, type: 3}
+    backgroundCanBuyColor: {r: 0.050980393, g: 1, b: 0.14901961, a: 1}
+    backgroundCannotBuyColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  - elementData: {fileID: 11400000, guid: 31a880cf669fa10499322a14f5adfe07, type: 2}
+    costDisplay: {fileID: 2786009698345230511}
+    backgroundImage: {fileID: 8003747638437945521}
+    elementImage: {fileID: 4382978478119900345}
+    imageCanBuy: {fileID: 21300000, guid: 26ef5aa5f56eca44ab691aad2db2234a, type: 3}
+    imageCannotBuy: {fileID: 21300000, guid: 26ef5aa5f56eca44ab691aad2db2234a, type: 3}
+    backgroundCanBuyColor: {r: 0.6, g: 1, b: 0.90588236, a: 1}
+    backgroundCannotBuyColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
 --- !u!1 &1949030502958568231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,7 +1932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a00244533267e949a558820c1fc4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 1
+  elementData: {fileID: 11400000, guid: 56490fbad69418647b31ca390ef291cb, type: 2}
   UIElementIsSelected: 0
 --- !u!114 &6328652028024693179
 MonoBehaviour:
@@ -2291,6 +2329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3623519216419199616}
+  - component: {fileID: 659466876}
   m_Layer: 5
   m_Name: Towers
   m_TagString: Untagged
@@ -2320,6 +2359,34 @@ RectTransform:
   m_AnchoredPosition: {x: -99.86984, y: 0}
   m_SizeDelta: {x: -199.73999, y: 215.47}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &659466876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2427127951547838317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665ad493e4c770748b04679466bdf6eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopManager: {fileID: 0}
+  towerPanelCanBuyColor: {r: 0.2784314, g: 1, b: 0, a: 1}
+  towerPanelCannotBuyColor: {r: 1, g: 0.047058824, b: 0, a: 1}
+  towerShopVisuals:
+  - towerData: {fileID: 0}
+    costDisplay: {fileID: 2739858691042044396}
+    panel: {fileID: 5490411750049038363}
+  - towerData: {fileID: 0}
+    costDisplay: {fileID: 4937526757524507698}
+    panel: {fileID: 5078936348296939205}
+  - towerData: {fileID: 0}
+    costDisplay: {fileID: 2834465919737025698}
+    panel: {fileID: 2053403286172207450}
+  - towerData: {fileID: 0}
+    costDisplay: {fileID: 65182525142047101}
+    panel: {fileID: 8958587938599533011}
 --- !u!1 &2442415623699105121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3906,8 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bdef477e3204f45b70ca46e893c976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 7231252392401026485, guid: 483a8eb541382de4ba40c6ab127a4559,
-    type: 3}
+  towerData: {fileID: 0}
 --- !u!1 &3999524797596805738
 GameObject:
   m_ObjectHideFlags: 0
@@ -4367,8 +4433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bdef477e3204f45b70ca46e893c976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 7231252392401026485, guid: df1c0d2830e516f4da9731a2f7665c68,
-    type: 3}
+  towerData: {fileID: 11400000, guid: 2348ac8b1c1b5484988aa14ecf9da9de, type: 2}
 --- !u!1 &4128625722898256377
 GameObject:
   m_ObjectHideFlags: 0
@@ -4516,7 +4581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a00244533267e949a558820c1fc4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 1
+  elementData: {fileID: 0}
   UIElementIsSelected: 0
 --- !u!1 &4243508284098937988
 GameObject:
@@ -4838,8 +4903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bdef477e3204f45b70ca46e893c976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 7231252392401026485, guid: 8b0a76b1d5ea615488b6099d707f436d,
-    type: 3}
+  towerData: {fileID: 0}
 --- !u!1 &4858819646809490068
 GameObject:
   m_ObjectHideFlags: 0
@@ -5815,7 +5879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a00244533267e949a558820c1fc4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 1
+  elementData: {fileID: 0}
   UIElementIsSelected: 0
 --- !u!1 &5756457507748768595
 GameObject:
@@ -5992,7 +6056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a00244533267e949a558820c1fc4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 3
+  elementData: {fileID: 11400000, guid: 31a880cf669fa10499322a14f5adfe07, type: 2}
   UIElementIsSelected: 0
 --- !u!114 &8589383075286538905
 MonoBehaviour:
@@ -7413,7 +7477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a00244533267e949a558820c1fc4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 3
+  elementData: {fileID: 0}
   UIElementIsSelected: 0
 --- !u!1 &8036163987616718039
 GameObject:
@@ -7925,8 +7989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.34168512}
   m_AnchorMax: {x: 0.51000005, y: 0.9237017}
-  m_AnchoredPosition: {x: 0.6335983, y: 0.15299988}
-  m_SizeDelta: {x: 1.0454, y: -0.307}
+  m_AnchoredPosition: {x: -11.3464, y: 0.15299988}
+  m_SizeDelta: {x: 25.0054, y: -0.307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &108262588481474664
 CanvasRenderer:
@@ -7969,7 +8033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 10.4K
 --- !u!1 &8495785515909479655
 GameObject:
   m_ObjectHideFlags: 0
@@ -8199,7 +8263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a00244533267e949a558820c1fc4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 2
+  elementData: {fileID: 11400000, guid: bf42402f5176ff34ea3da59ce98ee018, type: 2}
   UIElementIsSelected: 0
 --- !u!114 &5245229038796727242
 MonoBehaviour:

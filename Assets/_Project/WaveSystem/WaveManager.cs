@@ -22,7 +22,7 @@ namespace TD.WaveSystem
         [SerializeField] private List<Transform> enemiesInCurrentWave;
         [SerializeField] private List<Transform> enemiesToSpawn;
         [SerializeField] private WaveData[] waves;
-        private int currentWaveIndex = 17;
+        private int currentWaveIndex;
 
 
         public delegate void WaveEndCallback(WaveState nextWave);

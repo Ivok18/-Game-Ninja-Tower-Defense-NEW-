@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0070a612e7334424f88f1dbc35590980, type: 3}
   m_Name: Talented Tower
   m_EditorClassIdentifier: 
+  prefab: {fileID: 7231252392401026485, guid: 483a8eb541382de4ba40c6ab127a4559, type: 3}
   startState: 0
   towerType: 2
+  cost: 1000
   baseAttackRate: 0.75
   elementBonusAttackRate: -0.375
   baseDamagePerDash: 2

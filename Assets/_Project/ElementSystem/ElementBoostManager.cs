@@ -20,7 +20,7 @@ namespace TD.ElementSystem
             ElementDataApplier.OnElementDataUnappliedFromTower -= RemoveBoost;
         }
 
-        public void BoostTower(Transform towerToBoost, TowerElement elementBoost, int elementCost)
+        public void BoostTower(Transform towerToBoost, ElementScriptableObject elementBoostData)
         {
             //Find boosted tower in list of deployed towers
             foreach (Transform tower in TowerStorer.Instance.DeployedTowers)
@@ -34,14 +34,14 @@ namespace TD.ElementSystem
                 AttackState attackState = towerToBoost.GetComponent<AttackState>();
                 ChargeAttackState chargeAttackState = towerToBoost.GetComponent<ChargeAttackState>();
 
-                if(elementBoost == TowerElement.Fire)
+                if(elementBoostData.Element == TowerElement.Fire)
                 {
                     attackState.CurrentDashSpeed = attackState.BaseDashSpeed + attackState.ElementBonusDashSpeed;
                     chargeAttackState.CurrentTimeBetweenAttacks = chargeAttackState.BaseTimeBetweenAttacks 
                                                                 + chargeAttackState.ElementBonusTimeBetweenAttacks;
                         
                 }
-                else if(elementBoost == TowerElement.Earth)
+                else if(elementBoostData.Element == TowerElement.Earth)
                 {
                     attackState.CurrentDamagePerDash = attackState.BaseDamagePerDash 
                                                         + attackState.ElementBonusDamagePerDash;

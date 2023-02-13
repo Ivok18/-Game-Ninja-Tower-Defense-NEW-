@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0070a612e7334424f88f1dbc35590980, type: 3}
   m_Name: Genius Tower
   m_EditorClassIdentifier: 
+  prefab: {fileID: 7231252392401026485, guid: 8b0a76b1d5ea615488b6099d707f436d, type: 3}
   startState: 0
   towerType: 3
+  cost: 2500
   baseAttackRate: 0.375
   elementBonusAttackRate: -0.186
   baseDamagePerDash: 3

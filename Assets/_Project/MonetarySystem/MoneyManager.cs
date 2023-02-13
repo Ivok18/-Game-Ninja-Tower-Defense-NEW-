@@ -53,8 +53,9 @@ namespace TD.MonetarySystem
             UpdateMoneyFormat();
         }
 
-        private void LooseMoneyOnElementAppliedOnTower(Transform tower, TowerElement element, int elementCost)
+        private void LooseMoneyOnElementAppliedOnTower(Transform tower, ElementScriptableObject dataOfElementApplied)
         {
+            int elementCost = dataOfElementApplied.Cost;
             money -= elementCost;
             money = Mathf.Clamp(money, 0, Mathf.Infinity); //Make sure money value is never negative
             UpdateMoneyFormat();

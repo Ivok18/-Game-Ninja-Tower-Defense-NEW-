@@ -27,7 +27,7 @@ namespace TD.ElementSystem
             ElementDataApplier.OnElementDataAppliedOnTower -= UpdateSkin;
         }
 
-        private void UpdateSkin(Transform tower, TowerElement element, int elementCost)
+        private void UpdateSkin(Transform tower, ElementScriptableObject dataOfElementApplied)
         {
             ElementsTracker elementsTracker = tower.GetComponent<ElementsTracker>();
             SpriteRenderer spriteRenderer = tower.GetComponent<SpriteGetter>().SpriteRenderer;

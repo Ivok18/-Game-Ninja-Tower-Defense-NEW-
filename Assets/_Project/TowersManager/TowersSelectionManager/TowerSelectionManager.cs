@@ -71,7 +71,7 @@ namespace TD.TowersManager.TowerSelectionManager
         }
 
         //Happens when a tower gets an element 
-        private void NotifySomeTowerJustGotElement(Transform tower, TowerElement element, int elementCost)
+        private void NotifySomeTowerJustGotElement(Transform tower, ElementScriptableObject elementData)
         {
             someTowerJustGotAnElement = true;
         }

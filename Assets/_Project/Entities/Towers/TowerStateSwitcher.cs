@@ -24,7 +24,7 @@ namespace TD.Entities.Towers
             if (!isItTheTowerToDeployOnMap)
                 return;
 
-            OnTowerEnterState?.Invoke(transform, TowerState.Stationary);
+            CurrentTowerState = TowerState.Stationary;
         }
 
         public void SwitchTo(TowerState newState)

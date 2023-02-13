@@ -11,6 +11,7 @@ namespace TD.Entities.Towers
         private TowerStateSwitcher towerStateSwitcher;
         private StationaryState stationaryState;
         private SpriteRenderer radiusVizualizer;
+        [SerializeField] private Transform towerPrefab;
         [SerializeField] private bool canPlace;
         [SerializeField] private Color cannotPlaceColor;
         [SerializeField] private Color canPlaceColor;
@@ -28,22 +29,31 @@ namespace TD.Entities.Towers
 
         private void Update()
         {
-            if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed) return;
-
-            
-            if(CanPlace()) radiusVizualizer.color = canPlaceColor;
-            else radiusVizualizer.color = cannotPlaceColor;   
+            if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed) 
+                return;
+   
+            if(CanPlace()) 
+                radiusVizualizer.color = canPlaceColor;
+            else 
+                radiusVizualizer.color = cannotPlaceColor;   
         }
 
         private void PlaceTower()
-        {          
-            if (towerStateSwitcher.CurrentTowerState == TowerState.Undeployed)
-            {
-                stationaryState.StartPosition = transform.position;
-                OnTowerPlaced?.Invoke(transform);
-                canPlace = false;
-            }
-                  
+        {
+            if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed)
+                return;
+
+           
+            Transform realTower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
+            StationaryState stationaryState = realTower.GetComponent<StationaryState>();
+            stationaryState.StartPosition = transform.position;
+
+
+            OnTowerPlaced?.Invoke(realTower);
+            canPlace = false;
+
+            Destroy(gameObject);
+          
         }
 
 

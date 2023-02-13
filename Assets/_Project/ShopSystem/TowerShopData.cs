@@ -11,7 +11,5 @@ namespace TD.ShopSystem
         public TowerType towerType;
         public Transform towerPrefab;
         public int cost;
-        public Text costDisplay;
-        public Image panel;
     }
 }

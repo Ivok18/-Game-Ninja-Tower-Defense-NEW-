@@ -4,8 +4,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Tower", menuName = "MyGame/Tower")]
 public class TowerScriptableObject : ScriptableObject
 {
+    [SerializeField] private Transform preview;
     [SerializeField] private TowerState startState;
     [SerializeField] private TowerType towerType;
+    [SerializeField] private int cost;
+
+
+    public Transform Preview => preview;
+    public TowerState StartState => startState;
+    public TowerType TowerType => towerType;
+    public int Cost => cost;
+  
+
+
 
     [Header("Attack rate")]
     [SerializeField] private float baseAttackRate;
@@ -25,8 +36,6 @@ public class TowerScriptableObject : ScriptableObject
     [Header("Dash number")]
     [SerializeField] private int noOfBonusDash;
 
-    public TowerState StartState => startState;
-    public TowerType TowerType => towerType;
 
     public float BaseAttackRate => baseAttackRate;
     public float ElementBonusAttackRate => elementBonusAttackRate;

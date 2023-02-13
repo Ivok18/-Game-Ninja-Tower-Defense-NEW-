@@ -27,7 +27,8 @@ namespace TD.Entities.Towers
 
         private void UpdateRadiusVizualizer(Transform tower)
         {
-            if(TowerHolder == tower) RadiusVizualizer.transform.localScale = new Vector3(Radius * 1.79f, Radius * 1.79f, Radius * 1.79f);
+            if(TowerHolder == tower) 
+                RadiusVizualizer.transform.localScale = new Vector3(Radius * 1.79f, Radius * 1.79f, Radius * 1.79f);
         }
 
         private void Awake()
@@ -38,7 +39,6 @@ namespace TD.Entities.Towers
 
         void Start()
         {
-            TowerHolder = transform.parent;
             RadiusVizualizer.transform.localScale = new Vector3(Radius * 2.3f, Radius * 2.3f, Radius * 2.3f);
         }
 

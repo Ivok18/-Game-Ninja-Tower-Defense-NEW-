@@ -19,20 +19,32 @@ namespace TD.Entities.Towers
             radiusDetectBehaviour = GetComponent<RadiusGetter>().RadiusTransform.GetComponent<RadiusDetectionBehaviour>();
             towerTypeAccessor = GetComponent<TowerTypeAccessor>();
 
-            chargeAttackState.BaseTimeBetweenAttacks = towerScriptableObject.BaseAttackRate;
-            chargeAttackState.ElementBonusTimeBetweenAttacks = towerScriptableObject.ElementBonusAttackRate;
+            if(chargeAttackState!=null)
+            {
+                chargeAttackState.BaseTimeBetweenAttacks = towerScriptableObject.BaseAttackRate;
+                chargeAttackState.ElementBonusTimeBetweenAttacks = towerScriptableObject.ElementBonusAttackRate;
+            }
+            
+            if(attackState!=null)
+            {
+                attackState.BaseDamagePerDash = towerScriptableObject.BaseDamagePerDash;
+                attackState.ElementBonusDamagePerDash = towerScriptableObject.ElementBonusDamagePerDash;
 
-            attackState.BaseDamagePerDash = towerScriptableObject.BaseDamagePerDash;
-            attackState.ElementBonusDamagePerDash = towerScriptableObject.ElementBonusDamagePerDash;
+                attackState.BaseDashSpeed = towerScriptableObject.BaseDashSpeed;
+                attackState.ElementBonusDashSpeed = towerScriptableObject.ElementBonusDashSpeed;
 
-            radiusDetectBehaviour.Radius = towerScriptableObject.Radius;
+                attackState.NbOfBonusDash = towerScriptableObject.NoOfBonusDash;
+            }
 
-            attackState.BaseDashSpeed = towerScriptableObject.BaseDashSpeed;
-            attackState.ElementBonusDashSpeed = towerScriptableObject.ElementBonusDashSpeed;
+            if(radiusDetectBehaviour!=null)
+            {
+                radiusDetectBehaviour.Radius = towerScriptableObject.Radius;
+            }
 
-            attackState.NbOfBonusDash = towerScriptableObject.NoOfBonusDash;
-
-            towerTypeAccessor.TowerType = towerScriptableObject.TowerType;
+            if(towerTypeAccessor!=null)
+            {
+                towerTypeAccessor.TowerType = towerScriptableObject.TowerType;
+            }
         }
 
        

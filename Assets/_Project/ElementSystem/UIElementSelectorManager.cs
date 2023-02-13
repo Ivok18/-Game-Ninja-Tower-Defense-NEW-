@@ -12,10 +12,10 @@ namespace TD.ElementSystem
     {
         [SerializeField] List<UIElementSelector> selectorList;
 
-        public delegate void UIElementSelectedCallback(TowerElement element);
+        public delegate void UIElementSelectedCallback(ElementScriptableObject element);
         public static event UIElementSelectedCallback OnUIElementSelected;
 
-        public delegate void UIElementUnselectedCallback(TowerElement element);
+        public delegate void UIElementUnselectedCallback(ElementScriptableObject element);
         public static event UIElementUnselectedCallback OnUIElementUnselected;
 
         private void OnEnable()
@@ -30,11 +30,13 @@ namespace TD.ElementSystem
         }
 
 
-        private void UpdateList(TowerElement elementOfButtonPressed)
+        private void UpdateList(ElementScriptableObject elementData)
         {
+            TowerElement elementOfButtonPressed = elementData.Element;
             foreach (UIElementSelector selector in selectorList)
             {
-                if (elementOfButtonPressed != selector.Element)
+                TowerElement elementOfUIButton = selector.ElementData.Element;
+                if (elementOfButtonPressed != elementOfUIButton)
                 {
                     selector.UIElementIsSelected = false;
                     continue;
@@ -47,12 +49,12 @@ namespace TD.ElementSystem
                 if (selector.UIElementIsSelected == true)
                 {
                     //Notify everyone that it was selected
-                    OnUIElementSelected?.Invoke(selector.Element);
+                    OnUIElementSelected?.Invoke(selector.ElementData);
                 }
                 else
                 {
                     //Notify everyone that it was unselected
-                    OnUIElementUnselected?.Invoke(selector.Element);
+                    OnUIElementUnselected?.Invoke(selector.ElementData);
                 }
             }
         }

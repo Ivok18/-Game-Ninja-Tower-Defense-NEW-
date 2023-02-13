@@ -8,10 +8,9 @@ namespace TD.ElementSystem
 {
     public class ElementDataApplier : MonoBehaviour
     {
-        [SerializeField] private TowerElement elementToApply;
-        [SerializeField] private int elementCost;
+        [SerializeField] private ElementScriptableObject dataOfElementToApply;
 
-        public delegate void ElementDataAppliedOnToweCallback(Transform tower, TowerElement element, int elementCost);
+        public delegate void ElementDataAppliedOnToweCallback(Transform tower, ElementScriptableObject dataOfElementApplied);
         public static event ElementDataAppliedOnToweCallback OnElementDataAppliedOnTower;
 
         public delegate void ElementDataUnappliedFromTowerCallback(Transform tower, TowerElement element);
@@ -40,7 +39,7 @@ namespace TD.ElementSystem
         private void Update()
         {
             //If there is no element in queue to apply we do nothing
-            bool isThereAnElementToApply = elementToApply != TowerElement.None;
+            bool isThereAnElementToApply = dataOfElementToApply != null;
             if (!isThereAnElementToApply) 
                 return;
 
@@ -53,7 +52,7 @@ namespace TD.ElementSystem
                     continue;
 
                 //If a tower does not have the element in queue..
-                bool doesTowerAlreadyHaveTheElementToApply = CheckIfTowerHasElement(tower, elementToApply);
+                bool doesTowerAlreadyHaveTheElementToApply = CheckIfTowerHasElement(tower, dataOfElementToApply.Element);
                 if (doesTowerAlreadyHaveTheElementToApply)
                 {
                     elementsTracker.IsReadyToGetAnElement = false;
@@ -61,7 +60,7 @@ namespace TD.ElementSystem
                 }
 
                 //And we have enough money, we can give the element in queu to the tower
-                bool hasEnoughMoney = MoneyManager.Instance.Money >= elementCost;
+                bool hasEnoughMoney = MoneyManager.Instance.Money >= dataOfElementToApply.Cost;
                 if (hasEnoughMoney)
                 {
                     elementsTracker.IsReadyToGetAnElement = true;
@@ -74,18 +73,15 @@ namespace TD.ElementSystem
         }
         
 
-        private void AddElementToApply(TowerElement element, int cost)
+        private void AddElementToApply(ElementScriptableObject dataOfElementToApply)
         {
-            elementToApply = element;
-            elementCost = cost;
-           
+            this.dataOfElementToApply = dataOfElementToApply;   
         }
 
         private void RemoveElementToApply(TowerElement towerElement)
         {
-            elementToApply = TowerElement.None;
-            elementCost = 0;
-
+            dataOfElementToApply = null;
+     
             foreach (var tower in TowerStorer.Instance.DeployedTowers)
             {
                 ElementsTracker elementsTracker = tower.GetComponent<ElementsTracker>();
@@ -169,7 +165,7 @@ namespace TD.ElementSystem
                 {
                     //This part of code was designed to handle when it is a talented tower
                     //For a talented tower, we resquest an element swap
-                    OnElementSwapRequest?.Invoke(towerSelected, elementToApply);
+                    OnElementSwapRequest?.Invoke(towerSelected, dataOfElementToApply.Element);
                 }
 
             }   
@@ -185,8 +181,8 @@ namespace TD.ElementSystem
                 if (!isElementSlotAvailable)
                     continue;
 
-                elementsTracker.CurrTowerElements[i] = elementToApply;
-                OnElementDataAppliedOnTower?.Invoke(towerToApplyElementOn, elementToApply, elementCost);
+                elementsTracker.CurrTowerElements[i] = dataOfElementToApply.Element;
+                OnElementDataAppliedOnTower?.Invoke(towerToApplyElementOn, dataOfElementToApply);
                 return;
             }
         }

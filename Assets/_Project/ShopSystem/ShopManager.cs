@@ -13,17 +13,18 @@ namespace TD.ShopSystem
     public class ShopManager : MonoBehaviour
     {
         [Header("Towers Shop")]
-        [Tooltip("Tower Can Buy Panel Color")]
-        [SerializeField] private Color towerPanelCanBuyColor;
-        [Tooltip("Tower Cannot Buy Panel Color")]
-        [SerializeField] private Color towerPanelCannotBuyColor;
-        [SerializeField] private TowerShopData[] towersInShop;
+        [Tooltip("Tower Shop")]
+        [SerializeField] private TowerScriptableObject[] towersInShop;
 
         [Header("Elements Shop")]
-        [SerializeField] private ElementShopData[] elementsInShop;
+        [Tooltip("Element Shop")]
+        [SerializeField] private ElementScriptableObject[] elementsInShop;
 
         [Header("BackInShop")]
         [SerializeField] private BackInShop backInShop;
+
+        public TowerScriptableObject[] TowersInShop => towersInShop;
+        public ElementScriptableObject[] ElementsInShop => elementsInShop;
 
         public delegate void TowerBuyCallback(Transform tower, int cost);
         public static event TowerBuyCallback OnTowerBuy;
@@ -31,10 +32,10 @@ namespace TD.ShopSystem
         public delegate void TowerSellCallback(Transform tower, float sellMoney);
         public static event TowerSellCallback OnTowerSell;
 
-        public delegate void ElementQueueForBuyCallback(ElementShopData elementShopData);
+        public delegate void ElementQueueForBuyCallback(ElementScriptableObject elementData);
         public static event ElementQueueForBuyCallback OnElementQueueForBuy;
 
-        public delegate void ElementUnqueueForBuyCallback(TowerElement element);
+        public delegate void ElementUnqueueForBuyCallback(ElementScriptableObject elementData);
         public static event ElementUnqueueForBuyCallback OnElementUnqueueForBuy;
 
 
@@ -56,44 +57,23 @@ namespace TD.ShopSystem
             UIElementSelectorManager.OnUIElementUnselected -= UnqueueElementForBuy;
         }
 
-        private void Start()
-        {
-            foreach(var towerModel in towersInShop)
-            {
-                towerModel.costDisplay.text = towerModel.cost.ToString();
-                towerModel.costDisplay.text += "$";
-            }
-
-            foreach(var elementModel in elementsInShop)
-            {
-                elementModel.costDisplay.text = elementModel.cost.ToString();
-                elementModel.costDisplay.text += "$";
-            }
-        }
-
-        private void Update()
-        {
-            CheckTowerAvailableForBuy();
-            CheckElementAvailableForBuy();
-        }
-
-        public void BuyTower(Transform model)
+        public void BuyTower(TowerScriptableObject towerData)
         {
             if (backInShop.Tower != null) 
                 backInShop.PutTowerBackInShop();
             else
             {
-                foreach (var tower in towersInShop)
+                foreach (var shopTower in towersInShop)
                 {
-                    bool doesShopModelCorrespondToBuyChoice = tower.towerPrefab == model;
+                    bool doesShopModelCorrespondToBuyChoice = shopTower == towerData;
                     if (!doesShopModelCorrespondToBuyChoice)
                         continue;
 
-                    bool hasEnoughMoney = MoneyManager.Instance.Money >= tower.cost;
+                    bool hasEnoughMoney = MoneyManager.Instance.Money >= shopTower.Cost;
                     if (!hasEnoughMoney)
                         continue;
 
-                    OnTowerBuy?.Invoke(tower.towerPrefab, tower.cost);
+                    OnTowerBuy?.Invoke(shopTower.Preview, shopTower.Cost);
                     return;
                 }
             }
@@ -105,7 +85,7 @@ namespace TD.ShopSystem
 
             foreach (var shopTower in towersInShop)
             {
-                bool isTheDataOfTheTowerToSell = shopTower.towerType == selectedTowerType;
+                bool isTheDataOfTheTowerToSell = shopTower.TowerType == selectedTowerType;
                 if (!isTheDataOfTheTowerToSell)
                     continue;
 
@@ -114,82 +94,20 @@ namespace TD.ShopSystem
                 Destroy(towerSelected.gameObject);
                 towerSelected = null;
 
-                float sellMoney = shopTower.cost / 2;
+                float sellMoney = shopTower.Cost / 2;
                 OnTowerSell?.Invoke(towerSelected, sellMoney);
                 return;
             }
         }
 
-        private void QueueElementForBuy(TowerElement element)
+        private void QueueElementForBuy(ElementScriptableObject elementData)
         {
-            ElementShopData elementShopData = FindElementDataInShop(element);
-            OnElementQueueForBuy?.Invoke(elementShopData);
+         
+            OnElementQueueForBuy?.Invoke(elementData);
         }
-        private void UnqueueElementForBuy(TowerElement element)
+        private void UnqueueElementForBuy(ElementScriptableObject elementData)
         {
-            OnElementUnqueueForBuy?.Invoke(element);
+            OnElementUnqueueForBuy?.Invoke(elementData);
         }
-        private void CheckTowerAvailableForBuy()
-        {
-            //Color canBuyColor = new Color(0.2783573f, 1, 0, 1);
-            //Color cannotBuyColor = new Color(1, 0.04518003f, 0, 1);
-            Color canBuyColor = towerPanelCanBuyColor;
-            Color cannotBuyColor = towerPanelCannotBuyColor;
-            foreach(var tower in towersInShop)
-            {
-                bool hasEnoughMoney = MoneyManager.Instance.Money >= tower.cost;
-                if (hasEnoughMoney)
-                {
-                    tower.panel.color = canBuyColor;
-                }
-                else
-                {
-                    tower.panel.color = cannotBuyColor;
-                }
-            }
-        }
-        public void CheckElementAvailableForBuy()
-        {
-            /*Color canBuyColor = new Color(1,0.7521507f, 0,1);
-            Color cannotBuyColor = new Color(0.6980392f, 0.6980392f, 0.6980392f,1);
-            */
-
-            foreach(var element in elementsInShop)
-            {
-
-                Color canBuyColor = element.panelCanBuyColor;
-                Color cannotBuyColor = element.panelCannotBuyColor;
-                Sprite canBuyVisualizer = element.canBuyVisualizer;
-                Sprite cannotBuyVisualizer = element.cannotBuyVisualizer;
-
-                bool hasEnoughMoney = MoneyManager.Instance.Money >= element.cost;
-                if (hasEnoughMoney)
-                {
-                    element.panel.color = canBuyColor;
-                    element.visualizer.sprite = canBuyVisualizer;             
-                }
-                else
-                {
-                    element.panel.color = cannotBuyColor;
-                    element.visualizer.sprite = cannotBuyVisualizer;
-                }
-            }
-
-        }     
-        private ElementShopData FindElementDataInShop(TowerElement element)
-        {
-            foreach(var elementData in elementsInShop)
-            {
-                bool hasFoundElementInShop = elementData.element == element;
-                if (!hasFoundElementInShop)
-                    continue;
-
-                return elementData;
-            }
-
-            return null;
-        }
-
-       
     }
 }

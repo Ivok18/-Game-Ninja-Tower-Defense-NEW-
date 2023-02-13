@@ -13,7 +13,7 @@ namespace TD.TowersManager.TowersKillsManager
 
         private void OnEnable()
         {
-            HealthBehaviour.OnEnemyDead += UpdateTotalKillCount;
+            HealthBehaviour .OnEnemyDead += UpdateTotalKillCount;
             UILimitBreakTrigger.OnLimitBreakButtonTriggered += ResetNoOfTraineeTowersKills;
         }
 

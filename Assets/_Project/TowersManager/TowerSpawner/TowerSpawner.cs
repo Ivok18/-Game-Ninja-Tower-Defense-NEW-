@@ -20,9 +20,9 @@ namespace TD.TowersManager.Spawner
             ShopManager.OnTowerBuy -= SpawnTower;
         }
 
-        public void SpawnTower(Transform prefab, int cost)
+        public void SpawnTower(Transform preview, int cost)
         {
-            Transform tower = Instantiate(prefab, new Vector3(-5, -5, -5), Quaternion.identity);
+            Transform tower = Instantiate(preview, new Vector3(-5, -5, -5), Quaternion.identity);
             OnTowerSpawn?.Invoke(tower, cost);      
         }
     }

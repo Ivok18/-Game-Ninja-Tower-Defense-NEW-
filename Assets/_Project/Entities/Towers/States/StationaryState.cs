@@ -80,8 +80,11 @@ namespace TD.Entities.Towers.States
                 return;
 
             ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
+            if (listOfTargets == null)
+                return;
+
             bool areThereEnemiesToAttack = listOfTargets.EnemiesToAttack.Count > 0;
-            if (!areThereEnemiesToAttack) 
+            if (!areThereEnemiesToAttack)
                 return;
 
             towerStateSwitcher.SwitchTo(TowerState.LockingTarget);
