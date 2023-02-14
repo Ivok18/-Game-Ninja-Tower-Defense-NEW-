@@ -833,6 +833,8 @@ GameObject:
   - component: {fileID: 6204221534279005646}
   - component: {fileID: 635345945072658117}
   - component: {fileID: 812138008119357606}
+  - component: {fileID: 7972524023769447083}
+  - component: {fileID: -4352754138220441443}
   m_Layer: 0
   m_Name: Common Tower
   m_TagString: Tower
@@ -1174,6 +1176,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectionAreaTransform: {fileID: 356667692462768737}
+--- !u!114 &7972524023769447083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab404f497000ef40aee773c789fdda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4352754138220441443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd78b89b8c7ce14295a681e02b2eecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7273066276247755292
 GameObject:
   m_ObjectHideFlags: 0

@@ -474,7 +474,7 @@ MonoBehaviour:
   shakeDuration: 0.05
   timeUntilEndOfShake: 0
   shakeIntensity: 0.05
-  alphaWhenShake: 0.1
+  alphaWhenShake: 0
 --- !u!114 &7246269173885995397
 MonoBehaviour:
   m_ObjectHideFlags: 0

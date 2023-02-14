@@ -1052,6 +1052,8 @@ GameObject:
   - component: {fileID: 1197361668559977939}
   - component: {fileID: 6948044593282330880}
   - component: {fileID: 1254640810207750672}
+  - component: {fileID: 2847272863304486577}
+  - component: {fileID: -1808078446366585948}
   m_Layer: 0
   m_Name: Genius Tower
   m_TagString: Tower
@@ -1393,6 +1395,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectionAreaTransform: {fileID: 1316418632900835524}
+--- !u!114 &2847272863304486577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab404f497000ef40aee773c789fdda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1808078446366585948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd78b89b8c7ce14295a681e02b2eecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7888698135456435872
 GameObject:
   m_ObjectHideFlags: 0

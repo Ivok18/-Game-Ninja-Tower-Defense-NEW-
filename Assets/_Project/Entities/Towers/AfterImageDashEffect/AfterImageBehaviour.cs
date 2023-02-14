@@ -8,7 +8,7 @@ namespace TD.Entities.Towers.AfterImageDashEffect
         private float timeActivated;
         private float currentAlpha;
         [SerializeField] private float startAlpha;
-        private float alphaDecreaseSpeed = 4f;
+        private float alphaDecreaseSpeed;
         [SerializeField] private SpriteRenderer afterImageSpriteRenderer;
         private Color afterImageColor;
         public Transform Holder;

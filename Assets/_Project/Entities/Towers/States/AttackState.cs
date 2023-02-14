@@ -16,18 +16,18 @@ namespace TD.Entities.Towers.States
         [HideInInspector]
         public int BaseDamagePerDash;
         [HideInInspector]
-        public int ElementBonusDamagePerDash;
-        [HideInInspector]
-        public int CurrentDamagePerDash
-            ;
+        public int BoostDamagePerDash;
+
+        public int CurrentDamagePerDash;
         [HideInInspector]
         public int NbOfBonusDash;
 
         [HideInInspector]
         public float BaseDashSpeed;
+
         [HideInInspector]
-        public float ElementBonusDashSpeed;
-        [HideInInspector]
+        public float BoostDashSpeed;
+    
         public float CurrentDashSpeed;
 
 
@@ -40,8 +40,8 @@ namespace TD.Entities.Towers.States
         void Start()
         {
             NbOfBonusDashRemaining = NbOfBonusDash;
-            CurrentDashSpeed = BaseDashSpeed;
-            CurrentDamagePerDash = BaseDamagePerDash;
+            CurrentDashSpeed = BaseDashSpeed + BoostDashSpeed;
+            CurrentDamagePerDash = BaseDamagePerDash + BoostDamagePerDash;
         }
 
         private void OnEnable()
@@ -86,6 +86,7 @@ namespace TD.Entities.Towers.States
             {
                 ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
                 chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
+
                 towerStateSwitcher.SwitchTo(TowerState.Stationary);
                 return;
 
@@ -99,6 +100,7 @@ namespace TD.Entities.Towers.States
             {
                 ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
                 chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
+
                 towerStateSwitcher.SwitchTo(TowerState.Stationary);
                 return;
             }
@@ -129,6 +131,8 @@ namespace TD.Entities.Towers.States
             {
                 ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
                 chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
+
+
                 towerStateSwitcher.SwitchTo(TowerState.Stationary);
                 return;
             }
@@ -141,6 +145,8 @@ namespace TD.Entities.Towers.States
 
         void Update()
         {
+            CurrentDashSpeed = BaseDashSpeed + BoostDashSpeed;
+            CurrentDamagePerDash = BaseDamagePerDash + BoostDamagePerDash;
             if (towerStateSwitcher.CurrentTowerState != TowerState.Attacking) 
                 return;
 

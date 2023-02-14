@@ -7,7 +7,7 @@ namespace TD.ElementSystem
 {
     public interface IElementBoost
     {
-        public void Boost();
-        public void RemoveBoost();
+        public void Boost(ElementScriptableObject elementData);
+        public void RemoveBoost(TowerElement element);
     }
 }

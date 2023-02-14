@@ -13,8 +13,7 @@ namespace TD.Entities.Towers.States
         [HideInInspector]
         public float BaseTimeBetweenAttacks;
         [HideInInspector]
-        public float ElementBonusTimeBetweenAttacks;
-
+        public float BoostTimeBetweenAttacks;
         public float CurrentTimeBetweenAttacks;
     
        
@@ -46,7 +45,7 @@ namespace TD.Entities.Towers.States
 
         private void Start()
         {
-            CurrentTimeBetweenAttacks = BaseTimeBetweenAttacks;
+            CurrentTimeBetweenAttacks = BaseTimeBetweenAttacks + BoostTimeBetweenAttacks;
             TimeUntilNextAttack = CurrentTimeBetweenAttacks;
         }
         private void Awake()
@@ -58,6 +57,7 @@ namespace TD.Entities.Towers.States
 
         void Update()
         {
+            CurrentTimeBetweenAttacks = BaseTimeBetweenAttacks + BoostTimeBetweenAttacks;
             if (towerStateSwitcher.CurrentTowerState != TowerState.ChargingAttack) 
                 return;
             ChargeAttack();
@@ -65,7 +65,8 @@ namespace TD.Entities.Towers.States
         }
 
         private void ChargeAttack()
-        {         
+        {
+           
             ChargeAttackBar.CurrentValue = TimeUntilNextAttack;
             ChargeAttackBar.MaxValue = CurrentTimeBetweenAttacks;
 

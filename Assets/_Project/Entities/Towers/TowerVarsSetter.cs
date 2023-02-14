@@ -1,5 +1,6 @@
 using UnityEngine;
 using TD.Entities.Towers.States;
+using TD.ElementSystem;
 
 namespace TD.Entities.Towers
 {
@@ -14,6 +15,8 @@ namespace TD.Entities.Towers
 
         private void Awake()
         {
+            IFireBoost fireBoost = GetComponent<IFireBoost>();
+            IEarthBoost earthBoost = GetComponent<IEarthBoost>();
             chargeAttackState = GetComponent<ChargeAttackState>();
             attackState = GetComponent<AttackState>();
             radiusDetectBehaviour = GetComponent<RadiusGetter>().RadiusTransform.GetComponent<RadiusDetectionBehaviour>();
@@ -22,16 +25,29 @@ namespace TD.Entities.Towers
             if(chargeAttackState!=null)
             {
                 chargeAttackState.BaseTimeBetweenAttacks = towerScriptableObject.BaseAttackRate;
-                chargeAttackState.ElementBonusTimeBetweenAttacks = towerScriptableObject.ElementBonusAttackRate;
+                //chargeAttackState.BoostTimeBetweenAttacks = towerScriptableObject.ElementBonusAttackRate;
             }
+
+            if(fireBoost != null)
+            {
+                fireBoost.BoostTimeBetweenAttacks = towerScriptableObject.ElementBonusAttackRate;
+                fireBoost.BoostDashSpeed = towerScriptableObject.ElementBonusDashSpeed;
+            }
+
+            if(earthBoost != null)
+            {
+                earthBoost.BoostDamagePerDash = towerScriptableObject.ElementBonusDamagePerDash;
+            }
+
+            
             
             if(attackState!=null)
             {
                 attackState.BaseDamagePerDash = towerScriptableObject.BaseDamagePerDash;
-                attackState.ElementBonusDamagePerDash = towerScriptableObject.ElementBonusDamagePerDash;
+                //attackState.BoostDamagePerDash = towerScriptableObject.ElementBonusDamagePerDash;
 
                 attackState.BaseDashSpeed = towerScriptableObject.BaseDashSpeed;
-                attackState.ElementBonusDashSpeed = towerScriptableObject.ElementBonusDashSpeed;
+                //attackState.BoostDashSpeed = towerScriptableObject.ElementBonusDashSpeed;
 
                 attackState.NbOfBonusDash = towerScriptableObject.NoOfBonusDash;
             }

@@ -1651,6 +1651,8 @@ GameObject:
   - component: {fileID: 1253561603857029310}
   - component: {fileID: 300116209337600339}
   - component: {fileID: 5910513752245579151}
+  - component: {fileID: 445423038912001005}
+  - component: {fileID: 8921452757479817317}
   m_Layer: 0
   m_Name: Talented Tower
   m_TagString: Tower
@@ -2006,6 +2008,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SwapInterfaceTransform: {fileID: 2219879910471546818}
+--- !u!114 &445423038912001005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab404f497000ef40aee773c789fdda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8921452757479817317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd78b89b8c7ce14295a681e02b2eecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7614976759925084362
 GameObject:
   m_ObjectHideFlags: 0

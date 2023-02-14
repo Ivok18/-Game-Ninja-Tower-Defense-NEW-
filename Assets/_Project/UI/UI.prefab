@@ -1545,7 +1545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bdef477e3204f45b70ca46e893c976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerData: {fileID: 0}
+  towerData: {fileID: 11400000, guid: df3bf3d26fe5c0840b618a987615517e, type: 2}
 --- !u!1 &1237104496178171987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,16 +2375,16 @@ MonoBehaviour:
   towerPanelCanBuyColor: {r: 0.2784314, g: 1, b: 0, a: 1}
   towerPanelCannotBuyColor: {r: 1, g: 0.047058824, b: 0, a: 1}
   towerShopVisuals:
-  - towerData: {fileID: 0}
+  - towerData: {fileID: 11400000, guid: 2348ac8b1c1b5484988aa14ecf9da9de, type: 2}
     costDisplay: {fileID: 2739858691042044396}
     panel: {fileID: 5490411750049038363}
-  - towerData: {fileID: 0}
+  - towerData: {fileID: 11400000, guid: df3bf3d26fe5c0840b618a987615517e, type: 2}
     costDisplay: {fileID: 4937526757524507698}
     panel: {fileID: 5078936348296939205}
-  - towerData: {fileID: 0}
+  - towerData: {fileID: 11400000, guid: e09b3598ae6c137419858749268f4c58, type: 2}
     costDisplay: {fileID: 2834465919737025698}
     panel: {fileID: 2053403286172207450}
-  - towerData: {fileID: 0}
+  - towerData: {fileID: 11400000, guid: 6bbe79ad5c6a9b84bb7ca093f0e15651, type: 2}
     costDisplay: {fileID: 65182525142047101}
     panel: {fileID: 8958587938599533011}
 --- !u!1 &2442415623699105121
@@ -3973,7 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bdef477e3204f45b70ca46e893c976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerData: {fileID: 0}
+  towerData: {fileID: 11400000, guid: e09b3598ae6c137419858749268f4c58, type: 2}
 --- !u!1 &3999524797596805738
 GameObject:
   m_ObjectHideFlags: 0
@@ -4903,7 +4903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bdef477e3204f45b70ca46e893c976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerData: {fileID: 0}
+  towerData: {fileID: 11400000, guid: 6bbe79ad5c6a9b84bb7ca093f0e15651, type: 2}
 --- !u!1 &4858819646809490068
 GameObject:
   m_ObjectHideFlags: 0

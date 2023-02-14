@@ -10,6 +10,8 @@ namespace TD.Entities.Towers
  
         void Update()
         {
+            CurrentValue = Mathf.Clamp(CurrentValue, 0, MaxValue);
+
             float localScaleY = bar.localScale.y;
             float localScaleZ = bar.localScale.z;
             bool uiChargeAttackBarDealsWithPositiveValues = CurrentValue > 0 && MaxValue > 0;
