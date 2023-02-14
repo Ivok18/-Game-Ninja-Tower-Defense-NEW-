@@ -1644,8 +1644,6 @@ GameObject:
   - component: {fileID: 1952646614}
   - component: {fileID: 5905921553055695258}
   - component: {fileID: 5903545398343258804}
-  - component: {fileID: 4678143597046430718}
-  - component: {fileID: 6258688074606666887}
   - component: {fileID: 1673129672412136184}
   - component: {fileID: 1983103409074626671}
   - component: {fileID: 7029644802668721985}
@@ -1775,7 +1773,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeUntilNextAttack: 0
   ChargeAttackBar: {fileID: 6305758695407476569}
-  TimeBetweenAttacks: 0
+  BaseTimeBetweenAttacks: 0
+  ElementBonusTimeBetweenAttacks: 0
+  CurrentTimeBetweenAttacks: 0
 --- !u!114 &254282062760149879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1791,9 +1791,13 @@ MonoBehaviour:
   NbOfBonusDashRemaining: 0
   NextPattern: {fileID: 0}
   NbOfHitLanded: 0
-  DamagePerDash: 0
+  BaseDamagePerDash: 0
+  ElementBonusDamagePerDash: 0
+  CurrentDamagePerDash: 0
   NbOfBonusDash: 0
-  DashSpeed: 0
+  BaseDashSpeed: 0
+  ElementBonusDashSpeed: 0
+  CurrentDashSpeed: 0
 --- !u!114 &8288046361631016245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1911,35 +1915,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerScriptableObject: {fileID: 11400000, guid: e09b3598ae6c137419858749268f4c58,
     type: 2}
---- !u!114 &4678143597046430718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7231252392401026482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d958e4dfde6a74fb18b86a93d86dfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTowerDragged: 0
---- !u!114 &6258688074606666887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7231252392401026482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21e93ebd6f642cd4495f7b9ef244fb0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canPlace: 0
-  cannotPlaceColor: {r: 1, g: 0, b: 0, a: 0.5019608}
-  canPlaceColor: {r: 1, g: 1, b: 1, a: 0.23529412}
-  collisions: []
 --- !u!114 &1673129672412136184
 MonoBehaviour:
   m_ObjectHideFlags: 0

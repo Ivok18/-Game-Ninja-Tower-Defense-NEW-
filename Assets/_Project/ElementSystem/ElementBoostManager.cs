@@ -22,6 +22,8 @@ namespace TD.ElementSystem
 
         public void BoostTower(Transform towerToBoost, ElementScriptableObject elementBoostData)
         {
+            //IElementBoost IelementBoost = GetComponent<IElementBoost>();
+            //IelementBoost.Boost(elementBoostData);
             //Find boosted tower in list of deployed towers
             foreach (Transform tower in TowerStorer.Instance.DeployedTowers)
             {

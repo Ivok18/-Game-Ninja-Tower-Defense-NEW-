@@ -16,6 +16,7 @@ namespace TD.TowersManager.TowerSelectionManager
         public delegate void TowerSelectedCallback(SelectionAreaBehaviour selection);
         public static event TowerSelectedCallback OnTowerSelected;
 
+      
         private void Update()
         {
             bool isTowerInUndeployedState = TowerStateSwitcher.CurrentTowerState == TowerState.Undeployed;
@@ -39,8 +40,7 @@ namespace TD.TowersManager.TowerSelectionManager
                 return;
 
             SelectionAreaBehaviour selectionAreaBehaviour = this;
-            OnTowerSelected?.Invoke(selectionAreaBehaviour);          
-         
+            OnTowerSelected?.Invoke(selectionAreaBehaviour);
         }
     }
 }

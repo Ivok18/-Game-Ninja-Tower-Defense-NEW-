@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 6653960279968061180}
   - component: {fileID: 1648913142060684047}
   m_Layer: 0
-  m_Name: Preview
+  m_Name: z_Preview
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0070a612e7334424f88f1dbc35590980, type: 3}
   m_Name: Trainee Tower
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7231252392401026485, guid: df1c0d2830e516f4da9731a2f7665c68, type: 3}
+  preview: {fileID: 7231252392401026485, guid: 216a2cbe3c7e25449945c9678e2fc869, type: 3}
   startState: 0
   towerType: 0
   cost: 50

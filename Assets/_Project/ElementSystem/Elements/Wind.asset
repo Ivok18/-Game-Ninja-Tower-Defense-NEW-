@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wind
   m_EditorClassIdentifier: 
   element: 3
-  elementCost: 500
+  cost: 500

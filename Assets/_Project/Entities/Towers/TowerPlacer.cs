@@ -9,7 +9,7 @@ namespace TD.Entities.Towers
     public class TowerPlacer : MonoBehaviour
     {
         private TowerStateSwitcher towerStateSwitcher;
-        private StationaryState stationaryState;
+        //private StationaryState stationaryState;
         private SpriteRenderer radiusVizualizer;
         [SerializeField] private Transform towerPrefab;
         [SerializeField] private bool canPlace;
@@ -23,7 +23,7 @@ namespace TD.Entities.Towers
         private void Awake()
         {
             towerStateSwitcher = GetComponent<TowerStateSwitcher>();
-            stationaryState = GetComponent<StationaryState>();
+            //stationaryState = GetComponent<StationaryState>();
             radiusVizualizer = GetComponent<RadiusGetter>().RadiusTransform.GetComponent<RadiusDetectionBehaviour>().RadiusVizualizer;
         }
 
@@ -43,13 +43,24 @@ namespace TD.Entities.Towers
             if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed)
                 return;
 
-           
-            Transform realTower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
+
+            //Instantiate the tower at placing position
+            Vector3 startPos = transform.position;
+            startPos.z = 0;
+            GameObject realTower = Instantiate(towerPrefab.gameObject, startPos, Quaternion.identity);
+            
+            //Set start position at placing position
             StationaryState stationaryState = realTower.GetComponent<StationaryState>();
-            stationaryState.StartPosition = transform.position;
+            stationaryState.StartPosition = startPos;
 
-
-            OnTowerPlaced?.Invoke(realTower);
+            //Set z pos of selection area to -5 (it seems to fix the bug)
+            SelectionAreaGetter getter = realTower.GetComponent<SelectionAreaGetter>();
+            Vector3 selectionAreaPos = startPos;
+            selectionAreaPos.z = -5;
+            getter.SelectionAreaTransform.position = selectionAreaPos;
+            
+            
+            OnTowerPlaced?.Invoke(realTower.transform);
             canPlace = false;
 
             Destroy(gameObject);
