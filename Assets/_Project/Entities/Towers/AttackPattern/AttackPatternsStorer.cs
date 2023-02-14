@@ -6,17 +6,9 @@ namespace TD.Entities.Towers.AttackPattern
     {
         public PatternBehaviour[] Patterns;
         
-        public PatternBehaviour FindNextPattern()
+        public PatternBehaviour GetPatternAt(int index)
         {
-            foreach(PatternBehaviour pattern in Patterns)
-            {
-                if(!pattern.HasBeenReached)
-                {
-                    return pattern;
-                }
-            }
-
-            return null;
+            return Patterns[index];
         }
 
         public void ResetPatternsState()
@@ -25,6 +17,18 @@ namespace TD.Entities.Towers.AttackPattern
             {
                 pattern.HasBeenReached = false;
             }
+        }
+
+        public bool HaveAllPatternsBeenReached()
+        {
+            foreach (PatternBehaviour pattern in Patterns)
+            {
+                if (!pattern.HasBeenReached)
+                    return false;
+
+            }
+
+            return true;
         }
 
        

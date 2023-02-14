@@ -39,14 +39,15 @@ namespace TD.Entities.Enemies
             if (!isTargetOfTower)
                 return;
 
-
-
             TowerStateSwitcher towerStateSwitcher = collision.GetComponent<TowerStateSwitcher>();
             bool isTowerAttacking = towerStateSwitcher.CurrentTowerState == TowerState.Attacking;
             if (!isTowerAttacking)
                 return;
 
             AttackState attackState = collision.GetComponent<AttackState>();
+            if (attackState == null)
+                return;
+
             OnEnemyHit?.Invoke(transform, collision.transform);
             healthBehaviour.GetDamage(attackState.CurrentDamagePerDash, attackState.transform);
         }      

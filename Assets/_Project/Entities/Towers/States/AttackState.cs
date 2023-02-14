@@ -1,34 +1,39 @@
 using UnityEngine;
 using TD.Entities.Towers.AttackPattern;
 using TD.Entities.Enemies;
+using System;
+using Unity.Mathematics;
+using Random = UnityEngine.Random;
 
 namespace TD.Entities.Towers.States
 {
     public class AttackState : MonoBehaviour
     {
-        public int NbOfBonusDashRemaining;
         private TowerStateSwitcher towerStateSwitcher;
+     
+        [Header("Attack pattern")]
         public PatternBehaviour NextPattern;
+        public int IndexOfNextAttackPattern = -1;
+        
+        [Header("Dashes remaining")]
+        public int NbOfBonusDashRemaining;
 
-
-        public int NbOfHitLanded;
-
-        [HideInInspector]
-        public int BaseDamagePerDash;
-        [HideInInspector]
-        public int BoostDamagePerDash;
-
+        [Header("Hit counter")]
+        public int NbOfHitLanded;  
+        
+        [Header("Damage per dash")]
         public int CurrentDamagePerDash;
-        [HideInInspector]
-        public int NbOfBonusDash;
+        public int TotalDamage = 0;
 
-        [HideInInspector]
-        public float BaseDashSpeed;
-
-        [HideInInspector]
-        public float BoostDashSpeed;
-    
+        [Header("Dash speed")]
         public float CurrentDashSpeed;
+
+
+        [HideInInspector] public int BaseDamagePerDash;
+        [HideInInspector] public float BaseDashSpeed;
+        [HideInInspector] public float BoostDashSpeed;
+        [HideInInspector] public int BoostDamagePerDash;
+        [HideInInspector] public int NbOfBonusDash;
 
 
 
@@ -79,6 +84,8 @@ namespace TD.Entities.Towers.States
 
 
             NbOfHitLanded++;
+            TotalDamage += CurrentDamagePerDash;
+            IndexOfNextAttackPattern++;
             bool
                 towerHasCompletedAllItsDashesAfterIncrementOfCounterOfHitsOnTarget = NbOfHitLanded >= NbOfBonusDash + 1;
 
@@ -86,60 +93,65 @@ namespace TD.Entities.Towers.States
             {
                 ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
                 chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
-
-                towerStateSwitcher.SwitchTo(TowerState.Stationary);
+                towerStateSwitcher.SwitchTo(TowerState.Stationary);    
                 return;
 
             }
 
-            //Find next attack pattern to teleport to
-            AttackPatternsStorer followAttackPatternBehaviour = GetComponent<AttackPatternsStorer>();
-            NextPattern = followAttackPatternBehaviour.FindNextPattern();
-            bool hasNextPattern = NextPattern != null;
-            if (!hasNextPattern)
-            {
-                ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
-                chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
-
-                towerStateSwitcher.SwitchTo(TowerState.Stationary);
-                return;
-            }
-
-            //teleport to next pattern
-            transform.position = NextPattern.transform.position;
-      
-
-            //if next pattern overlaps with target (fixed)
+           
+            AttackPatternsStorer attackPatternsStorer = GetComponent<AttackPatternsStorer>();         
+            
+            //If not,
+            //check if next pattern overlaps with target (fixed)
             AttackPatternOverlapTracker attackPatternOverlapTracker = enemy.GetComponent<AttackPatternOverlapTracker>();
 
+            
             bool nextPatternOverlapsWithAnEnemy =
-                attackPatternOverlapTracker.FindOverlapingPattern(NextPattern) != null;
+            attackPatternOverlapTracker.FindOverlapingPattern(attackPatternsStorer.Patterns[IndexOfNextAttackPattern]) != null;
 
             if (!nextPatternOverlapsWithAnEnemy)
-                return;
-       
-            NextPattern.HasBeenReached = true;
-
-            //damage enemy
-            HealthBehaviour healthBehaviour= enemy.GetComponent<HealthBehaviour>();
-            healthBehaviour.GetDamage(CurrentDamagePerDash, transform);
-
-            //go to next the next attack pattern if there is any
-            bool thereIsOtherPatternToReachAfterOverlapingPattern =
-                followAttackPatternBehaviour.FindNextPattern() != null;
-            if (!thereIsOtherPatternToReachAfterOverlapingPattern)
             {
-                ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
-                chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
-
-
-                towerStateSwitcher.SwitchTo(TowerState.Stationary);
+                NextPattern = attackPatternsStorer.GetPatternAt(IndexOfNextAttackPattern);
+                transform.position = NextPattern.transform.position;
+                NextPattern.HasBeenReached = true;
                 return;
             }
 
-            NextPattern = followAttackPatternBehaviour.FindNextPattern();
-            transform.position = NextPattern.transform.position;
+            //if there is overlap
+            //.. directly inflict damage to enemy
+            HealthBehaviour healthBehaviour = enemy.GetComponent<HealthBehaviour>();
+            healthBehaviour.GetDamage(CurrentDamagePerDash, transform);
+
+
+            //And go to next attack pattern, if there is any
+            if (!attackPatternsStorer.HaveAllPatternsBeenReached())
+            {
+                //If next pattern after the one that enemy overlaps exists tp to it
+                if (IndexOfNextAttackPattern + 1 < attackPatternsStorer.Patterns.Length)
+                {
+                    NextPattern = attackPatternsStorer.GetPatternAt(IndexOfNextAttackPattern + 1);
+                    transform.position = NextPattern.transform.position;
+                    NextPattern.HasBeenReached = true;
+                }
+                //if not tp to the one that enemy overlaps
+                else
+                {
+                    NextPattern = attackPatternsStorer.GetPatternAt(IndexOfNextAttackPattern);
+                    transform.position = NextPattern.transform.position;
+                    NextPattern.HasBeenReached = true;
+                }
+            }
+
+            else
+            {
+                ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
+                chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
+                towerStateSwitcher.SwitchTo(TowerState.Stationary);
+            }
+
         }
+    
+     
 
 
 
@@ -193,6 +205,7 @@ namespace TD.Entities.Towers.States
                 bool hasTowerLandedAllItsDashes = NbOfHitLanded >= NbOfBonusDash + 1;
                 if (hasTowerLandedAllItsDashes)
                 {
+                    //Debug.Log("Oh shoot, he died before ): -> " + TotalDamage + " dmg");
                     towerStateSwitcher.SwitchTo(TowerState.Stationary);
                 }
 
@@ -201,6 +214,7 @@ namespace TD.Entities.Towers.States
                 if (!towerHasOtherTargets)
                 {
                     //Go back to staionary state
+                    //Debug.Log("No target anymore?" + TotalDamage + " dmg");
                     towerStateSwitcher.SwitchTo(TowerState.Stationary);
                     return;
                 }

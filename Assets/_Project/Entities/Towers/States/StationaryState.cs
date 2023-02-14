@@ -32,6 +32,8 @@ namespace TD.Entities.Towers.States
                 followAttackPatternBehaviour.ResetPatternsState();
                 AttackState attackState = GetComponent<AttackState>();
                 attackState.NextPattern = null;
+                attackState.IndexOfNextAttackPattern = -1;
+                attackState.TotalDamage = 0;
 
                 //Reset nb of hits landed
                 attackState.NbOfHitLanded = 0;

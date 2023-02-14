@@ -479,9 +479,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8724854514184137380}
-  - component: {fileID: 3081190296124474067}
   - component: {fileID: 2001436915518379370}
-  - component: {fileID: 5528016873121886764}
+  - component: {fileID: 208813497711768946}
+  - component: {fileID: 3040184130822032460}
   m_Layer: 0
   m_Name: Pattern 2
   m_TagString: AttackPattern
@@ -504,7 +504,23 @@ Transform:
   m_Father: {fileID: 8940060969159580925}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &3081190296124474067
+--- !u!114 &2001436915518379370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984528815964942511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1aca2239c983124eb5aacee9be68a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasBeenReached: 0
+  tower: {fileID: 7231252392401026485}
+  parent: {fileID: 8940060969159580925}
+  startPosition: {x: 3, y: 0, z: 0}
+--- !u!50 &208813497711768946
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -525,25 +541,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2001436915518379370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3984528815964942511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1aca2239c983124eb5aacee9be68a50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasBeenReached: 0
-  minReachDistance: 0.5
-  minReachDistanceCoef: 20
-  tower: {fileID: 7231252392401026485}
-  parent: {fileID: 8940060969159580925}
-  startPosition: {x: 3, y: 0, z: 0}
---- !u!58 &5528016873121886764
+--- !u!58 &3040184130822032460
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -558,7 +556,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.26
 --- !u!1 &4280490828193856716
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,9 +854,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8659698772518423003}
-  - component: {fileID: 1289781963453272656}
   - component: {fileID: 6281170135608255734}
-  - component: {fileID: 7632277303779347221}
+  - component: {fileID: 3845409716040693910}
+  - component: {fileID: 3053448516864388703}
   m_Layer: 0
   m_Name: Pattern 1
   m_TagString: AttackPattern
@@ -881,7 +879,23 @@ Transform:
   m_Father: {fileID: 8940060969159580925}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1289781963453272656
+--- !u!114 &6281170135608255734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6029020894579877845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1aca2239c983124eb5aacee9be68a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasBeenReached: 0
+  tower: {fileID: 7231252392401026485}
+  parent: {fileID: 8940060969159580925}
+  startPosition: {x: 0, y: 3, z: 0}
+--- !u!50 &3845409716040693910
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -902,25 +916,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6281170135608255734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6029020894579877845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1aca2239c983124eb5aacee9be68a50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasBeenReached: 0
-  minReachDistance: 0.5
-  minReachDistanceCoef: 20
-  tower: {fileID: 7231252392401026485}
-  parent: {fileID: 8940060969159580925}
-  startPosition: {x: 0, y: 3, z: 0}
---- !u!58 &7632277303779347221
+--- !u!58 &3053448516864388703
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -935,7 +931,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.26
 --- !u!1 &7107378391383783468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,7 +1172,7 @@ MonoBehaviour:
   TimeUntilNextAttack: 0
   ChargeAttackBar: {fileID: 6305758695407476569}
   BaseTimeBetweenAttacks: 0
-  ElementBonusTimeBetweenAttacks: 0
+  BoostTimeBetweenAttacks: 0
   CurrentTimeBetweenAttacks: 0
 --- !u!114 &254282062760149879
 MonoBehaviour:
@@ -1190,16 +1186,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe002f870a7c7a47a058727ce7d0100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NbOfBonusDashRemaining: 0
   NextPattern: {fileID: 0}
+  IndexOfNextAttackPattern: -1
+  NbOfBonusDashRemaining: 0
   NbOfHitLanded: 0
-  BaseDamagePerDash: 0
-  ElementBonusDamagePerDash: 0
   CurrentDamagePerDash: 0
-  NbOfBonusDash: 0
-  BaseDashSpeed: 0
-  ElementBonusDashSpeed: 0
+  TotalDamage: 0
   CurrentDashSpeed: 0
+  BaseDamagePerDash: 0
+  BaseDashSpeed: 0
+  BoostDashSpeed: 0
+  BoostDamagePerDash: 0
+  NbOfBonusDash: 0
 --- !u!114 &8288046361631016245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,6 +1405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab404f497000ef40aee773c789fdda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BoostDashSpeed: 0
+  BoostTimeBetweenAttacks: 0
 --- !u!114 &-1808078446366585948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,6 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd78b89b8c7ce14295a681e02b2eecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BoostDamagePerDash: 0
 --- !u!1 &7888698135456435872
 GameObject:
   m_ObjectHideFlags: 0
