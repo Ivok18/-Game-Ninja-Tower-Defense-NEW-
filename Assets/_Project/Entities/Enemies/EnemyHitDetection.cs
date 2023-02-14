@@ -32,10 +32,14 @@ namespace TD.Entities.Enemies
 
             LockTargetState lockTargetState = collision.GetComponent<LockTargetState>();
 
-           
+            if (lockTargetState == null)
+                return;
+
             bool isTargetOfTower = lockTargetState.Target == transform;
             if (!isTargetOfTower)
                 return;
+
+
 
             TowerStateSwitcher towerStateSwitcher = collision.GetComponent<TowerStateSwitcher>();
             bool isTowerAttacking = towerStateSwitcher.CurrentTowerState == TowerState.Attacking;
