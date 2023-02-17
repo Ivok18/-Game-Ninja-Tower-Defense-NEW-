@@ -3,11 +3,11 @@ using System;
 namespace TD.WaveSystem
 {
     [Serializable]
-    public class WaveData
+    public class OldWaveData
     {
         public string waveName;
         public WaveState waveState;
-        public EnemySpawnerData spawner;
+        public OldEnemySpawnerData spawner;     
     }
 }
 

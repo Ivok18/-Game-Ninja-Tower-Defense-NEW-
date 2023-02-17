@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4180018371340840186}
-  - component: {fileID: 3329784354290182826}
+  - component: {fileID: 4180018371340840187}
   m_Layer: 0
-  m_Name: WaveManager
+  m_Name: OldWaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3329784354290182826
+--- !u!114 &4180018371340840187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4180018371340840184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4a28baa9a99c8f4b8b878c2969678bb, type: 3}
+  m_Script: {fileID: 11500000, guid: c9636631ff1a0f440a9d3e0de03b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waveText: {fileID: 0}
@@ -85,334 +85,236 @@ MonoBehaviour:
   - waveName: Wave 1
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 15
       nextSpawnTime: 0
       spawnInterval: 1.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: d432efdba2e90ac4dbbc0d15fb4443ee,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: d432efdba2e90ac4dbbc0d15fb4443ee, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 2
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 30
       nextSpawnTime: 0
       spawnInterval: 1
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: d432efdba2e90ac4dbbc0d15fb4443ee,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: d432efdba2e90ac4dbbc0d15fb4443ee, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 3
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 15
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: d432efdba2e90ac4dbbc0d15fb4443ee,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 8df96673a8215da4aa57d6a2c9e8e482,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: d432efdba2e90ac4dbbc0d15fb4443ee, type: 3}
+      - {fileID: 2772235752551165461, guid: 8df96673a8215da4aa57d6a2c9e8e482, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 4
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 10
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 8df96673a8215da4aa57d6a2c9e8e482,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 8df96673a8215da4aa57d6a2c9e8e482, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 5
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 15
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 8df96673a8215da4aa57d6a2c9e8e482,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 8df96673a8215da4aa57d6a2c9e8e482, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 6
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 10
       nextSpawnTime: 0
       spawnInterval: 1
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 7
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 10
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 8df96673a8215da4aa57d6a2c9e8e482,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
+      - {fileID: 2772235752551165461, guid: 8df96673a8215da4aa57d6a2c9e8e482, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 8
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 20
       nextSpawnTime: 0
       spawnInterval: 0.3
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 8df96673a8215da4aa57d6a2c9e8e482,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
+      - {fileID: 2772235752551165461, guid: 8df96673a8215da4aa57d6a2c9e8e482, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 9
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 25
       nextSpawnTime: 0
       spawnInterval: 1
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 10
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 2
       nextSpawnTime: 0
       spawnInterval: 1
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 11
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 25
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 12
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 25
       nextSpawnTime: 0
       spawnInterval: 0.25
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 13
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 70
       nextSpawnTime: 0
       spawnInterval: 0.1
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: d432efdba2e90ac4dbbc0d15fb4443ee,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 8df96673a8215da4aa57d6a2c9e8e482,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
+      - {fileID: 2772235752551165461, guid: d432efdba2e90ac4dbbc0d15fb4443ee, type: 3}
+      - {fileID: 2772235752551165461, guid: 8df96673a8215da4aa57d6a2c9e8e482, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 14
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 10
       nextSpawnTime: 0
       spawnInterval: 1.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 34a6dd5e9ec3450428907ea6d7720e49,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 34a6dd5e9ec3450428907ea6d7720e49, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 15
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 15
       nextSpawnTime: 0
       spawnInterval: 1
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 34a6dd5e9ec3450428907ea6d7720e49,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 34a6dd5e9ec3450428907ea6d7720e49, type: 3}
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 16
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 30
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 34a6dd5e9ec3450428907ea6d7720e49,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 8df96673a8215da4aa57d6a2c9e8e482,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 34a6dd5e9ec3450428907ea6d7720e49, type: 3}
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
+      - {fileID: 2772235752551165461, guid: 8df96673a8215da4aa57d6a2c9e8e482, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 17
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 50
       nextSpawnTime: 0
       spawnInterval: 0.2
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 34a6dd5e9ec3450428907ea6d7720e49,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 1de40e0b3f574dd48a27983a92100b57,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 34a6dd5e9ec3450428907ea6d7720e49, type: 3}
+      - {fileID: 2772235752551165461, guid: 1de40e0b3f574dd48a27983a92100b57, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 18
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 25
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 19
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 30
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 1de40e0b3f574dd48a27983a92100b57,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5, type: 3}
+      - {fileID: 2772235752551165461, guid: 1de40e0b3f574dd48a27983a92100b57, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 20
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 100
       nextSpawnTime: 0
       spawnInterval: 0.5
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: d432efdba2e90ac4dbbc0d15fb4443ee,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 8df96673a8215da4aa57d6a2c9e8e482,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 4762445aa46502a4f805c3f066cb4bf7,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 34a6dd5e9ec3450428907ea6d7720e49,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 1de40e0b3f574dd48a27983a92100b57,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: d432efdba2e90ac4dbbc0d15fb4443ee, type: 3}
+      - {fileID: 2772235752551165461, guid: 8df96673a8215da4aa57d6a2c9e8e482, type: 3}
+      - {fileID: 2772235752551165461, guid: 4762445aa46502a4f805c3f066cb4bf7, type: 3}
+      - {fileID: 2772235752551165461, guid: 34a6dd5e9ec3450428907ea6d7720e49, type: 3}
+      - {fileID: 2772235752551165461, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5, type: 3}
+      - {fileID: 2772235752551165461, guid: 1de40e0b3f574dd48a27983a92100b57, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Wave 21
     waveState: 2
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 5
       nextSpawnTime: 0
       spawnInterval: 1
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 280960012f0b81b40997c958604995cb,
-          type: 3}
-        spawnChanceLimit: 1
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 280960012f0b81b40997c958604995cb, type: 3}
+      - {fileID: 2772235752551165461, guid: e7a0eb6ea955b6a4ab937784f3a2e7e5, type: 3}
       indexOfEnemyToSpawn: 0
   - waveName: Victory !!
     waveState: 4
     spawner:
-      enableChance: 0
       noOfEnemiesToSpawn: 100
       nextSpawnTime: 0
       spawnInterval: 25
       spawnpoint: {fileID: 4180018370231168291}
-      enemiesSpawnData:
-      - typeOfEnemy: {fileID: 7073972598165122598, guid: 75172fc024a8a3943b5aa9e862ad6519,
-          type: 3}
-        spawnChanceLimit: 1
+      typeOfEnemies:
+      - {fileID: 2772235752551165461, guid: 75172fc024a8a3943b5aa9e862ad6519, type: 3}
       indexOfEnemyToSpawn: 0

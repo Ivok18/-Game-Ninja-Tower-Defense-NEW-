@@ -94,8 +94,12 @@ namespace TD.Entities.Towers
         private void OnMouseDown()
         {
             //Do not place tower if it is over UI
-            if (EventSystem.current.IsPointerOverGameObject())
+            /*if (EventSystem.current.IsPointerOverGameObject())
+            {
+   
                 return;
+            }*/
+                
 
             if (canPlace)
                 PlaceTower();
