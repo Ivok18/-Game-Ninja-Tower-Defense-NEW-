@@ -7,6 +7,7 @@ using TD.Entities.Towers;
 using TD.MonetarySystem;
 using TD.ShopSystem;
 using TD.UI;
+using UI;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -22,7 +23,22 @@ namespace TD.ElementSystem
         private float glowAlphaMax = 1.0f;
         private float glowAlphaMin = 0f;
         private float glowDestinationAlpha = 0f;
-       
+
+        private void OnEnable()
+        {
+            UICatalystButtonBehaviour.OnCatalyseButtonPressed += DisableElementPickpoint;
+        }
+
+        private void OnDisable()
+        {
+            UICatalystButtonBehaviour.OnCatalyseButtonPressed -= DisableElementPickpoint;
+        }
+
+        private void DisableElementPickpoint(Transform targetTower, TowerElement elementOfCatalyst)
+        {
+            gameObject.SetActive(false);
+        }
+
         private void Update()
         {
             ElementsTracker elementBoostApplier = towerHolder.GetComponent<ElementsTracker>();

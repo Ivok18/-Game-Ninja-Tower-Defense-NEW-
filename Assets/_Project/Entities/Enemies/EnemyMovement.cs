@@ -11,7 +11,7 @@ namespace TD.Entities.Enemies
         [SerializeField] private WaypointStorer waypointStorer;
         private int nextWaypointIndex = 0;
         public float Speed;
-        [SerializeField] private float currentSpeed;
+        public float CurrentSpeed;
         private float windedSpeed = 6f;
         public bool IsWinded;
         public bool CanMove;
@@ -28,7 +28,7 @@ namespace TD.Entities.Enemies
 
         private void Start()
         {
-            currentSpeed = Speed;
+            CurrentSpeed = Speed;
         }
 
         public void CheckWindElementEffect(Transform enemy, Transform attackingTower)
@@ -66,7 +66,7 @@ namespace TD.Entities.Enemies
             if (findWind)
             {
                 nextWaypointIndex = 0;
-                currentSpeed = windedSpeed;
+                CurrentSpeed = windedSpeed;
                 IsWinded = true;
             }
 
@@ -91,7 +91,7 @@ namespace TD.Entities.Enemies
                 return;
 
             transform.position = Vector2.MoveTowards(transform.position, waypointStorer.Waypoints[nextWaypointIndex].position,
-                Time.fixedDeltaTime * currentSpeed);
+                Time.fixedDeltaTime * CurrentSpeed);
 
             bool hasReachedNextWaypoint = Vector2.Distance(transform.position, waypointStorer.Waypoints[nextWaypointIndex].position) < 0.1f;
 
@@ -103,7 +103,7 @@ namespace TD.Entities.Enemies
                 if (hasBeenAffectedByWind && hasReachedFirstWaypoint)
                 {
                     IsWinded = false;
-                    currentSpeed = Speed;
+                    CurrentSpeed = Speed;
                 }
                 nextWaypointIndex++;
             }

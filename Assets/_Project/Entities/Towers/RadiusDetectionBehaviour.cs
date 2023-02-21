@@ -2,7 +2,8 @@ using UnityEngine;
 using TD.EnemiesManager.Storer;
 using TD.Entities.Towers.States;
 using TD.Entities.Enemies;
-
+using TD.ElementSystem;
+using UI;
 
 namespace TD.Entities.Towers
 {
@@ -18,17 +19,27 @@ namespace TD.Entities.Towers
         private void OnEnable()
         {
             LimitBreakActioner.OnTowerLimitBreak += UpdateRadiusVizualizer;
+            UICatalystButtonBehaviour.OnCatalyseButtonPressed += ReduceRadius;
         }
 
         private void OnDisable()
         {
             LimitBreakActioner.OnTowerLimitBreak -= UpdateRadiusVizualizer;
+            UICatalystButtonBehaviour.OnCatalyseButtonPressed -= ReduceRadius;
         }
 
-        private void UpdateRadiusVizualizer(Transform tower)
+        public void UpdateRadiusVizualizer(Transform tower)
         {
             if(TowerHolder == tower) 
                 RadiusVizualizer.transform.localScale = new Vector3(Radius * 1.79f, Radius * 1.79f, Radius * 1.79f);
+        }
+
+        public void ReduceRadius(Transform targetTower, TowerElement elementOfCatalyst)
+        {
+            if (targetTower != TowerHolder)
+                return;
+
+            Radius /= 2.2f;
         }
 
         private void Awake()

@@ -1,5 +1,7 @@
 using TD.Entities.Towers.AttackPattern;
+using TD.TowersManager.TowerSelectionManager;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TD.Entities.Towers.States
 {
@@ -8,15 +10,18 @@ namespace TD.Entities.Towers.States
         private Vector2 startPosition;
         private TowerStateSwitcher towerStateSwitcher;
         public Vector2 StartPosition;
+        private bool isCatalyst;
 
         private void OnEnable()
         {
             TowerStateSwitcher.OnTowerEnterState += Reset;
+            SelectionAreaBehaviour.OnTowerSelected += TryShowCatalystUI;
         }
 
         private void OnDisable()
         {
             TowerStateSwitcher.OnTowerEnterState -= Reset;
+            SelectionAreaBehaviour.OnTowerSelected -= TryShowCatalystUI;
         }
 
         private void Reset(Transform tower, TowerState state)
@@ -65,6 +70,16 @@ namespace TD.Entities.Towers.States
             }          
         }
 
+        private void TryShowCatalystUI(SelectionAreaBehaviour selection)
+        {
+            if (this.transform != selection.TowerHolder)
+                return;
+
+           //selection.
+           
+
+        }
+
         private void Awake()
         {
             towerStateSwitcher = GetComponent<TowerStateSwitcher>();
@@ -81,16 +96,33 @@ namespace TD.Entities.Towers.States
             if (!isTowerInStationaryState) 
                 return;
 
-            ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
-            if (listOfTargets == null)
-                return;
+            if(!isCatalyst)
+            {
+                ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
+                if (listOfTargets == null)
+                    return;
 
-            bool areThereEnemiesToAttack = listOfTargets.EnemiesToAttack.Count > 0;
-            if (!areThereEnemiesToAttack)
-                return;
+                bool areThereEnemiesToAttack = listOfTargets.EnemiesToAttack.Count > 0;
+                if (!areThereEnemiesToAttack)
+                    return;
 
-            towerStateSwitcher.SwitchTo(TowerState.LockingTarget);
+                towerStateSwitcher.SwitchTo(TowerState.LockingTarget);
+            }
+
+            else
+            {
+                //DO NOTHING
+            }
+           
         }
+
+        public void SetCatalystMode(bool boolean)
+        {
+            Debug.Log("OK?");
+            isCatalyst = boolean;
+        }
+
+        
     }
 
 }

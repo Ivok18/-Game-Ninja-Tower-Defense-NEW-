@@ -11,6 +11,8 @@ namespace TD.Entities.Towers
             ElementPickpointGetter elementPickpointGetter = GetComponent<ElementPickpointGetter>();
             SelectionAreaGetter selectionAreaGetter = GetComponent<SelectionAreaGetter>();
             ElementSwapInterfaceGetter elementSwapInterfaceGetter = GetComponent<ElementSwapInterfaceGetter>();
+            UICatalystGetter uiCatalystGetter = GetComponent<UICatalystGetter>();
+            CatalystSelectorGetter catalystSelectorGetter = GetComponent<CatalystSelectorGetter>();
 
             if(radiusGetter!=null)
             {
@@ -44,6 +46,23 @@ namespace TD.Entities.Towers
                     Destroy(elementSwapInterfaceTransform.gameObject);
                 }
             }
+            if(uiCatalystGetter!=null)
+            {
+                Transform uiCatalystTransform = uiCatalystGetter.UICatalystTransform;
+                if(uiCatalystTransform!=null)
+                {
+                    Destroy(uiCatalystTransform.gameObject);
+                }
+            }
+            if(catalystSelectorGetter!=null)
+            {
+                Transform catalystSelectorTransform = catalystSelectorGetter.CatalystSelectorTransform;
+                if(catalystSelectorTransform!=null)
+                {
+                    Destroy(catalystSelectorTransform.gameObject);
+                }
+            }
+
         }           
     }
 }

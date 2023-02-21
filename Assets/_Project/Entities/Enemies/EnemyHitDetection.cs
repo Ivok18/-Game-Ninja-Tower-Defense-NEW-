@@ -49,6 +49,11 @@ namespace TD.Entities.Enemies
                 return;
 
             OnEnemyHit?.Invoke(transform, collision.transform);
+
+            DodgeBehaviour dodge = GetComponent<DodgeBehaviour>();
+            if (dodge.CanDodge)
+                return;
+
             healthBehaviour.GetDamage(attackState.CurrentDamagePerDash, attackState.transform);
         }      
     }

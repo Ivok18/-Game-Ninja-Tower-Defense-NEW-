@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TD.ElementSystem;
 using TD.Entities.Towers;
+using UI;
 using UnityEngine;
 
 namespace TD.TowersManager.TowerSelectionManager
@@ -16,7 +17,25 @@ namespace TD.TowersManager.TowerSelectionManager
         public delegate void TowerSelectedCallback(SelectionAreaBehaviour selection);
         public static event TowerSelectedCallback OnTowerSelected;
 
-      
+
+        private void OnEnable()
+        {
+            UICatalystButtonBehaviour.OnCatalyseButtonPressed += DisableSelectionArea;
+        }
+
+        private void OnDisable()
+        {
+            UICatalystButtonBehaviour.OnCatalyseButtonPressed -= DisableSelectionArea;
+        }
+
+        private void DisableSelectionArea(Transform targetTower, TowerElement elementOfCatalyst)
+        {
+            if (targetTower != TowerHolder)
+                return;
+
+            gameObject.SetActive(false);
+        }
+
         private void Update()
         {
             bool isTowerInUndeployedState = TowerStateSwitcher.CurrentTowerState == TowerState.Undeployed;
@@ -33,6 +52,8 @@ namespace TD.TowersManager.TowerSelectionManager
             }        
         }
 
+
+     
         private void OnMouseDown()
         {
             bool isTowerInUndeployedState = TowerStateSwitcher.CurrentTowerState == TowerState.Undeployed;
@@ -42,5 +63,6 @@ namespace TD.TowersManager.TowerSelectionManager
             SelectionAreaBehaviour selectionAreaBehaviour = this;
             OnTowerSelected?.Invoke(selectionAreaBehaviour);
         }
+
     }
 }

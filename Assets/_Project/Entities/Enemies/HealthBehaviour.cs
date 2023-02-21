@@ -31,11 +31,15 @@ namespace TD.Entities.Enemies
             if (hasTowerNotCompletedAllItsDashesYet)
             {
                 Remove(amount);
+                ShakeBehaviour shakeBehaviour = GetComponent<ShakeBehaviour>();
+                shakeBehaviour.StartShake();
             }
 
             bool isDead = CurrentHealth <= 0;
             if (!isDead)
                 return;
+
+            
 
             transform.tag = "Dead";
             gameObject.SetActive(false);
