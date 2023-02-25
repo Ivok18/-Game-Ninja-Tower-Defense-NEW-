@@ -36,7 +36,6 @@ namespace TD.Entities.Towers
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawLine(transform.position, lockTargetState.Target.position);
-
             }
 
         }

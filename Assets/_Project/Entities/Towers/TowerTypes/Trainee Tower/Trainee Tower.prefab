@@ -96,7 +96,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4072126320640798599}
-  - component: {fileID: 6305758695407476569}
   m_Layer: 0
   m_Name: ChargeAttackBar
   m_TagString: Untagged
@@ -121,21 +120,6 @@ Transform:
   m_Father: {fileID: 7231252392401026485}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6305758695407476569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763752381474574028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a47d53197959ad439cf83074f84f3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: {fileID: 2384113929136244412}
-  CurrentValue: 0
-  MaxValue: 0
 --- !u!1 &2759738863832730704
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +641,10 @@ GameObject:
   - component: {fileID: 7258078498949962026}
   - component: {fileID: 2196193001450846278}
   - component: {fileID: 3755931752808023181}
+  - component: {fileID: 1305457041649536931}
+  - component: {fileID: 6575124657289684392}
+  - component: {fileID: -8966149964048194045}
+  - component: {fileID: -174523947643572020}
   m_Layer: 0
   m_Name: Trainee Tower
   m_TagString: Tower
@@ -776,7 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeUntilNextAttack: 0
-  ChargeAttackBar: {fileID: 6305758695407476569}
+  ChargeAttackBar: {fileID: 6575124657289684392}
   BaseTimeBetweenAttacks: 0
   BoostTimeBetweenAttacks: 0
   CurrentTimeBetweenAttacks: 0
@@ -1013,6 +1001,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectionAreaTransform: {fileID: 8799669124012997952}
+--- !u!114 &1305457041649536931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2af9400235f0741bfadf5aeb29da46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interceptorAlpha: 0.5
+--- !u!114 &6575124657289684392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a47d53197959ad439cf83074f84f3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bar: {fileID: 2384113929136244412}
+  Container: {fileID: 763752381474574028}
+  CurrentValue: 0
+  MaxValue: 0
+--- !u!114 &-8966149964048194045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8b03110b5502548b8cdb1dc54d1a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginTower: {fileID: 0}
+  idleTime: 0.5
+  IdleTimeRemaining: 0
+  maxActiveTime: 0.3
+  returnSpeed: 20
+  IsActive: 0
+--- !u!114 &-174523947643572020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c4e585648310940b22513709c3dce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dodgeShadowCounterBehaviour: {fileID: -8966149964048194045}
+  shrinkSpeed: 0
 --- !u!1 &7482127287058740799
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,8 +24,10 @@ namespace TD.UI
             {
                 TowerTypeAccessor towerTypeAccessor = tower.GetComponent<TowerTypeAccessor>();
                 LimitBreakTracker limitBreakTracker = tower.GetComponent<LimitBreakTracker>();
+                DodgeShadowCounterBehaviour towerAutoDestructionAfterHit = tower.GetComponent<DodgeShadowCounterBehaviour>();
                 bool isTowerATrainee = towerTypeAccessor.TowerType == TowerType.Trainee;
-                if (isTowerATrainee && !limitBreakTracker.HasBrokeLimits)
+                if (isTowerATrainee && !limitBreakTracker.HasBrokeLimits &&
+                    !towerAutoDestructionAfterHit.IsActive)
                 {
                     LimitBreakActioner limitBreakActioner = tower.GetComponent<LimitBreakActioner>();
                     limitBreakActioner.LimitBreak();

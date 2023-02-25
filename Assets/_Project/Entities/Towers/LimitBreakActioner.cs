@@ -18,10 +18,12 @@ namespace TD.Entities.Towers
         {
             //Set new attack rate for tower
             ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
-            chargeAttackState.CurrentTimeBetweenAttacks = LimitBreakNewVarsSetter.NewAttackRate;
-            if(chargeAttackState.TimeUntilNextAttack >= chargeAttackState.CurrentTimeBetweenAttacks)
+            float limitBreakBonusAttackRate = chargeAttackState.CurrentTimeBetweenAttacks - LimitBreakNewVarsSetter.NewAttackRate;
+            chargeAttackState.BoostTimeBetweenAttacks = -limitBreakBonusAttackRate;
+            chargeAttackState.CurrentTimeBetweenAttacks = chargeAttackState.BaseTimeBetweenAttacks + chargeAttackState.BoostTimeBetweenAttacks;
+            if (chargeAttackState.TimeUntilNextAttack >= chargeAttackState.CurrentTimeBetweenAttacks)
             {
-                chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
+                chargeAttackState.TimeUntilNextAttack = chargeAttackState.BaseTimeBetweenAttacks + chargeAttackState.BoostTimeBetweenAttacks;
             }
 
             //Set new radius

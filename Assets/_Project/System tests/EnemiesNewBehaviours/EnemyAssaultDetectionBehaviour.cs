@@ -8,7 +8,12 @@ namespace TD.Entities.Enemies
 {
     public class EnemyAssaultDetectionBehaviour : MonoBehaviour
     {
-        private void OnTriggerEnter2D(Collider2D collision)
+        [SerializeField] private Transform dummyEnemyPrefab;
+
+        public delegate void EnemyDetectedAssaultCallback(Transform targetedEnemy);
+        public static event EnemyDetectedAssaultCallback OnEnemyDetectAssault;
+
+        private void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.transform.tag != "Tower")
                 return;
@@ -27,11 +32,21 @@ namespace TD.Entities.Enemies
             if (lockTargetState.Target != transform.parent)
                 return;
 
+            DodgeBehaviour dodgeBehaviour = transform.parent.GetComponent<DodgeBehaviour>();
+            if(dodgeBehaviour.NoOfAdditionalDodgeRemaining <= 0)
+                return;
 
-            //Make the tower believe it has touched its target
-            GameObject dummy = Instantiate(new GameObject(), transform.parent.position, Quaternion.identity);
-            dummy.tag = "Enemy";
-            lockTargetState.Target = dummy.transform;
+            //Make the attacking tower believe it has touched its target
+            GameObject dummyEnemyGo = Instantiate(dummyEnemyPrefab.gameObject, transform.parent.position, Quaternion.identity);
+            DummyDetector dummyDetector = dummyEnemyGo.GetComponent<DummyDetector>();
+            dummyDetector.Origin = transform.parent;
+            lockTargetState.Target = dummyEnemyGo.transform;
+            dodgeBehaviour.NoOfAdditionalDodgeRemaining--;
+
+            OnEnemyDetectAssault?.Invoke(transform.parent);
+            
+
         }
+
     }
 }

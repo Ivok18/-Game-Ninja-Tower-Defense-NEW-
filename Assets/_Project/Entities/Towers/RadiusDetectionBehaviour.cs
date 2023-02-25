@@ -31,7 +31,7 @@ namespace TD.Entities.Towers
         public void UpdateRadiusVizualizer(Transform tower)
         {
             if(TowerHolder == tower) 
-                RadiusVizualizer.transform.localScale = new Vector3(Radius * 1.79f, Radius * 1.79f, Radius * 1.79f);
+                RadiusVizualizer.transform.localScale = new Vector3(Radius * 2.3f, Radius * 2.3f, Radius * 2.3f);
         }
 
         public void ReduceRadius(Transform targetTower, TowerElement elementOfCatalyst)
@@ -57,6 +57,7 @@ namespace TD.Entities.Towers
         {
             if (towerStateSwitcher.CurrentTowerState == TowerState.Undeployed) 
                 return;
+
             if (TowerHolder != null) 
                 ProcessRadiusDetection();
             else 

@@ -18,7 +18,11 @@ namespace TD.TowersManager
 
         private void AnchorUICatalyst(Transform tower)
         {
-            Transform catalystToAnchor = tower.GetComponent<UICatalystGetter>().UICatalystTransform;
+            UICatalystGetter uICatalystGetter = tower.GetComponent<UICatalystGetter>();
+            if (uICatalystGetter == null)
+                return;
+
+            Transform catalystToAnchor = uICatalystGetter.UICatalystTransform;
             catalystToAnchor.SetParent(transform);
         }
     }

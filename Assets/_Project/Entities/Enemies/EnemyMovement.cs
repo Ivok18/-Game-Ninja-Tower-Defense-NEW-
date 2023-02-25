@@ -7,9 +7,9 @@ namespace TD.Entities.Enemies
 { 
     public class EnemyMovement : MonoBehaviour
     {
-        [HideInInspector]
-        [SerializeField] private WaypointStorer waypointStorer;
-        private int nextWaypointIndex = 0;
+ 
+        public WaypointStorer WaypointStorer;
+        public int NextWaypointIndex;
         public float Speed;
         public float CurrentSpeed;
         private float windedSpeed = 6f;
@@ -31,7 +31,7 @@ namespace TD.Entities.Enemies
             CurrentSpeed = Speed;
         }
 
-        public void CheckWindElementEffect(Transform enemy, Transform attackingTower)
+        public void CheckWindElementEffect(Transform enemy, Transform attackingTower, Vector3 hitPosition)
         {
             bool isTargetOfTower = enemy == transform;
             bool isExisting = enemy != null;
@@ -65,7 +65,7 @@ namespace TD.Entities.Enemies
             //if attacker got wind element, enemy goes goes back to the start of the road
             if (findWind)
             {
-                nextWaypointIndex = 0;
+                NextWaypointIndex = 0;
                 CurrentSpeed = windedSpeed;
                 IsWinded = true;
             }
@@ -81,31 +81,35 @@ namespace TD.Entities.Enemies
             {
                 MoveToNextWaypoint();
             }
+
+
             
         }
 
         private void MoveToNextWaypoint()
         {
-            bool hasReachedLastWaypoint = nextWaypointIndex >= waypointStorer.Waypoints.Length;
+            bool hasReachedLastWaypoint = NextWaypointIndex >= WaypointStorer.Waypoints.Length;
             if (hasReachedLastWaypoint)
                 return;
 
-            transform.position = Vector2.MoveTowards(transform.position, waypointStorer.Waypoints[nextWaypointIndex].position,
+            //Debug.Log("In enemy movement -> " + transform.position);
+
+            transform.position = Vector2.MoveTowards(transform.position, WaypointStorer.Waypoints[NextWaypointIndex].position,
                 Time.fixedDeltaTime * CurrentSpeed);
 
-            bool hasReachedNextWaypoint = Vector2.Distance(transform.position, waypointStorer.Waypoints[nextWaypointIndex].position) < 0.1f;
+            bool hasReachedNextWaypoint = Vector2.Distance(transform.position, WaypointStorer.Waypoints[NextWaypointIndex].position) < 0.1f;
 
 
             if (hasReachedNextWaypoint)
             {
                 bool hasBeenAffectedByWind = IsWinded;
-                bool hasReachedFirstWaypoint = nextWaypointIndex == 0;
+                bool hasReachedFirstWaypoint = NextWaypointIndex == 0;
                 if (hasBeenAffectedByWind && hasReachedFirstWaypoint)
                 {
                     IsWinded = false;
                     CurrentSpeed = Speed;
                 }
-                nextWaypointIndex++;
+                NextWaypointIndex++;
             }
         }
     }

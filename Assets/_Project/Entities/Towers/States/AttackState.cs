@@ -75,13 +75,13 @@ namespace TD.Entities.Towers.States
         }
 
         //Decide whether to continue attacking or go back to stationary state after hitting target
-        private void OperateNextAttackMove(Transform enemy, Transform attackingTower)
+        private void OperateNextAttackMove(Transform enemy, Transform attackingTower, Vector3 hitPosition)
         {
             bool hasToDetermineNextCourseOfAction = transform == attackingTower;
             if (!hasToDetermineNextCourseOfAction) 
                 return;
-            
 
+           
 
             NbOfHitLanded++;
             TotalDamage += CurrentDamagePerDash;

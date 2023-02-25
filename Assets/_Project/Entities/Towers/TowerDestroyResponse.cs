@@ -13,7 +13,10 @@ namespace TD.Entities.Towers
             ElementSwapInterfaceGetter elementSwapInterfaceGetter = GetComponent<ElementSwapInterfaceGetter>();
             UICatalystGetter uiCatalystGetter = GetComponent<UICatalystGetter>();
             CatalystSelectorGetter catalystSelectorGetter = GetComponent<CatalystSelectorGetter>();
-
+            DodgeShadowCounterBehaviour towerAutoDestructionAfterHit = GetComponent<DodgeShadowCounterBehaviour>();
+            if (towerAutoDestructionAfterHit.IsActive)
+                return;
+           
             if(radiusGetter!=null)
             {
                 Transform radiusTransform = radiusGetter.RadiusTransform;

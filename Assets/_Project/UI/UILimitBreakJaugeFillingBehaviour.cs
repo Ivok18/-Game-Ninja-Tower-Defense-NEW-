@@ -13,7 +13,17 @@ namespace TD.UI
             float currentNoOfKills = TowersKillsManager.Instance.NoOfTraineeTowerKills;
             float noOfKillsForSignal = LimitBreakAvailableSignaler.Instance.NoOfKillsForSignal;
             float ratio = currentNoOfKills / noOfKillsForSignal;
-            jauge.localScale = new Vector3(jauge.localScale.x, ratio, jauge.localScale.z);           
+            if(noOfKillsForSignal == 0)
+            {
+                jauge.localScale = new Vector3(jauge.localScale.x, jauge.localScale.y, jauge.localScale.z);               
+            }
+            else
+            {
+                jauge.localScale = new Vector3(jauge.localScale.x, ratio, jauge.localScale.z);
+            }
+            
+
+
         }
     }
 }

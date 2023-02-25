@@ -1,3 +1,4 @@
+using TD.Entities.Enemies;
 using UnityEngine;
 
 
@@ -32,7 +33,7 @@ namespace TD.Entities.Towers.States
                 TargetIndex = listOfTargets.EnemiesToAttack.IndexOf(Target);
                
                 ChargeAttackState chargeAttackBehaviour = GetComponent<ChargeAttackState>();
-                chargeAttackBehaviour.ChargeAttackBar.gameObject.SetActive(true);
+                chargeAttackBehaviour.ChargeAttackBar.Bar.parent.gameObject.SetActive(true);
                 towerStateSwitcher.SwitchTo(TowerState.ChargingAttack);
             }
         }

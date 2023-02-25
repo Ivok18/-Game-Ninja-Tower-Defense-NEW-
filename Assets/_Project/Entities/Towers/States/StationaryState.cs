@@ -28,6 +28,8 @@ namespace TD.Entities.Towers.States
         {
             bool areWeEnteringSationaryState = state == TowerState.Stationary;
             bool isItTheTowerEnteringStationatyState = tower == transform;
+            
+
             if (areWeEnteringSationaryState && isItTheTowerEnteringStationatyState)
             {
                 //Reset attack pattern
@@ -53,14 +55,18 @@ namespace TD.Entities.Towers.States
                 
 
                 ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
-
-                //if this tower has let someone else kill an enemy before, show that next enemy will get attacked right back (full bar)
-                if (chargeAttackState.TimeUntilNextAttack <= 0)
+                if(chargeAttackState != null)
                 {
-                    chargeAttackState.ChargeAttackBar.gameObject.SetActive(true);
+                    //if this tower has let someone else kill an enemy before, show that next enemy will get attacked right back (full bar)
+                    if (chargeAttackState.TimeUntilNextAttack <= 0)
+                    {
+                        chargeAttackState.ChargeAttackBar.gameObject.SetActive(true);
+                    }
+
                 }
-                    
-       
+
+
+
                 //reset target 
                 LockTargetState lockTargetState = GetComponent<LockTargetState>();
                 bool isThereAStillATarget = lockTargetState.Target != null;

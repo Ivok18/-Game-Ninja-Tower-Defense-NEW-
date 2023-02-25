@@ -54,7 +54,7 @@ namespace TD.Entities.Enemies
             }
         }
 
-        public void Shake(Transform enemyAttacked, Transform attackingTower)
+        public void Shake(Transform enemyAttacked, Transform attackingTower, Vector3 hitPosition)
         {
             bool isTargetOfTower = transform == enemyAttacked;
             if (!isTargetOfTower)

@@ -11,7 +11,7 @@ namespace TD.Entities.Enemies
     {
         private HealthBehaviour healthBehaviour;
 
-        public delegate void EnemyHitCallback(Transform enemy, Transform attackingTower);
+        public delegate void EnemyHitCallback(Transform enemy, Transform attackingTower, Vector3 hitPosition);
         public static event EnemyHitCallback OnEnemyHit;
 
         private void Awake()
@@ -48,12 +48,8 @@ namespace TD.Entities.Enemies
             if (attackState == null)
                 return;
 
-            OnEnemyHit?.Invoke(transform, collision.transform);
 
-            DodgeBehaviour dodge = GetComponent<DodgeBehaviour>();
-            if (dodge.CanDodge)
-                return;
-
+            OnEnemyHit?.Invoke(transform, collision.transform, transform.position);
             healthBehaviour.GetDamage(attackState.CurrentDamagePerDash, attackState.transform);
         }      
     }

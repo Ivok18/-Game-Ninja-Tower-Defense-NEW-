@@ -181,7 +181,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4072126320640798599}
-  - component: {fileID: 6305758695407476569}
   m_Layer: 0
   m_Name: ChargeAttackBar
   m_TagString: Untagged
@@ -206,21 +205,6 @@ Transform:
   m_Father: {fileID: 7231252392401026485}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6305758695407476569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763752381474574028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a47d53197959ad439cf83074f84f3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: {fileID: 2384113929136244412}
-  CurrentValue: 0
-  MaxValue: 0
 --- !u!1 &926840952309085536
 GameObject:
   m_ObjectHideFlags: 0
@@ -11382,8 +11366,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4293247321275355214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2127, y: 0, z: 0}
-  m_LocalScale: {x: 0.4254746, y: 1, z: 1}
+  m_LocalPosition: {x: 0.21405, y: 0, z: 0}
+  m_LocalScale: {x: 0.42816785, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2384113929136244412}
@@ -17195,6 +17179,8 @@ GameObject:
   - component: {fileID: -4352754138220441443}
   - component: {fileID: 298353735388245698}
   - component: {fileID: 1254062584450977241}
+  - component: {fileID: 1706008094509918934}
+  - component: {fileID: 3862773106275515001}
   m_Layer: 0
   m_Name: Common Tower
   m_TagString: Tower
@@ -17317,7 +17303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeUntilNextAttack: 0
-  ChargeAttackBar: {fileID: 6305758695407476569}
+  ChargeAttackBar: {fileID: 3862773106275515001}
   BaseTimeBetweenAttacks: 0
   BoostTimeBetweenAttacks: 0
   CurrentTimeBetweenAttacks: 0
@@ -17593,6 +17579,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UICatalystTransform: {fileID: 6423459898441687574}
+--- !u!114 &1706008094509918934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8b03110b5502548b8cdb1dc54d1a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WillAutoDestructAfterHit: 0
+--- !u!114 &3862773106275515001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231252392401026482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a47d53197959ad439cf83074f84f3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bar: {fileID: 2384113929136244412}
+  Container: {fileID: 0}
+  CurrentValue: 0
+  MaxValue: 0
 --- !u!1 &7273066276247755292
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,12 +23,12 @@ namespace TD.Entities.Enemies
 
         private void OnEnable()
         {
-            EnemyHitDetection.OnEnemyHit += TryDodge;
+            EnemyHitDetection.OnEnemyHit += TrySurge;
         }
 
         private void OnDisable()
         {
-            EnemyHitDetection.OnEnemyHit -= TryDodge;
+            EnemyHitDetection.OnEnemyHit -= TrySurge;
         }
 
         private void Start()
@@ -41,9 +41,9 @@ namespace TD.Entities.Enemies
             if (!CanStartSurge)
                 return;
 
-            DodgeAttack();
+            Surge();
         }
-        public void DodgeAttack()
+        public void Surge()
         {
             if (SurgingDistanceRemaining > 0)
             {
@@ -57,7 +57,7 @@ namespace TD.Entities.Enemies
             }
         }
 
-        public void TryDodge(Transform enemy, Transform attackingTower)
+        public void TrySurge(Transform enemy, Transform attackingTower, Vector3 hitPosition)
         {
             if (this.transform != enemy)
                 return;

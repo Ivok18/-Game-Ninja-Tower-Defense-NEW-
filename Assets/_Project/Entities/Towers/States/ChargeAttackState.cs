@@ -67,8 +67,12 @@ namespace TD.Entities.Towers.States
         private void ChargeAttack()
         {
            
-            ChargeAttackBar.CurrentValue = TimeUntilNextAttack;
-            ChargeAttackBar.MaxValue = CurrentTimeBetweenAttacks;
+            if(ChargeAttackBar != null)
+            {
+                ChargeAttackBar.CurrentValue = TimeUntilNextAttack;
+                ChargeAttackBar.MaxValue = CurrentTimeBetweenAttacks;
+
+            }
 
             bool isTowerStillChargingItsAttack = TimeUntilNextAttack > 0;
             if (isTowerStillChargingItsAttack)
@@ -120,7 +124,10 @@ namespace TD.Entities.Towers.States
                     if (!isTargetDead) // if the target is still alive, swicth to attack state
                     {
                         TimeUntilNextAttack = CurrentTimeBetweenAttacks;
-                        ChargeAttackBar.gameObject.SetActive(false);
+                        if(ChargeAttackBar!=null)
+                        {
+                            ChargeAttackBar.Bar.parent.gameObject.SetActive(false);
+                        }                        
                         towerStateSwitcher.SwitchTo(TowerState.Attacking);
                     }
                     else //if the target died, switch to sationary state                                    

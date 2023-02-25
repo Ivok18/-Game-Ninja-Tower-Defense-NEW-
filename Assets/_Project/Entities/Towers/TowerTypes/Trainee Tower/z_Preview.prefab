@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a47d53197959ad439cf83074f84f3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: {fileID: 2384113929136244412}
+  Bar: {fileID: 0}
   CurrentValue: 0
   MaxValue: 0
 --- !u!1 &2759738863832730704

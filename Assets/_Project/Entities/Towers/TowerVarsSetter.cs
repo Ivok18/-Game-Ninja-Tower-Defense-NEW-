@@ -38,9 +38,7 @@ namespace TD.Entities.Towers
             {
                 earthBoost.BoostDamagePerDash = towerScriptableObject.ElementBonusDamagePerDash;
             }
-
-            
-            
+   
             if(attackState!=null)
             {
                 attackState.BaseDamagePerDash = towerScriptableObject.BaseDamagePerDash;
