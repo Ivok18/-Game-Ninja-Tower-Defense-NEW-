@@ -10,7 +10,7 @@ namespace TD.Entities.Enemies
     {
         [SerializeField] private Transform dummyEnemyPrefab;
 
-        public delegate void EnemyDetectedAssaultCallback(Transform targetedEnemy);
+        public delegate void EnemyDetectedAssaultCallback(Transform targetedEnemy, Transform attackingTower);
         public static event EnemyDetectedAssaultCallback OnEnemyDetectAssault;
 
         private void OnTriggerStay2D(Collider2D collision)
@@ -31,21 +31,9 @@ namespace TD.Entities.Enemies
 
             if (lockTargetState.Target != transform.parent)
                 return;
-
-            DodgeBehaviour dodgeBehaviour = transform.parent.GetComponent<DodgeBehaviour>();
-            if(dodgeBehaviour.NoOfAdditionalDodgeRemaining <= 0)
-                return;
-
-            //Make the attacking tower believe it has touched its target
-            GameObject dummyEnemyGo = Instantiate(dummyEnemyPrefab.gameObject, transform.parent.position, Quaternion.identity);
-            DummyDetector dummyDetector = dummyEnemyGo.GetComponent<DummyDetector>();
-            dummyDetector.Origin = transform.parent;
-            lockTargetState.Target = dummyEnemyGo.transform;
-            dodgeBehaviour.NoOfAdditionalDodgeRemaining--;
-
-            OnEnemyDetectAssault?.Invoke(transform.parent);
+      
+            OnEnemyDetectAssault?.Invoke(transform.parent, collision.transform);
             
-
         }
 
     }

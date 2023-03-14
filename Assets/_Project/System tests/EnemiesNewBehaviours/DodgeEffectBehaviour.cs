@@ -11,7 +11,7 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!dodgeBehaviour.CanStartDodge)
+            if (!dodgeBehaviour.IsDodging)
             {
                 foreach (var trail in trails)
                 {

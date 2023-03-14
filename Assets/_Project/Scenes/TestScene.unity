@@ -545,17 +545,17 @@ PrefabInstance:
     - target: {fileID: 3329784354290182826, guid: cc5c0a804ee3ab047a1e0404b5b4da64,
         type: 3}
       propertyPath: waves.Array.data[21].spawner.enemiesSpawnData.Array.data[0].spawnChanceLimit
-      value: 0.476
+      value: 0.874
       objectReference: {fileID: 0}
     - target: {fileID: 3329784354290182826, guid: cc5c0a804ee3ab047a1e0404b5b4da64,
         type: 3}
       propertyPath: waves.Array.data[21].spawner.enemiesSpawnData.Array.data[1].spawnChanceLimit
-      value: 0.483
+      value: 0.623
       objectReference: {fileID: 0}
     - target: {fileID: 3329784354290182826, guid: cc5c0a804ee3ab047a1e0404b5b4da64,
         type: 3}
       propertyPath: waves.Array.data[21].spawner.enemiesSpawnData.Array.data[2].spawnChanceLimit
-      value: 0.756
+      value: 0.439
       objectReference: {fileID: 0}
     - target: {fileID: 3329784354290182826, guid: cc5c0a804ee3ab047a1e0404b5b4da64,
         type: 3}
@@ -1795,6 +1795,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646604955164800644, guid: b5ec4fcb55c38794399485cf0055eeef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240984584672778882, guid: b5ec4fcb55c38794399485cf0055eeef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2373403369114823175, guid: b5ec4fcb55c38794399485cf0055eeef,
         type: 3}

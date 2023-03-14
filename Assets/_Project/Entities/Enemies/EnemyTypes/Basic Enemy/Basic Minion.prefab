@@ -638,9 +638,11 @@ MonoBehaviour:
   DodgeDistanceRemaining: 0
   DodgeSpeed: 10
   CanDodge: 1
-  CanStartDodge: 0
-  NoOfAdditionalDodge: 1
+  IsDodging: 0
+  NoOfAdditionalDodge: 2
   NoOfAdditionalDodgeRemaining: 0
+  dummyEnemyPrefab: {fileID: 2772235752551165461, guid: 24b7dee6a49522c459d854ceaf949680,
+    type: 3}
 --- !u!114 &4307854276083760037
 MonoBehaviour:
   m_ObjectHideFlags: 0

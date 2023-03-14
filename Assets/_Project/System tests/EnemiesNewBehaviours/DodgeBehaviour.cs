@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TD.Entities.Towers.States;
 using TD.Map;
 using TD.WaypointSystem;
 using UnityEngine;
@@ -13,11 +14,12 @@ namespace TD.Entities.Enemies
         public float DodgeDistanceRemaining;
         public float DodgeSpeed;
         public bool CanDodge;
-        public bool CanStartDodge;
+        public bool IsDodging;
         public int NoOfAdditionalDodge;
         public int NoOfAdditionalDodgeRemaining;
         private EnemyMovement enemyMovement;
         private Vector2 exactPositionAfterDodge;
+        [SerializeField] private Transform dummyEnemyPrefab;
 
 
         private void Awake()
@@ -44,7 +46,7 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!CanStartDodge)
+            if (!IsDodging)
                 return;
 
             DodgeAttack();
@@ -76,23 +78,37 @@ namespace TD.Entities.Enemies
                 transform.position = exactPositionAfterDodge;
                 enemyMovement.CurrentSpeed = enemyMovement.Speed;
                 enemyMovement.NextWaypointIndex = NodeManager.Instance.GetNodeAtPosition(transform.position).nextWaypointIndex;
-                DodgeDistanceRemaining = DodgeDistance;
-                CanStartDodge = false;
-                NoOfAdditionalDodgeRemaining = NoOfAdditionalDodge;
+                
+                IsDodging = false;
             }
             #endregion
         }
 
-        public void TryDodge(Transform enemy)
+        public void TryDodge(Transform targetedEnemy, Transform attackingTower)
         {
-            if (this.transform != enemy)
+            if (this.transform != targetedEnemy)
                 return;
 
             if (!CanDodge)
                 return;
 
+            if (IsDodging)
+                return;
+
+            if (NoOfAdditionalDodgeRemaining <= 0)
+                return;
+
+     
+            //Make the attacking tower believe it has touched its target
+            GameObject dummyEnemyGo = Instantiate(dummyEnemyPrefab.gameObject, transform.position, Quaternion.identity);
+            DummyDetector dummyDetector = dummyEnemyGo.GetComponent<DummyDetector>();
+            dummyDetector.Origin = transform;
+            LockTargetState lockTargetState = attackingTower.GetComponent<LockTargetState>();
+            lockTargetState.Target = dummyEnemyGo.transform;
+            NoOfAdditionalDodgeRemaining--;
             enemyMovement.CurrentSpeed = DodgeSpeed;
-            CanStartDodge = true;
+            DodgeDistanceRemaining = DodgeDistance;
+            IsDodging = true;
 
             
             //Get current node 

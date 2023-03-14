@@ -18,7 +18,7 @@ namespace TD.Entities.Enemies.AfterImageDashEffect
         private void Update()
         {
 
-            bool enemyIsDodging = dodgeBehaviour.CanStartDodge;
+            bool enemyIsDodging = dodgeBehaviour.IsDodging;
             if (!enemyIsDodging)
                 return;
 

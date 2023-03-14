@@ -23,7 +23,7 @@ namespace TD.Entities.Towers
             EnemyAssaultDetectionBehaviour.OnEnemyDetectAssault -= Intercept;
         }
 
-        private void Intercept(Transform targetedEnemy)
+        private void Intercept(Transform targetedEnemy, Transform attackingTower)
         {
             if (targetedEnemy == null || targetedEnemy.CompareTag("Dead"))
                 return;

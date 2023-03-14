@@ -72,7 +72,8 @@ namespace TD.TowersManager.UselessAttackStopper
             List<Transform> listOfNecessaryTowersToKillTarget = new List<Transform>();
             int targetHp = target.GetComponent<HealthBehaviour>().CurrentHealth;
             int towersDamageSum = 0;
- 
+
+           
             foreach(var tower in towersWithSameTarget)
             {
                 bool isSumOfDamageOfAllTowerInListIsNotEnoughToKillTarget = towersDamageSum < targetHp;

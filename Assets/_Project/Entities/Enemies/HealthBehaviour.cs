@@ -30,7 +30,14 @@ namespace TD.Entities.Enemies
             bool hasTowerNotCompletedAllItsDashesYet = attackState.NbOfHitLanded < attackState.NbOfBonusDash + 1;
             if (hasTowerNotCompletedAllItsDashesYet)
             {
-                Remove(amount);
+              
+
+                DodgeBehaviour dodgeBehaviour = GetComponent<DodgeBehaviour>();
+                if (!dodgeBehaviour.IsDodging)
+                {
+                    Remove(amount);
+                }
+
                 ShakeBehaviour shakeBehaviour = GetComponent<ShakeBehaviour>();
                 shakeBehaviour.StartShake();
             }

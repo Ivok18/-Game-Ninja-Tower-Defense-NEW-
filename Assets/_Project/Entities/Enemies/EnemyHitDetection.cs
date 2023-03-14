@@ -4,6 +4,7 @@ using TD.Entities.Towers.States;
 using TD.Entities.Towers;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.Callbacks;
 
 namespace TD.Entities.Enemies
 {
@@ -46,9 +47,7 @@ namespace TD.Entities.Enemies
 
             AttackState attackState = collision.GetComponent<AttackState>();
             if (attackState == null)
-                return;
-
-
+          
             OnEnemyHit?.Invoke(transform, collision.transform, transform.position);
             healthBehaviour.GetDamage(attackState.CurrentDamagePerDash, attackState.transform);
         }      
