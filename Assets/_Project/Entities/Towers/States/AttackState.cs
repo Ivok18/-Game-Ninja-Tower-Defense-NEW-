@@ -15,7 +15,8 @@ namespace TD.Entities.Towers.States
         public PatternBehaviour NextPattern;
         public int IndexOfNextAttackPattern = -1;
         
-        [Header("Dashes remaining")]
+        [Header("Dash number")]
+        public int NbOfBonusDash;
         public int NbOfBonusDashRemaining;
 
         [Header("Hit counter")]
@@ -33,7 +34,7 @@ namespace TD.Entities.Towers.States
         [HideInInspector] public float BaseDashSpeed;
         [HideInInspector] public float BoostDashSpeed;
         [HideInInspector] public int BoostDamagePerDash;
-        [HideInInspector] public int NbOfBonusDash;
+ 
 
 
 
@@ -90,7 +91,7 @@ namespace TD.Entities.Towers.States
                 towerHasCompletedAllItsDashesAfterIncrementOfCounterOfHitsOnTarget = NbOfHitLanded >= NbOfBonusDash + 1;
 
             if (towerHasCompletedAllItsDashesAfterIncrementOfCounterOfHitsOnTarget)
-            {
+            {   
                 ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
                 chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
                 towerStateSwitcher.SwitchTo(TowerState.Stationary);    
@@ -186,11 +187,11 @@ namespace TD.Entities.Towers.States
                 //Dash on target
                 transform.position = Vector2.MoveTowards(transform.position, target.position, CurrentDashSpeed * Time.deltaTime);
 
-                EnemyMovement enemyMovement = target.GetComponent<EnemyMovement>();
+                WindedBehaviour targWindedBehaviour = target.GetComponent<WindedBehaviour>();
                 ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
 
                 //Switch target only if it is not the only one affected by wind element among my list of target
-                bool isTargetAffectedByWind = enemyMovement.IsWinded;
+                bool isTargetAffectedByWind = targWindedBehaviour.IsWinded[0];
                 bool hasMultipleTargets = !(listOfTargets.EnemiesToAttack.Count == 1);
                 if (isTargetAffectedByWind && hasMultipleTargets)
                 {

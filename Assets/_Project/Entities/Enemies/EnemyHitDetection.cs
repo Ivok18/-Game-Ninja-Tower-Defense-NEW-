@@ -47,6 +47,7 @@ namespace TD.Entities.Enemies
 
             AttackState attackState = collision.GetComponent<AttackState>();
             if (attackState == null)
+                return;
           
             OnEnemyHit?.Invoke(transform, collision.transform, transform.position);
             healthBehaviour.GetDamage(attackState.CurrentDamagePerDash, attackState.transform);

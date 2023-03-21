@@ -4,18 +4,17 @@ using TD.Entities.Towers;
 using TD.ElementSystem;
 
 namespace TD.Entities.Enemies
-{ 
+{
     public class EnemyMovement : MonoBehaviour
     {
- 
+
         public WaypointStorer WaypointStorer;
+        private WindedBehaviour windedBehaviour;
         public int NextWaypointIndex;
         public float Speed;
         public float CurrentSpeed;
-        private float windedSpeed = 6f;
-        public bool IsWinded;
         public bool CanMove;
-        
+
 
         private void OnEnable()
         {
@@ -24,6 +23,11 @@ namespace TD.Entities.Enemies
         private void OnDisable()
         {
             EnemyHitDetection.OnEnemyHit -= CheckWindElementEffect;
+        }
+
+        private void Awake()
+        {
+            windedBehaviour = GetComponent<WindedBehaviour>();
         }
 
         private void Start()
@@ -39,11 +43,11 @@ namespace TD.Entities.Enemies
             if (!isExisting)
                 return;
 
-            if(!isTargetOfTower)
+            if (!isTargetOfTower)
                 return;
 
             ElementsTracker elementsTracker = attackingTower.GetComponent<ElementsTracker>();
-            bool hasElementParams = elementsTracker !=null;
+            bool hasElementParams = elementsTracker != null;
             if (!hasElementParams)
                 return;
 
@@ -63,12 +67,12 @@ namespace TD.Entities.Enemies
             }
 
             //if attacker got wind element, enemy goes goes back to the start of the road
-            if (findWind)
+            /*if (findWind)
             {
                 NextWaypointIndex = 0;
                 CurrentSpeed = windedSpeed;
                 IsWinded = true;
-            }
+            }*/
 
 
         }
@@ -77,30 +81,36 @@ namespace TD.Entities.Enemies
         {
             //before the wave starts, all enemies are loaded first
             //to prevent any of them to move during the loading process, i use the boolean value "CanMove"
-            if(CanMove)
+            if (CanMove)
             {
                 MoveToNextWaypoint();
             }
-
-
-            
         }
 
         private void MoveToNextWaypoint()
         {
-            bool hasReachedLastWaypoint = NextWaypointIndex >= WaypointStorer.Waypoints.Length;
-            if (hasReachedLastWaypoint)
-                return;
+            if (!windedBehaviour.IsWinded[0])
+            {
+                bool hasReachedLastWaypoint = NextWaypointIndex >= WaypointStorer.Waypoints.Length;
+                if (hasReachedLastWaypoint)
+                    return;
 
-            //Debug.Log("In enemy movement -> " + transform.position);
+                //Debug.Log("In enemy movement -> " + transform.position);
 
-            transform.position = Vector2.MoveTowards(transform.position, WaypointStorer.Waypoints[NextWaypointIndex].position,
-                Time.fixedDeltaTime * CurrentSpeed);
+                transform.position = Vector2.MoveTowards(transform.position, WaypointStorer.Waypoints[NextWaypointIndex].position,
+                    Time.fixedDeltaTime * CurrentSpeed);
 
-            bool hasReachedNextWaypoint = Vector2.Distance(transform.position, WaypointStorer.Waypoints[NextWaypointIndex].position) < 0.1f;
+                bool hasReachedNextWaypoint = Vector2.Distance(transform.position, WaypointStorer.Waypoints[NextWaypointIndex].position) < 0.1f;
+
+                if (hasReachedNextWaypoint)
+                {
+                    NextWaypointIndex++;
+                }
+            }
 
 
-            if (hasReachedNextWaypoint)
+
+            /*if (hasReachedNextWaypoint)
             {
                 bool hasBeenAffectedByWind = IsWinded;
                 bool hasReachedFirstWaypoint = NextWaypointIndex == 0;
@@ -110,8 +120,8 @@ namespace TD.Entities.Enemies
                     CurrentSpeed = Speed;
                 }
                 NextWaypointIndex++;
-            }
+            }*/
+
         }
     }
-
 }

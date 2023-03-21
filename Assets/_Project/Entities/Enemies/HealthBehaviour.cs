@@ -1,6 +1,7 @@
 using UnityEngine;
 using TD.Entities.Towers.States;
 using TD.Entities.Towers;
+using UnityEditor.Experimental.GraphView;
 
 namespace TD.Entities.Enemies
 {
@@ -29,20 +30,20 @@ namespace TD.Entities.Enemies
             AttackState attackState = attacker.GetComponent<AttackState>();
             bool hasTowerNotCompletedAllItsDashesYet = attackState.NbOfHitLanded < attackState.NbOfBonusDash + 1;
             if (hasTowerNotCompletedAllItsDashesYet)
-            {
-              
-
+            { 
                 DodgeBehaviour dodgeBehaviour = GetComponent<DodgeBehaviour>();
                 if (!dodgeBehaviour.IsDodging)
                 {
                     Remove(amount);
                 }
 
+               
                 ShakeBehaviour shakeBehaviour = GetComponent<ShakeBehaviour>();
                 shakeBehaviour.StartShake();
             }
 
-            bool isDead = CurrentHealth <= 0;
+            AlmostDeadSignaler almostDeadSignaler = GetComponent<AlmostDeadSignaler>();
+            bool isDead = CurrentHealth <= 0 && almostDeadSignaler.IsAlmostDead;
             if (!isDead)
                 return;
 

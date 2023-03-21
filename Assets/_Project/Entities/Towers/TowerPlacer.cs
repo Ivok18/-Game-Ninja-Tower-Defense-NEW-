@@ -114,11 +114,11 @@ namespace TD.Entities.Towers
             if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed) 
                 return;
 
-            EnemyMovement enemyMovement = collision.GetComponent<EnemyMovement>();
-            bool isCollisionAnEnemy = enemyMovement != null;
+            WindedBehaviour collWindedBehaviour = collision.GetComponent<WindedBehaviour>();
+            bool isCollisionAnEnemy = collWindedBehaviour != null;
             if (isCollisionAnEnemy)
             {
-                bool isEnemyAffectedByWind = enemyMovement.IsWinded;
+                bool isEnemyAffectedByWind = collWindedBehaviour.IsWinded[0];
                 if(isEnemyAffectedByWind)
                 {
                     if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower"))
@@ -140,11 +140,11 @@ namespace TD.Entities.Towers
             if (towerStateSwitcher.CurrentTowerState != TowerState.Undeployed) 
                 return;
 
-            EnemyMovement enemyMovement = collision.GetComponent<EnemyMovement>();
-            bool isCollisionAnEnemy = enemyMovement != null;
+            WindedBehaviour collWindedBehaviour = collision.GetComponent<WindedBehaviour>();
+            bool isCollisionAnEnemy = collWindedBehaviour != null;
             if (isCollisionAnEnemy)
             {
-                bool isEnemyAffectedByWind = enemyMovement.IsWinded;
+                bool isEnemyAffectedByWind = collWindedBehaviour.IsWinded[0];
                 if (isEnemyAffectedByWind)
                 {
                     if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower"))

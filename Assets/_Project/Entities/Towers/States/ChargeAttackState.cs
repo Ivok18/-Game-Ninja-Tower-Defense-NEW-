@@ -94,16 +94,16 @@ namespace TD.Entities.Towers.States
                     else //if target is still alive during attack charge..
                     {
                         //get movement script ..
-                        EnemyMovement targetMovement = lockTargetState.Target.GetComponent<EnemyMovement>();
-                        if (targetMovement != null)
+                        WindedBehaviour targetWindedBehaviour = lockTargetState.Target.GetComponent<WindedBehaviour>();
+                        if (targetWindedBehaviour != null)
                         {
                             //verify if target has been affected by wind element..
-                            if (targetMovement.IsWinded)
+                            if (targetWindedBehaviour.IsWinded[0])
                             {
                                 //if it is the case, do not lock him as target
                                 //instead search for another target
                                 ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
-                                listOfTargets.SwitchTargetFrom(targetMovement.transform);
+                                listOfTargets.SwitchTargetFrom(targetWindedBehaviour.transform);
                             }
                         }
                     }

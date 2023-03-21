@@ -46,8 +46,8 @@ namespace TD.Entities.Towers
                 if (!doesEnemyExist)
                     continue;
 
-                EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
-                bool isItAffectedByWind = enemyMovement.IsWinded;
+                WindedBehaviour windedBehaviour = enemy.GetComponent<WindedBehaviour>();
+                bool isItAffectedByWind = windedBehaviour.IsWinded[0];
                 if (isItAffectedByWind)
                     continue;
 

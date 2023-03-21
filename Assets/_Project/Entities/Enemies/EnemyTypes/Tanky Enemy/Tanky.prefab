@@ -360,6 +360,11 @@ GameObject:
   - component: {fileID: -3286654645523602001}
   - component: {fileID: 405750062756542371}
   - component: {fileID: 8114152245213707504}
+  - component: {fileID: 7833534915427885844}
+  - component: {fileID: 5445631073688354224}
+  - component: {fileID: -3395449886498321544}
+  - component: {fileID: 1365796140703521730}
+  - component: {fileID: 417968025708262907}
   m_Layer: 0
   m_Name: Tanky
   m_TagString: Enemy
@@ -438,11 +443,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e48fbea564c704ba216a1994164f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointStorer: {fileID: 6186954608119940231, guid: 16523edcc9ad61243bd6fb90af188a6e,
+  WaypointStorer: {fileID: 6186954608119940231, guid: 16523edcc9ad61243bd6fb90af188a6e,
     type: 3}
+  NextWaypointIndex: 0
   Speed: 0
-  currentSpeed: 0
-  IsWinded: 0
+  CurrentSpeed: 0
   CanMove: 0
 --- !u!114 &5307909232459915969
 MonoBehaviour:
@@ -565,3 +570,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220d281bb475c3b47bad741151c3fb7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7833534915427885844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474b1edae68d5ae4baec41a27b1d39c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsBurning: 
+  noOfBurnStrikes: 6
+  noOfBurnStrikesRemaining: 0
+  burnDamage: 1
+  timeBetweenBurnDamages: 2
+  timeUntilNextBurnDamage: 0
+  dummyTower: {fileID: 7231252392401026485, guid: 729ea65aecc4dc546aaf827ffd59acdd,
+    type: 3}
+--- !u!114 &5445631073688354224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db7479fce2afb74b85bf59bbf3740ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsStuck: 
+  noOfStuckStrikes: 2
+  noOfStuckStrikesRemaining: 0
+  stuckDamage: 3
+  timeBetweenStuckDamages: 3
+  timeUntilNextStuckDamage: 0
+  dummyTower: {fileID: 7231252392401026485, guid: 729ea65aecc4dc546aaf827ffd59acdd,
+    type: 3}
+--- !u!114 &-3395449886498321544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b257b0c119f49c34ab3b7c5f2bd4299a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsWinded: 
+  destinationNode:
+    center: {x: 0, y: 0}
+    nodeIndex: 0
+    nextWaypointIndex: 0
+  attackerPushPower: 5
+  resistance: 3
+--- !u!114 &1365796140703521730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9434c7d111c5f84c86168b3fc070dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &417968025708262907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e415bbd5bee8043ac705e341f440b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DodgeDistance: 0
+  DodgeDistanceRemaining: 0
+  DodgeSpeed: 0
+  CanDodge: 0
+  IsDodging: 0
+  NoOfAdditionalDodge: 0
+  NoOfAdditionalDodgeRemaining: 0
+  dummyEnemyPrefab: {fileID: 0}

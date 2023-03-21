@@ -27,6 +27,7 @@ namespace TD.ElementSystem
             attackState.BoostDashSpeed += BoostDashSpeed;
             chargeAttackState.BoostTimeBetweenAttacks += BoostTimeBetweenAttacks;
 
+
         }
         public void RemoveBoost(TowerElement element)
         {

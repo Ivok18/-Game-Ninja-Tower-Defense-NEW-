@@ -20,6 +20,12 @@ namespace TD.Map
             center = _center;
             nodeIndex = _index;
         }
+
+        public Node()
+        {
+            center = Vector2.zero;
+            nodeIndex = 0;
+        }
     }
 
     public class NodeManager : MonoBehaviour
