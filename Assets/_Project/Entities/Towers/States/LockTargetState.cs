@@ -10,10 +10,15 @@ namespace TD.Entities.Towers.States
         public int TargetIndex;
 
         private TowerStateSwitcher towerStateSwitcher;
+        private ListOfTargets listOfTargets;
+
+        public delegate void TargetLockedCallback(Transform targetLocked, Transform attackingTower);
+        public static event TargetLockedCallback OnTargetLock;
 
         private void Awake()
         {
             towerStateSwitcher = GetComponent<TowerStateSwitcher>();
+            listOfTargets = GetComponent<ListOfTargets>();
 
         }
         void Update()
@@ -21,7 +26,7 @@ namespace TD.Entities.Towers.States
             if (towerStateSwitcher.CurrentTowerState != TowerState.LockingTarget) 
                 return;
 
-            ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
+         
             bool areThereEnemiesToTarget = listOfTargets.EnemiesToAttack.Count > 0;
             if (!areThereEnemiesToTarget)
             {
@@ -29,13 +34,19 @@ namespace TD.Entities.Towers.States
             }
             else
             {
-                Target = listOfTargets.FindEnemy();
+                LockTarget();
                 TargetIndex = listOfTargets.EnemiesToAttack.IndexOf(Target);
-               
+
                 ChargeAttackState chargeAttackBehaviour = GetComponent<ChargeAttackState>();
                 chargeAttackBehaviour.ChargeAttackBar.Bar.parent.gameObject.SetActive(true);
                 towerStateSwitcher.SwitchTo(TowerState.ChargingAttack);
             }
+        }
+
+        public void LockTarget()
+        {
+            Target = listOfTargets.FindEnemy();
+            OnTargetLock?.Invoke(Target, transform);
         }
 
        

@@ -14,7 +14,16 @@ namespace TD.Entities.Enemies
         public float Speed;
         public float CurrentSpeed;
         public bool CanMove;
+        public Vector2 CurrentDirection;
+        public bool HasHorizontalDirection;
+        public bool HasVerticalDirection;
 
+
+        public WaypointData NextWaypoint => WaypointStorer.Waypoints[NextWaypointIndex];
+
+        public WaypointData PrevioustWaypoint => WaypointStorer.Waypoints[NextWaypointIndex-1];
+
+        public WaypointData[] Waypoints => WaypointStorer.Waypoints;
 
         private void OnEnable()
         {
@@ -89,22 +98,37 @@ namespace TD.Entities.Enemies
 
         private void MoveToNextWaypoint()
         {
-            if (!windedBehaviour.IsWinded[0])
+            if (!windedBehaviour.IsWinded())
             {
-                bool hasReachedLastWaypoint = NextWaypointIndex >= WaypointStorer.Waypoints.Length;
+                bool hasReachedLastWaypoint = NextWaypointIndex >= Waypoints.Length;
                 if (hasReachedLastWaypoint)
                     return;
 
                 //Debug.Log("In enemy movement -> " + transform.position);
 
-                transform.position = Vector2.MoveTowards(transform.position, WaypointStorer.Waypoints[NextWaypointIndex].position,
+                transform.position = Vector2.MoveTowards(transform.position, NextWaypoint.transform.position,
                     Time.fixedDeltaTime * CurrentSpeed);
 
-                bool hasReachedNextWaypoint = Vector2.Distance(transform.position, WaypointStorer.Waypoints[NextWaypointIndex].position) < 0.1f;
+                bool hasReachedNextWaypoint = Vector2.Distance(transform.position, NextWaypoint.transform.position) < 0.1f;
 
                 if (hasReachedNextWaypoint)
                 {
                     NextWaypointIndex++;
+                    CurrentDirection = PrevioustWaypoint.nextDirection;
+
+                    if(CurrentDirection.x != 0)
+                    {
+                        HasHorizontalDirection = true;
+                        HasVerticalDirection = false;
+                    }
+
+                    if(CurrentDirection.y != 0)
+                    {
+
+                        HasHorizontalDirection = false;
+                        HasVerticalDirection = true;
+                    }
+                        
                 }
             }
 
@@ -122,6 +146,12 @@ namespace TD.Entities.Enemies
                 NextWaypointIndex++;
             }*/
 
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, transform.position + (Vector3)CurrentDirection);
         }
     }
 }

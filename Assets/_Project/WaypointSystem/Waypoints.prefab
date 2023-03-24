@@ -54,15 +54,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
-  - {fileID: 8693154885890910560}
-  - {fileID: 1490376516905532375}
-  - {fileID: 103012464087521523}
-  - {fileID: 563539979534717161}
-  - {fileID: 8704309704214384358}
-  - {fileID: 7120278131676460478}
-  - {fileID: 1745548501079231201}
-  - {fileID: 5132710812170214222}
-  - {fileID: 844708892699120721}
+  - transform: {fileID: 8693154885890910560}
+    nextDirection: {x: 0, y: -1}
+  - transform: {fileID: 1490376516905532375}
+    nextDirection: {x: -1, y: 0}
+  - transform: {fileID: 103012464087521523}
+    nextDirection: {x: 0, y: -1}
+  - transform: {fileID: 563539979534717161}
+    nextDirection: {x: -1, y: 0}
+  - transform: {fileID: 8704309704214384358}
+    nextDirection: {x: 0, y: 1}
+  - transform: {fileID: 7120278131676460478}
+    nextDirection: {x: -1, y: 0}
+  - transform: {fileID: 1745548501079231201}
+    nextDirection: {x: 0, y: -1}
+  - transform: {fileID: 5132710812170214222}
+    nextDirection: {x: -1, y: 0}
+  - transform: {fileID: 844708892699120721}
+    nextDirection: {x: -1, y: 0}
 --- !u!1 &4436070051504516653
 GameObject:
   m_ObjectHideFlags: 0

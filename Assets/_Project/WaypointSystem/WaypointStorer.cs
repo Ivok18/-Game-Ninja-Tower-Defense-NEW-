@@ -1,12 +1,21 @@
+using System;
 using UnityEngine;
 
 namespace TD.WaypointSystem
 {
+
+    [Serializable]
+    public class WaypointData
+    {
+        public Transform transform;
+        public Vector2 nextDirection;
+    }
+
     public class WaypointStorer : MonoBehaviour
     {
-        [SerializeField] private Transform[] waypoints;
+        [SerializeField] private WaypointData[] waypoints;
 
-        public Transform[] Waypoints => waypoints;
+        public WaypointData[] Waypoints => waypoints;
     }
 
 }

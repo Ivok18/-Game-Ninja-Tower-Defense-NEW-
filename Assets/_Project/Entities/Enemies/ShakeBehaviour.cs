@@ -9,7 +9,7 @@ namespace TD.Entities.Enemies
         [SerializeField] private float timeUntilEndOfShake;
         [SerializeField] private float shakeIntensity;
         [SerializeField] private float alphaWhenShake;
-        private bool canShake;
+        public bool IsShaking;
         private Color shakeColor;
         private Vector2 startPos;
         private Color startColor;
@@ -32,7 +32,7 @@ namespace TD.Entities.Enemies
 
         void Update()
         {
-            if (!canShake) 
+            if (!IsShaking) 
                 return;
 
             if(timeUntilEndOfShake > 0)
@@ -50,7 +50,7 @@ namespace TD.Entities.Enemies
                 transform.position = startPos;
                 SpriteRenderer spriteRenderer = GetComponent<SpriteGetter>().SpriteRenderer;
                 spriteRenderer.color = startColor; 
-                canShake = false;
+                IsShaking = false;
             }
         }
 
@@ -60,11 +60,16 @@ namespace TD.Entities.Enemies
             if (!isTargetOfTower)
                 return;
 
+            if (IsShaking)
+                return;
+            
             StartShake();
+            
+            
         }
         public void StartShake()
         {
-            canShake = true;
+            IsShaking = true;
             startPos = transform.position;
             SpriteRenderer spriteRenderer = GetComponent<SpriteGetter>().SpriteRenderer;
             spriteRenderer.color = shakeColor;

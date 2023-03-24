@@ -7,7 +7,7 @@ namespace TD.Entities.Enemies
 {
     public class BurnBehaviour : MonoBehaviour
     {
-        public bool[] IsBurning;
+        public bool[] ValueContainer;
         [SerializeField] private int noOfBurnStrikes;
         [SerializeField] private int noOfBurnStrikesRemaining;
         [SerializeField] private int burnDamage;
@@ -17,7 +17,7 @@ namespace TD.Entities.Enemies
 
         private void Start()
         {
-            IsBurning = new bool[1];
+            ValueContainer = new bool[1];
             noOfBurnStrikesRemaining = noOfBurnStrikes;
             timeUntilNextBurnDamage = timeBetweenBurnDamages;
            
@@ -25,12 +25,12 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!IsBurning[0])
+            if (!IsBurning())
                 return;
 
             if (noOfBurnStrikesRemaining <= 0)
             {
-                IsBurning[0] = false;
+                ValueContainer[0] = false;
                 noOfBurnStrikesRemaining = noOfBurnStrikes;
                 return;
             }
@@ -50,6 +50,13 @@ namespace TD.Entities.Enemies
             }
 
         }
+
+        public bool IsBurning()
+        {
+            return ValueContainer[0] == true ? true : false;
+        }
+
+       
 
 
         

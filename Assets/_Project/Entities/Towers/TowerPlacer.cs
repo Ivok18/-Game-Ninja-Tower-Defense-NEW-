@@ -118,7 +118,7 @@ namespace TD.Entities.Towers
             bool isCollisionAnEnemy = collWindedBehaviour != null;
             if (isCollisionAnEnemy)
             {
-                bool isEnemyAffectedByWind = collWindedBehaviour.IsWinded[0];
+                bool isEnemyAffectedByWind = collWindedBehaviour.ValueContainer[0];
                 if(isEnemyAffectedByWind)
                 {
                     if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower"))
@@ -144,7 +144,7 @@ namespace TD.Entities.Towers
             bool isCollisionAnEnemy = collWindedBehaviour != null;
             if (isCollisionAnEnemy)
             {
-                bool isEnemyAffectedByWind = collWindedBehaviour.IsWinded[0];
+                bool isEnemyAffectedByWind = collWindedBehaviour.ValueContainer[0];
                 if (isEnemyAffectedByWind)
                 {
                     if (!collision.CompareTag("AttackPattern") && (!collision.CompareTag("Tower"))

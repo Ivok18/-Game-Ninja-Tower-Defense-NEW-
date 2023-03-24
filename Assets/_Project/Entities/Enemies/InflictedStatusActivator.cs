@@ -24,9 +24,9 @@ namespace TD.Entities.Enemies
         void Start()
         {
             booleansToActivateOnStatusInflicted = new Dictionary<StatusType, bool[]>();
-            booleansToActivateOnStatusInflicted.Add(StatusType.Burned, burnBehaviour.IsBurning);
-            booleansToActivateOnStatusInflicted.Add(StatusType.Stuck, stuckBehaviour.IsStuck);
-            booleansToActivateOnStatusInflicted.Add(StatusType.Winded, windedBehaviour.IsWinded);
+            booleansToActivateOnStatusInflicted.Add(StatusType.Burned, burnBehaviour.ValueContainer);
+            booleansToActivateOnStatusInflicted.Add(StatusType.Stuck, stuckBehaviour.ValueContainer);
+            booleansToActivateOnStatusInflicted.Add(StatusType.Winded, windedBehaviour.ValueContainer);
         }
 
         public void InflictStatus(StatusType status)

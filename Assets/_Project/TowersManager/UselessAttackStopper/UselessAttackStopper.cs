@@ -139,12 +139,6 @@ namespace TD.TowersManager.UselessAttackStopper
                 }
             }
 
-           
-
-         
-
-
-           
             List<Transform> towersWithDashesLeft = new List<Transform>();
             int noOfTowersWithDashesLeft = 0;
 

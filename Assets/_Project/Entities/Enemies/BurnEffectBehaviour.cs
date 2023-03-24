@@ -11,7 +11,7 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!burnBehaviour.IsBurning[0])
+            if (!burnBehaviour.ValueContainer[0])
             {
                 burnEffect.SetActive(false);
                 return;

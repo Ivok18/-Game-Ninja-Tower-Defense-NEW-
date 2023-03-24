@@ -10,6 +10,9 @@ namespace TD.Entities.Towers
     {
         [SerializeField] private List<Transform> enemiesToAttack;
 
+        public delegate void SwitchTargetCallback(Transform previousTarget, Transform newTarget, Transform attackingTower);
+        public static event SwitchTargetCallback OnTargetSwitch;
+
         private void OnEnable()
         {
             HealthBehaviour.OnEnemyDead += RemoveEnemy;
@@ -47,7 +50,7 @@ namespace TD.Entities.Towers
                     continue;
 
                 WindedBehaviour windedBehaviour = enemy.GetComponent<WindedBehaviour>();
-                bool isItAffectedByWind = windedBehaviour.IsWinded[0];
+                bool isItAffectedByWind = windedBehaviour.IsWinded();
                 if (isItAffectedByWind)
                     continue;
 
@@ -67,6 +70,7 @@ namespace TD.Entities.Towers
             if (areThereOtherEnemiesToAttack)
             {
                 lockTargetState.Target = EnemiesToAttack[enemyIndex + 1];
+                OnTargetSwitch?.Invoke(EnemiesToAttack[enemyIndex], lockTargetState.Target, transform);
             }
             else
             {
@@ -76,10 +80,15 @@ namespace TD.Entities.Towers
                 TowerStateSwitcher towerStateSwitcher = GetComponent<TowerStateSwitcher>();
                 towerStateSwitcher.SwitchTo(TowerState.Stationary);
 
+                OnTargetSwitch?.Invoke(lockTargetState.Target, null, transform);
+
                 //ChargeAttackState chargeAttackState = GetComponent<ChargeAttackState>();
                 //chargeAttackState.TimeUntilNextAttack = chargeAttackState.CurrentTimeBetweenAttacks;
-
             }
+
+            
+
+
         }
     }
 

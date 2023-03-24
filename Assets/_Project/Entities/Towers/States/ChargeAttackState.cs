@@ -89,7 +89,7 @@ namespace TD.Entities.Towers.States
                         ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
 
                         //find another enemy to attack, and keep on charging attack
-                        lockTargetState.Target = listOfTargets.FindEnemy();
+                        lockTargetState.LockTarget();
                     }
                     else //if target is still alive during attack charge..
                     {
@@ -98,7 +98,7 @@ namespace TD.Entities.Towers.States
                         if (targetWindedBehaviour != null)
                         {
                             //verify if target has been affected by wind element..
-                            if (targetWindedBehaviour.IsWinded[0])
+                            if (targetWindedBehaviour.ValueContainer[0])
                             {
                                 //if it is the case, do not lock him as target
                                 //instead search for another target

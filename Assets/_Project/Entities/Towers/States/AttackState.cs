@@ -191,7 +191,7 @@ namespace TD.Entities.Towers.States
                 ListOfTargets listOfTargets = GetComponent<ListOfTargets>();
 
                 //Switch target only if it is not the only one affected by wind element among my list of target
-                bool isTargetAffectedByWind = targWindedBehaviour.IsWinded[0];
+                bool isTargetAffectedByWind = targWindedBehaviour.ValueContainer[0];
                 bool hasMultipleTargets = !(listOfTargets.EnemiesToAttack.Count == 1);
                 if (isTargetAffectedByWind && hasMultipleTargets)
                 {
@@ -222,7 +222,7 @@ namespace TD.Entities.Towers.States
 
                 //if tower has other targets to attack..   
                 //attack them
-                lockTargetState.Target = listOfTargets.FindEnemy();
+                lockTargetState.LockTarget();
             }
         }
 

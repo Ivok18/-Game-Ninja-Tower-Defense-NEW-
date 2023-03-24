@@ -29,6 +29,10 @@ namespace TD.EnemiesManager.AlmostDeadEnemiesLister
         {
             foreach (var enemy in EnemyStorer.Instance.Enemies)
             {
+                //bool isDead = enemy.CompareTag("Dead") ? true : false;
+                if (enemy== null)
+                    continue;
+
                 HealthBehaviour healthBehaviour = enemy.GetComponent<HealthBehaviour>();
                 bool isEnemyAlmostDead = healthBehaviour.CurrentHealth <= 0;
                 bool isEnemyInList = Find(enemy) != null ? true : false;
@@ -40,6 +44,7 @@ namespace TD.EnemiesManager.AlmostDeadEnemiesLister
                 {
                     Remove(enemy);
                 }
+
             }         
         }
 

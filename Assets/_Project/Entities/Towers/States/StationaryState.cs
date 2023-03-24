@@ -12,6 +12,9 @@ namespace TD.Entities.Towers.States
         public Vector2 StartPosition;
         private bool isCatalyst;
 
+        public delegate void TargetResetCallback(Transform targetReseted, Transform attackingTower);
+        public static event TargetResetCallback OnTargetReset;
+
         private void OnEnable()
         {
             TowerStateSwitcher.OnTowerEnterState += Reset;
@@ -70,8 +73,12 @@ namespace TD.Entities.Towers.States
                 //reset target 
                 LockTargetState lockTargetState = GetComponent<LockTargetState>();
                 bool isThereAStillATarget = lockTargetState.Target != null;
-                if (isThereAStillATarget) 
-                    lockTargetState.Target = null;
+                if (isThereAStillATarget)
+                {
+                    OnTargetReset?.Invoke(lockTargetState.Target, transform);
+                    lockTargetState.Target = null; 
+                }
+                    
               
             }          
         }

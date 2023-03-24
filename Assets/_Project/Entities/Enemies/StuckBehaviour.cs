@@ -6,7 +6,7 @@ namespace TD.Entities.Enemies
 {
     public class StuckBehaviour : MonoBehaviour
     {
-        public bool[] IsStuck;
+        public bool[] ValueContainer;
         [SerializeField] private int noOfStuckStrikes;
         [SerializeField] private int noOfStuckStrikesRemaining;
         [SerializeField] private int stuckDamage;
@@ -23,7 +23,7 @@ namespace TD.Entities.Enemies
 
         private void Start()
         {
-            IsStuck = new bool[1];
+            ValueContainer = new bool[1];
             timeUntilNextStuckDamage = timeBetweenStuckDamages;
             noOfStuckStrikesRemaining = noOfStuckStrikes;
 
@@ -31,7 +31,7 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!IsStuck[0])
+            if (!IsStuck())
             {
                 enemyMovement.CurrentSpeed = enemyMovement.Speed;
                 return;
@@ -41,7 +41,7 @@ namespace TD.Entities.Enemies
 
             if (noOfStuckStrikesRemaining <= 0)
             {
-                IsStuck[0] = false;
+                ValueContainer[0] = false;
                 noOfStuckStrikesRemaining = noOfStuckStrikes;
                 return;
             }
@@ -60,6 +60,11 @@ namespace TD.Entities.Enemies
                 Destroy(dummyTowerGo);
             }
 
+        }
+
+        public bool IsStuck()
+        {
+            return ValueContainer[0] == true ? true : false;
         }
 
 

@@ -9,7 +9,7 @@ namespace TD.Entities.Enemies
 {
     public class WindedBehaviour : MonoBehaviour
     {
-        public bool[] IsWinded;
+        public bool[] ValueContainer;
         private bool hasCalculatedDestinationNode;
         private EnemyMovement enemyMovement;
         private float windedSpeed = 6f;
@@ -25,13 +25,13 @@ namespace TD.Entities.Enemies
 
         private void Start()
         {
-            IsWinded = new bool[1];
+            ValueContainer = new bool[1];
             destinationNode = new Node();
         }
 
         private void Update()
         {
-            if (!IsWinded[0])
+            if (!IsWinded())
                 return;
 
 
@@ -58,7 +58,7 @@ namespace TD.Entities.Enemies
                     }
                     else
                     {
-                        IsWinded[0] = false;
+                        ValueContainer[0] = false;
                         ShakeBehaviour shakeBehaviour = GetComponent<ShakeBehaviour>();
                         shakeBehaviour.StartShake();
                         return;
@@ -76,13 +76,19 @@ namespace TD.Entities.Enemies
 
         private void FixedUpdate()
         {
-            if (!IsWinded[0])
+            if (!IsWinded())
                 return;
 
             if (!hasCalculatedDestinationNode)
                 return;
 
             MoveToDestinationNode();
+        }
+
+
+        public bool IsWinded()
+        {
+            return ValueContainer[0] == true ? true : false;
         }
 
         private void MoveToDestinationNode()
@@ -97,7 +103,7 @@ namespace TD.Entities.Enemies
                 transform.position = destinationNode.center;
                 enemyMovement.NextWaypointIndex = destinationNode.nextWaypointIndex;
                 enemyMovement.CurrentSpeed = enemyMovement.Speed;
-                IsWinded[0] = false;
+                ValueContainer[0] = false;
                 hasCalculatedDestinationNode = false;
             }
         }

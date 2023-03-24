@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BasicMinion
   m_EditorClassIdentifier: 
   speed: 0.9
-  maxHealth: 6
+  maxHealth: 5
   reward: 5

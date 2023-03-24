@@ -140,7 +140,7 @@ namespace TD.Entities.Towers
             return towerStateSwitcher.CurrentTowerState == TowerState.Attacking;
         }
 
-        private bool IsInRadius(Transform enemyOnMap)
+        public bool IsInRadius(Transform enemyOnMap)
         {
             return Vector2.Distance(enemyOnMap.transform.position, transform.position) <= Radius;
         }

@@ -14,7 +14,7 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!stuckBehaviour.IsStuck[0])
+            if (!stuckBehaviour.ValueContainer[0])
             {
                 stuckEffect.SetActive(false);
                 return;
