@@ -6,12 +6,20 @@ namespace TD.Entities.Enemies
 {
     public class BurnEffectBehaviour : MonoBehaviour
     {
-        [SerializeField] private BurnBehaviour burnBehaviour;
+        private BurnBehaviour burnBehaviour;
+        private WindedBehaviour windedBehaviour;
         [SerializeField] private GameObject burnEffect;
+
+        private void Awake()
+        {
+            burnBehaviour = GetComponent<BurnBehaviour>();
+            windedBehaviour = GetComponent<WindedBehaviour>();
+        }
 
         private void Update()
         {
-            if (!burnBehaviour.ValueContainer[0])
+            if (!burnBehaviour.IsBurning()
+               || (burnBehaviour.IsBurning() && windedBehaviour.IsWinded()))
             {
                 burnEffect.SetActive(false);
                 return;

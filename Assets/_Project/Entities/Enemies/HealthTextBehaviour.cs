@@ -16,6 +16,14 @@ namespace TD.Entities.Enemies
         void Update()
         {
             textMesh.text = health.CurrentHealth.ToString();
+            if(health.CurrentHealth > 0)
+            {
+                transform.gameObject.SetActive(true);
+            }
+            else
+            {
+                transform.gameObject.SetActive(false);
+            }
         }
     }
 

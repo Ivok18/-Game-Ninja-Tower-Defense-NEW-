@@ -47,8 +47,8 @@ namespace TD.StatusSystem
         public bool TryTrigger()
         {
             float result = Random.Range(0f, 1f);
-            Debug.Log("probability of activation -> " + probabilityOfActivation);
-            Debug.Log("result -> " + result);
+           // Debug.Log("probability of activation -> " + probabilityOfActivation);
+            //Debug.Log("result -> " + result);
             if (result <= probabilityOfActivation)
             {
                 return true;

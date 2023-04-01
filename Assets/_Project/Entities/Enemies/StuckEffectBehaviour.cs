@@ -9,15 +9,25 @@ namespace TD.Entities.Enemies
     public class StuckEffectBehaviour : MonoBehaviour
     {
 
-        [SerializeField] private StuckBehaviour stuckBehaviour;
+        private StuckBehaviour stuckBehaviour;
+        private WindedBehaviour windedBehaviour;
         [SerializeField] private GameObject stuckEffect;
 
+        private void Awake()
+        {
+            stuckBehaviour = GetComponent<StuckBehaviour>();
+            windedBehaviour = GetComponent<WindedBehaviour>();
+        }
         private void Update()
         {
-            if (!stuckBehaviour.ValueContainer[0])
+            if (!stuckBehaviour.IsStuck())
             {
-                stuckEffect.SetActive(false);
-                return;
+                if (!stuckBehaviour.IsStuck()
+                || (stuckBehaviour.IsStuck() && windedBehaviour.IsWinded()))
+                {
+                    stuckEffect.SetActive(false);
+                    return;
+                }
             }
             stuckEffect.SetActive(true);
         }

@@ -10,8 +10,8 @@ namespace TD.Entities.Enemies
         [SerializeField] private int noOfStuckStrikes;
         [SerializeField] private int noOfStuckStrikesRemaining;
         [SerializeField] private int stuckDamage;
-        [SerializeField] private float timeBetweenStuckDamages;
-        [SerializeField] private float timeUntilNextStuckDamage;
+        public float TimeBetweenStuckDamages;
+        public float TimeUntilNextStuckDamage;
         [SerializeField] private Transform dummyTower;
         private EnemyMovement enemyMovement;
 
@@ -24,7 +24,7 @@ namespace TD.Entities.Enemies
         private void Start()
         {
             ValueContainer = new bool[1];
-            timeUntilNextStuckDamage = timeBetweenStuckDamages;
+            TimeUntilNextStuckDamage = TimeBetweenStuckDamages;
             noOfStuckStrikesRemaining = noOfStuckStrikes;
 
         }
@@ -46,16 +46,16 @@ namespace TD.Entities.Enemies
                 return;
             }
 
-            if (timeUntilNextStuckDamage > 0)
+            if (TimeUntilNextStuckDamage > 0)
             {
-                timeUntilNextStuckDamage -= Time.deltaTime;
+                TimeUntilNextStuckDamage -= Time.deltaTime;
             }
             else
             {
                 GameObject dummyTowerGo = Instantiate(dummyTower.gameObject, new Vector3(-100, -100, 100), Quaternion.identity);
                 HealthBehaviour healthBehaviour = GetComponent<HealthBehaviour>();
                 healthBehaviour.GetDamage(stuckDamage, dummyTower);
-                timeUntilNextStuckDamage = timeBetweenStuckDamages;
+                TimeUntilNextStuckDamage = TimeBetweenStuckDamages;
                 noOfStuckStrikesRemaining--;
                 Destroy(dummyTowerGo);
             }

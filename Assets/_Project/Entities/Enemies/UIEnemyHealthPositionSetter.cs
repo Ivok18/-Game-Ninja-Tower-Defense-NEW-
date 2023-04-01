@@ -9,6 +9,7 @@ namespace TD.Entities.Enemies
     {
         private EnemyMovement enemyMovement;
         private AlmostDeadSignaler almostDeadSignaler;
+        private HealthBehaviour healthBehaviour;
         [SerializeField] private Transform healthIconUp;
         [SerializeField] private Transform healthIconLeft;
         [SerializeField] private Transform skullIcon;
@@ -18,6 +19,7 @@ namespace TD.Entities.Enemies
         { 
             enemyMovement = GetComponent<EnemyMovement>();
             almostDeadSignaler = GetComponent<AlmostDeadSignaler>();
+            healthBehaviour = GetComponent<HealthBehaviour>();
         }
 
         private void Update()
@@ -25,12 +27,19 @@ namespace TD.Entities.Enemies
             if (enemyMovement == null)
                 return;
 
+            if (almostDeadSignaler == null)
+                return;
+
+            if (healthBehaviour == null)
+                return;
 
             if(enemyMovement.HasHorizontalDirection)
             {
                 if(almostDeadSignaler.IsAlmostDead)
                 {
                     skullIcon.gameObject.SetActive(true);
+                    healthIconUp.gameObject.SetActive(false);
+                    healthIconLeft.gameObject.SetActive(false);
                 }
                 if(!almostDeadSignaler.IsAlmostDead)
                 {
@@ -45,6 +54,8 @@ namespace TD.Entities.Enemies
                 if (almostDeadSignaler.IsAlmostDead)
                 {
                     skullIcon.gameObject.SetActive(true);
+                    healthIconUp.gameObject.SetActive(false);
+                    healthIconLeft.gameObject.SetActive(false);
                 }
                 if (!almostDeadSignaler.IsAlmostDead)
                 {

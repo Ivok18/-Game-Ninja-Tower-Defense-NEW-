@@ -11,15 +11,15 @@ namespace TD.Entities.Enemies
         [SerializeField] private int noOfBurnStrikes;
         [SerializeField] private int noOfBurnStrikesRemaining;
         [SerializeField] private int burnDamage;
-        [SerializeField] private float timeBetweenBurnDamages;
-        [SerializeField] private float timeUntilNextBurnDamage;
+        public float TimeBetweenBurnDamages;
+        public float TimeUntilNextBurnDamage;
         [SerializeField] private Transform dummyTower;
 
         private void Start()
         {
             ValueContainer = new bool[1];
             noOfBurnStrikesRemaining = noOfBurnStrikes;
-            timeUntilNextBurnDamage = timeBetweenBurnDamages;
+            TimeUntilNextBurnDamage = TimeBetweenBurnDamages;
            
         }
 
@@ -35,16 +35,16 @@ namespace TD.Entities.Enemies
                 return;
             }
 
-            if(timeUntilNextBurnDamage > 0)
+            if(TimeUntilNextBurnDamage > 0)
             {
-                timeUntilNextBurnDamage -= Time.deltaTime;
+                TimeUntilNextBurnDamage -= Time.deltaTime;
             }
             else
             {
                 GameObject dummyTowerGo = Instantiate(dummyTower.gameObject, new Vector3(-100,-100,100), Quaternion.identity);
                 HealthBehaviour healthBehaviour = GetComponent<HealthBehaviour>();
                 healthBehaviour.GetDamage(burnDamage, dummyTower);
-                timeUntilNextBurnDamage = timeBetweenBurnDamages;
+                TimeUntilNextBurnDamage = TimeBetweenBurnDamages;
                 noOfBurnStrikesRemaining--;
                 Destroy(dummyTowerGo);
             }
