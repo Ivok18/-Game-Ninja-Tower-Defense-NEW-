@@ -1,7 +1,7 @@
 using TD.Entities.Towers;
 using UnityEngine;
 
-namespace TD.TowersManager.RadiusManager
+namespace TD.Anchorers
 {
     public class RadiusAnchorer : MonoBehaviour
     { 

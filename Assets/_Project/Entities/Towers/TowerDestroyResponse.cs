@@ -14,6 +14,8 @@ namespace TD.Entities.Towers
             UICatalystGetter uiCatalystGetter = GetComponent<UICatalystGetter>();
             CatalystSelectorGetter catalystSelectorGetter = GetComponent<CatalystSelectorGetter>();
             DodgeShadowCounterBehaviour towerAutoDestructionAfterHit = GetComponent<DodgeShadowCounterBehaviour>();
+            LuckbarsGetter luckbarsGetter = GetComponent<LuckbarsGetter>();
+
             if (towerAutoDestructionAfterHit.IsActive)
                 return;
            
@@ -65,6 +67,17 @@ namespace TD.Entities.Towers
                     Destroy(catalystSelectorTransform.gameObject);
                 }
             }
+            if(luckbarsGetter!=null)
+            {
+                Transform luckbars = luckbarsGetter.LuckbarsContainerTransform;
+                if(luckbars!=null)
+                {
+                    Destroy(luckbars.gameObject);
+                }
+            }
+
+
+
 
         }           
     }

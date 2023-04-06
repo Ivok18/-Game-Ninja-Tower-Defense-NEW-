@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 208710358352727152}
   - component: {fileID: -224253938209482659}
   m_Layer: 0
-  m_Name: RadiusManager
+  m_Name: RadiusAnchorer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

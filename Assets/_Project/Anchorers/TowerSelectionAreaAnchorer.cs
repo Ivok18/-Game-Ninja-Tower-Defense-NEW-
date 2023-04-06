@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TD.Entities.Towers;
 using UnityEngine;
 
-namespace TD.TowersManager.TowerSelectionManager
+namespace TD.Anchorers
 {
     public class TowerSelectionAreaAnchorer : MonoBehaviour
     {   

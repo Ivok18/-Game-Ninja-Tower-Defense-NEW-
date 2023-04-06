@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TD.ElementSystem;
 using TD.Entities.Enemies;
+using TD.Entities.Towers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,51 +20,69 @@ namespace TD.StatusSystem
     [Serializable]
     public class Status
     {
+        private static int staticID = 0;
+        public int id;
         public StatusType type;
-        private float probabilityOfActivation;
-        public float baseProbabilityOfActivation = 1f;
+        public RollOutcome rollOutcome;
+        public float currentOddsForActivation;
+        private float baseOddsForActivation = 0.03f;
+        public float rollResult;
+        public bool canInflict;
 
-        public Status(StatusType _type, float _probabilityOfActivation)
+        public Status(StatusType _type, float _oddsForActivation)
         {
             type = _type;
-            probabilityOfActivation = _probabilityOfActivation;
+            currentOddsForActivation = _oddsForActivation;
+            id = staticID;
+            staticID++;         
         }
 
 
         public Status(StatusType _statusType)
         {
             type = _statusType;
-            probabilityOfActivation = baseProbabilityOfActivation;
+            currentOddsForActivation = baseOddsForActivation;
+            id = staticID;
+            staticID++;
         }
 
         public Status()
         {
             type = StatusType.None;
-            probabilityOfActivation = 0;
+            currentOddsForActivation = 0;
+            id = staticID;
+            staticID++;
         }
-
-     
 
         public bool TryTrigger()
         {
-            float result = Random.Range(0f, 1f);
-           // Debug.Log("probability of activation -> " + probabilityOfActivation);
-            //Debug.Log("result -> " + result);
-            if (result <= probabilityOfActivation)
+            rollResult = Random.Range(0f, 1f);
+            //Debug.Log("probability of activation -> " + currentOddsForActivation);
+            Debug.Log("result -> " + rollResult);
+            if (rollResult <= currentOddsForActivation)
             {
-                return true;
+                canInflict = true;
+                rollOutcome = RollOutcome.SUCCESS;
+                return canInflict;
             }
             else
             {
-                return false;
+                canInflict = false;
+                rollOutcome = RollOutcome.FAIL;
+                return canInflict;
             } 
-        }
-
+        }      
     }
 
     public class StatusManager : MonoBehaviour
     {
         private Dictionary<TowerElement, Status> statusTable;
+
+        public delegate void StatusAddedOnTowerCallback(Transform targetTower, int idOfStatusAdded);
+        public static event StatusAddedOnTowerCallback OnStatusAddedOnTower;
+
+        public delegate void StatusRemoveFromTowerCallback(Transform targetTower, int idOfRemovedStatus);
+        public static event StatusRemoveFromTowerCallback OnStatusRemovedFromTower;
 
         private void Start()
         {
@@ -95,6 +114,8 @@ namespace TD.StatusSystem
             StatusType statusType = statusTable[dataOfElementApplied.Element].type;
             Status status = new Status(statusType);
             statusToInflictTracker.CurrentStatusToInflict.Add(status);
+
+            OnStatusAddedOnTower?.Invoke(tower, status.id);
         }
 
         public void RemoveStatus(Transform tower, TowerElement element)
@@ -103,15 +124,17 @@ namespace TD.StatusSystem
             StatusType statusType = statusTable[element].type;
             Status statusToRemove = new Status(statusType);
             int indexOfStatusToRemove = 0;
+            int idOfRemovedStatus = 0;
             for(int i = 0; i < statusToInflictTracker.CurrentStatusToInflict.Count; i++)
             {
                 if (!(statusToInflictTracker.CurrentStatusToInflict[i].type == statusToRemove.type))
                     return;
 
                 indexOfStatusToRemove = i;
-                
+                idOfRemovedStatus = statusToInflictTracker.CurrentStatusToInflict[i].id;
             }
             statusToInflictTracker.CurrentStatusToInflict.RemoveAt(indexOfStatusToRemove);
+            OnStatusRemovedFromTower(tower, idOfRemovedStatus);
         }
 
         public void TryToInflictStatus(Transform enemy, Transform attackingTower, Vector3 hitPosition)
@@ -126,11 +149,17 @@ namespace TD.StatusSystem
            
             foreach(var status in statusToInflictTracker.CurrentStatusToInflict)
             {
-                bool canInflictStatus = (status.TryTrigger() == true) ? true : false;
-                if (!canInflictStatus)
-                {
+                StatusRollMaker statusRollMaker = attackingTower.GetComponent<StatusRollMaker>();
+                if (statusRollMaker == null)
                     return;
-                }
+
+                if (statusRollMaker.HasTriedToTriggerAllStatus)
+                    statusRollMaker.HasTriedToTriggerAllStatus = false;
+
+
+                bool canInflictStatus = (status.rollOutcome == RollOutcome.SUCCESS) ? true : false;
+                if (!canInflictStatus)
+                    return;
       
                 InflictedStatusActivator inflictedStatusActivator = enemy.GetComponent<InflictedStatusActivator>();
                 inflictedStatusActivator.InflictStatus(status.type);

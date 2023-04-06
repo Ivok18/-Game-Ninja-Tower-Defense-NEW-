@@ -1,0 +1,1201 @@
+fileFormatVersion: 2
+guid: 59da0a4cd5e2bf9428174d99b45157f9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2988
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6e63e61b66cdd468a237d60896a3ed
+      internalID: -275716466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 2988
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7810c57bd01f55a48a3a646864c108fc
+      internalID: 73257016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 2988
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db814bd654c9b248b87437f16c6debc
+      internalID: 1058559594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 2988
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d4821adf43f37f4c871cf9a2be433e1
+      internalID: 1041579945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 2988
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9591ce05bdc933479d9bd584f46edee
+      internalID: -1861415736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 2988
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a12c70a651f984941b34f9f75fbfaf3e
+      internalID: -935223209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 2988
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2990dcbf328599048a9ef3b4acfb1031
+      internalID: 1386681267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2490
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d39f52c0108fd39489ee08460b96db74
+      internalID: -250098672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 2490
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2306d5dc150698d4e8136fdf1434c22f
+      internalID: -1302888420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 2490
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a28f1f9a108e1b49aea28e2efd2d5fb
+      internalID: 1250537111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 2490
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860ca81303014cf46a1ed2d0ba4af535
+      internalID: -1628774387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 2490
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1dea2ae7069ea944a9d7ddf3dc0e077
+      internalID: -91402596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 2490
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4ea445ca3cc2994aa8c8280a5cbf028
+      internalID: 244574425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 2490
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8235164679672c047999cfa205369484
+      internalID: 1187699044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1992
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61c3973bbb930e24b99b29fc853f07bd
+      internalID: 768264042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 1992
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d0bf8f47aee24c4e8db2391beb4d5c7
+      internalID: -915995618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 1992
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddd989c1b06c64e4b86769a8d3e22d64
+      internalID: -61696720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 1992
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea418c1ca6e7b74db92f0668e3032cd
+      internalID: 1793885445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 1992
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 966eb287674e65041b987ec46672e32e
+      internalID: -1725305704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 1992
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 884783fd2f433fd40ae8abfbc2eb36be
+      internalID: 1470557542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 1992
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b49593881641f7b45b4678adc9debc9d
+      internalID: -1099699813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1494
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7180e2afd0d324da48a74c36236a07
+      internalID: -847639284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 1494
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b8ad8607cb2dc44d850ed8ac5bf9a3b
+      internalID: -1960069609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 1494
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d6b252411899f641bd7ea58f1323fe9
+      internalID: -1681452405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 1494
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcd0188db57e80a468718a10aeaf2d52
+      internalID: -404132362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 1494
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9279320a730094aa315a384a4b59ab
+      internalID: 424237284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 1494
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a625988819b584fa7d85ac63ac3e62
+      internalID: -1445842260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 1494
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c60f5e4d56a3a2479ff653e56d439af
+      internalID: 2103918462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 996
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d63b0a3d78c3c74084ad98449ef16d0
+      internalID: -2093957864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 996
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abde946c80bfc4e4bafa5ae5f974a4df
+      internalID: 1105711834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 996
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e264e4e0f269ff4982d5031c2e44858
+      internalID: -516066142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 996
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6880db3b34aa1a418fac84caaa68cea
+      internalID: -708098907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 996
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d58e445ed8d6fb4fa39bc5688eb19df
+      internalID: -587929401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 996
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd89d10e1416731499a87f5247bda23a
+      internalID: 1025010595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 996
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aebed88606324c148b74962b3a084ab2
+      internalID: 735887385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 498
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 537f7c93d8894304bb75002a470ae792
+      internalID: -65041345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 498
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5171c4b515a595640aa3f5af80db2805
+      internalID: 622992872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 498
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d04d4a7cc4aae4685d0e49360bc33e
+      internalID: -759172581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 498
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44e5262a1b8496e4eafd4719194c2bff
+      internalID: -1598907534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_39
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 498
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea76ddd47f0af0b46ac1c284a58413a3
+      internalID: -907617579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_40
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 498
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b1d0a9c09a3e14a9280d847322ee80
+      internalID: 1852420381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_41
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 498
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0892b2efb3054a4abdc8d585ef43008
+      internalID: 590992923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 849af7b73378bea4bad1a49677cbab38
+      internalID: 453165075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_43
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 0
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1fea8febff78f343ad836869b6cc038
+      internalID: -448052644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_44
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 0
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66f5e18c0cce5794494a53f7fbce2d54
+      internalID: 1677841189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_45
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 0
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b952a0e727185448928d56872a0ec89
+      internalID: -99973325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_46
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 0
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ffe5a52e8e1754f8fa16e7139af513
+      internalID: 1624915500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_47
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 0
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb9c71f01c24f3643b2092c9f90d1862
+      internalID: 1182691725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tornadoAuraSpriteSheet_48
+      rect:
+        serializedVersion: 2
+        x: 2868
+        y: 0
+        width: 478
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c08572e94acf70a49a20518b9ee93a8e
+      internalID: -1714449452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      tornadoAuraSpriteSheet_13: 1187699044
+      tornadoAuraSpriteSheet_27: 2103918462
+      tornadoAuraSpriteSheet_38: -1598907534
+      tornadoAuraSpriteSheet_42: 453165075
+      tornadoAuraSpriteSheet_43: -448052644
+      tornadoAuraSpriteSheet_1: 73257016
+      tornadoAuraSpriteSheet_18: -1725305704
+      tornadoAuraSpriteSheet_35: -65041345
+      tornadoAuraSpriteSheet_15: -915995618
+      tornadoAuraSpriteSheet_28: -2093957864
+      tornadoAuraSpriteSheet_39: -907617579
+      tornadoAuraSpriteSheet_32: -587929401
+      tornadoAuraSpriteSheet_33: 1025010595
+      tornadoAuraSpriteSheet_5: -935223209
+      tornadoAuraSpriteSheet_40: 1852420381
+      tornadoAuraSpriteSheet_8: -1302888420
+      tornadoAuraSpriteSheet_0: -275716466
+      tornadoAuraSpriteSheet_17: 1793885445
+      tornadoAuraSpriteSheet_14: 768264042
+      tornadoAuraSpriteSheet_41: 590992923
+      tornadoAuraSpriteSheet_20: -1099699813
+      tornadoAuraSpriteSheet_23: -1681452405
+      tornadoAuraSpriteSheet_31: -708098907
+      tornadoAuraSpriteSheet_11: -91402596
+      tornadoAuraSpriteSheet_26: -1445842260
+      tornadoAuraSpriteSheet_2: 1058559594
+      tornadoAuraSpriteSheet_4: -1861415736
+      tornadoAuraSpriteSheet_37: -759172581
+      tornadoAuraSpriteSheet_9: 1250537111
+      tornadoAuraSpriteSheet_16: -61696720
+      tornadoAuraSpriteSheet_3: 1041579945
+      tornadoAuraSpriteSheet_36: 622992872
+      tornadoAuraSpriteSheet_12: 244574425
+      tornadoAuraSpriteSheet_46: 1624915500
+      tornadoAuraSpriteSheet_45: -99973325
+      tornadoAuraSpriteSheet_21: -847639284
+      tornadoAuraSpriteSheet_44: 1677841189
+      tornadoAuraSpriteSheet_6: 1386681267
+      tornadoAuraSpriteSheet_48: -1714449452
+      tornadoAuraSpriteSheet_7: -250098672
+      tornadoAuraSpriteSheet_19: 1470557542
+      tornadoAuraSpriteSheet_29: 1105711834
+      tornadoAuraSpriteSheet_22: -1960069609
+      tornadoAuraSpriteSheet_47: 1182691725
+      tornadoAuraSpriteSheet_34: 735887385
+      tornadoAuraSpriteSheet_24: -404132362
+      tornadoAuraSpriteSheet_30: -516066142
+      tornadoAuraSpriteSheet_10: -1628774387
+      tornadoAuraSpriteSheet_25: 424237284
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
