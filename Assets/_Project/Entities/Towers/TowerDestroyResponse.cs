@@ -15,6 +15,7 @@ namespace TD.Entities.Towers
             CatalystSelectorGetter catalystSelectorGetter = GetComponent<CatalystSelectorGetter>();
             DodgeShadowCounterBehaviour towerAutoDestructionAfterHit = GetComponent<DodgeShadowCounterBehaviour>();
             LuckbarsGetter luckbarsGetter = GetComponent<LuckbarsGetter>();
+            UIStatusUpgradesManagerGetter uIStatusUpgradesManagerGetter = GetComponent<UIStatusUpgradesManagerGetter>();
 
             if (towerAutoDestructionAfterHit.IsActive)
                 return;
@@ -75,10 +76,14 @@ namespace TD.Entities.Towers
                     Destroy(luckbars.gameObject);
                 }
             }
-
-
-
-
+            if(uIStatusUpgradesManagerGetter!=null)
+            {
+                Transform uiStatusUpgradeManagerTransform = uIStatusUpgradesManagerGetter.UIStatusUpgradesManagerTransform;
+                if(uiStatusUpgradeManagerTransform!=null)
+                {
+                    Destroy(uiStatusUpgradeManagerTransform.gameObject);
+                }
+            }
         }           
     }
 }

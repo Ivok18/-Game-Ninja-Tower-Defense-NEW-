@@ -74,9 +74,6 @@ namespace TD.Entities.Towers
         }
     }
 
-    
-
-
     public class LuckbarsManager : MonoBehaviour
     {
         [SerializeField] private Transform towerHolder;
@@ -87,6 +84,7 @@ namespace TD.Entities.Towers
         {
             StatusManager.OnStatusAddedOnTower += TryActivateLuckbarAndLinkItToStatus;
             StatusManager.OnStatusRemovedFromTower += TryDesactivateLinkedLuckbar;
+            StatusManager.OnStatusOddsForActivationBoost += TryUpdateAllActivationPointHeights;
             StatusRollMaker.OnRollPerformed += TryUpdateLuckbars;
             EnemyHitDetection.OnEnemyHit += TryReactivateLuckbar;
         }
@@ -95,6 +93,7 @@ namespace TD.Entities.Towers
         {
             StatusManager.OnStatusAddedOnTower -= TryActivateLuckbarAndLinkItToStatus;
             StatusManager.OnStatusRemovedFromTower -= TryDesactivateLinkedLuckbar;
+            StatusManager.OnStatusOddsForActivationBoost -= TryUpdateAllActivationPointHeights;
             StatusRollMaker.OnRollPerformed -= TryUpdateLuckbars;
             EnemyHitDetection.OnEnemyHit -= TryReactivateLuckbar;
         }
@@ -110,13 +109,13 @@ namespace TD.Entities.Towers
 
 
             foreach (var luckbar in luckbars)
-            {            
+            {
                 //Goal is to find an inactive luckbar
                 if (luckbar.wholeObj.activeSelf)
-                    continue;         
+                    continue;
 
                 //found !
-                foreach(var status in statusToInflictTracker.CurrentStatusToInflict)
+                foreach (var status in statusToInflictTracker.CurrentStatusToInflict)
                 {
                     //Goal is to get the data of added status using targetTower in param
                     if (status.id != idOfAddedStatus)
@@ -126,7 +125,7 @@ namespace TD.Entities.Towers
                     //we activate the inactive luckbar
                     luckbar.wholeObj.SetActive(true);
 
-                    //we get+set the height that its activation point will reach
+                    //we get+set the height of activation that the tower needs to reach to activate its status
                     LuckbarBehaviour luckbarBehaviour = luckbar.wholeObj.GetComponent<LuckbarBehaviour>();
                     float percentageOfBarHeightToReach = 1 - status.currentOddsForActivation;
                     luckbarBehaviour.UpdateActivationPointHeight(percentageOfBarHeightToReach);
@@ -136,9 +135,8 @@ namespace TD.Entities.Towers
                     break;
                 }
                 break;
-            }               
+            }
         }
-
         public void TryDesactivateLinkedLuckbar(Transform targetTower, int idOfRemovedStatus)
         {
             if (targetTower != towerHolder)
@@ -154,7 +152,6 @@ namespace TD.Entities.Towers
                 break;
             }
         }
-
         public void TryUpdateLuckbars(Transform targetTower, int targetStatusId)
         {
             if (targetTower != towerHolder)
@@ -186,37 +183,36 @@ namespace TD.Entities.Towers
                     {
                         case RollOutcome.FAIL:
                             float rollResultGaugeConversion = 1 - status.rollResult;
-                            luckbarBehaviour.UpdateBarGauge(rollResultGaugeConversion);                   
+                            luckbarBehaviour.UpdateBarGauge(rollResultGaugeConversion);
                             break;
                         case RollOutcome.SUCCESS:
-                          
+
                             luckbar.PlayRollSuccessAnim(status.type);
-                            luckbar.rollFailObj.SetActive(false);                           
+                            luckbar.rollFailObj.SetActive(false);
                             break;
                         default:
                             break;
                     }
                 }
             }
-            
-        }
 
+        }
         public void TryReactivateLuckbar(Transform enemy, Transform attackingTower, Vector3 hitPosition)
         {
-           
+
             if (attackingTower != towerHolder)
                 return;
 
             LockTargetState lockTargetState = attackingTower.GetComponent<LockTargetState>();
             if (lockTargetState == null)
                 return;
-        
-           
+
+
             StatusToInflictTracker statusToInflictTracker = attackingTower.GetComponent<StatusToInflictTracker>();
             if (statusToInflictTracker == null)
                 return;
 
-            
+
             if (statusToInflictTracker.CurrentStatusToInflict.Count <= 0)
                 return;
 
@@ -239,7 +235,40 @@ namespace TD.Entities.Towers
                     }
                 }
                 break;
-                
+
+            }
+        }
+        public void TryUpdateAllActivationPointHeights(Transform targetTower, int idOfBoostedStatus)
+        {
+            if (targetTower != towerHolder)
+                return;
+
+            StatusToInflictTracker statusToInflictTracker = targetTower.GetComponent<StatusToInflictTracker>();
+            if (statusToInflictTracker == null)
+                return;
+
+
+            //Goal is to find the luckbar linked to te target status id in function param
+            foreach (var luckbar in luckbars)
+            {
+                LuckbarBehaviour luckbarBehaviour = luckbar.wholeObj.GetComponent<LuckbarBehaviour>();
+                if (luckbarBehaviour.IdOfLinkedStatus != idOfBoostedStatus)
+                    continue;
+
+                //found!
+                foreach (var status in statusToInflictTracker.CurrentStatusToInflict)
+                {
+                    //Goal is to get the data of boosted status using targetTower in param
+                    if (status.id != idOfBoostedStatus)
+                        continue;
+
+                    //found!
+                    //we get+set the height of activation that the tower needs to reach to activate its status
+                    float percentageOfBarHeightToReach = 1 - status.currentOddsForActivation;
+                    luckbarBehaviour.UpdateActivationPointHeight(percentageOfBarHeightToReach);
+                    break;
+                }
+                break;
             }
         }
     }

@@ -52,8 +52,6 @@ namespace TD.TowersManager.TowerSelectionManager
             }        
         }
 
-
-     
         private void OnMouseDown()
         {
             bool isTowerInUndeployedState = TowerStateSwitcher.CurrentTowerState == TowerState.Undeployed;
@@ -63,6 +61,8 @@ namespace TD.TowersManager.TowerSelectionManager
             SelectionAreaBehaviour selectionAreaBehaviour = this;
             OnTowerSelected?.Invoke(selectionAreaBehaviour);
         }
+
+        
 
     }
 }

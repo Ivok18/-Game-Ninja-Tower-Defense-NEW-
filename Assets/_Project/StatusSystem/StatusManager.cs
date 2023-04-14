@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TD.ElementSystem;
 using TD.Entities.Enemies;
 using TD.Entities.Towers;
+using TD.MonetarySystem;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,15 +21,15 @@ namespace TD.StatusSystem
     [Serializable]
     public class Status
     {
-        private static int staticID = 0;
+        private static int staticID = 1;
         public int id;
         public StatusType type;
         public RollOutcome rollOutcome;
         public float currentOddsForActivation;
-        private float baseOddsForActivation = 0.03f;
+        private float baseOddsForActivation = 0.01f;
         public float rollResult;
         public bool canInflict;
-
+        private float boostAmount = 0.04f;
         public Status(StatusType _type, float _oddsForActivation)
         {
             type = _type;
@@ -36,7 +37,6 @@ namespace TD.StatusSystem
             id = staticID;
             staticID++;         
         }
-
 
         public Status(StatusType _statusType)
         {
@@ -72,6 +72,11 @@ namespace TD.StatusSystem
                 return canInflict;
             } 
         }      
+
+        public void BoostOddsForActivation()
+        {
+            currentOddsForActivation += boostAmount;
+        }
     }
 
     public class StatusManager : MonoBehaviour
@@ -83,6 +88,9 @@ namespace TD.StatusSystem
 
         public delegate void StatusRemoveFromTowerCallback(Transform targetTower, int idOfRemovedStatus);
         public static event StatusRemoveFromTowerCallback OnStatusRemovedFromTower;
+
+        public delegate void StatusOddsForActivationBoostCallback(Transform targetTower, int idOfBoostedStatus);
+        public static event StatusOddsForActivationBoostCallback OnStatusOddsForActivationBoost;
 
         private void Start()
         {
@@ -98,6 +106,7 @@ namespace TD.StatusSystem
             ElementDataApplier.OnElementDataUnappliedFromTower += RemoveStatus;
 
             EnemyHitDetection.OnEnemyHit += TryToInflictStatus;
+            UIStatusUpgradeManager.OnUIRequestStatusUpgradeCallback += TryBoostStatusOddsForActivation;
         }
 
         private void OnDisable()
@@ -106,6 +115,7 @@ namespace TD.StatusSystem
             ElementDataApplier.OnElementDataUnappliedFromTower -= RemoveStatus;
 
             EnemyHitDetection.OnEnemyHit -= TryToInflictStatus;
+            UIStatusUpgradeManager.OnUIRequestStatusUpgradeCallback -= TryBoostStatusOddsForActivation;
         }
 
         public void AddStatus(Transform tower, ElementScriptableObject dataOfElementApplied)
@@ -163,6 +173,25 @@ namespace TD.StatusSystem
       
                 InflictedStatusActivator inflictedStatusActivator = enemy.GetComponent<InflictedStatusActivator>();
                 inflictedStatusActivator.InflictStatus(status.type);
+            }
+        }
+
+        public void TryBoostStatusOddsForActivation(Transform targetTower, int targetedStatusID)
+        {
+            StatusToInflictTracker statusToInflictTracker = targetTower.GetComponent<StatusToInflictTracker>();
+            foreach(var status in statusToInflictTracker.CurrentStatusToInflict)
+            {
+                if (status.id != targetedStatusID)
+                    continue;
+
+                if (MoneyManager.Instance.Money <= 1000)
+                    return;
+
+                if (status.currentOddsForActivation >= 0.13f)
+                    return;
+               
+                status.BoostOddsForActivation();
+                OnStatusOddsForActivationBoost?.Invoke(targetTower, targetedStatusID);               
             }
         }
     }

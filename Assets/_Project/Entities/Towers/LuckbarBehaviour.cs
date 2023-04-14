@@ -12,8 +12,7 @@ namespace TD.Entities.Towers
         [SerializeField] private Transform activationPoint;
         [SerializeField] private Transform activationPointStartMarker;
         [SerializeField] private Transform activationPointEndMarker;
-        //public GameObject RollSuccessObj;
-        //public GameObject RollFailObj;
+        
 
         public void Link(int index)
         {
