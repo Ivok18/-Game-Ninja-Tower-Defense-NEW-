@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TD.Entities.Towers;
 using UnityEngine;
 
 
@@ -28,14 +27,16 @@ namespace TD.Entities.Enemies
             if (!IsBurning())
                 return;
 
-            if (noOfBurnStrikesRemaining <= 0)
+            bool hasInflictedAllBurnStrikes = noOfBurnStrikesRemaining <= 0 ? true : false;
+            if (hasInflictedAllBurnStrikes)
             {
                 ValueContainer[0] = false;
                 noOfBurnStrikesRemaining = noOfBurnStrikes;
                 return;
             }
 
-            if(TimeUntilNextBurnDamage > 0)
+            bool isWaitingForNextBurnStrike = TimeUntilNextBurnDamage > 0 ? true : false;
+            if (isWaitingForNextBurnStrike)
             {
                 TimeUntilNextBurnDamage -= Time.deltaTime;
             }
@@ -54,12 +55,7 @@ namespace TD.Entities.Enemies
         public bool IsBurning()
         {
             return ValueContainer[0] == true ? true : false;
-        }
-
-       
-
-
-        
+        } 
     }
 
 }

@@ -119,7 +119,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &378401814190441422
@@ -1506,7 +1506,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2034176016863434981
@@ -1798,7 +1798,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2335628172763841414
@@ -3116,7 +3116,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3143990367581387303
@@ -6304,9 +6304,6 @@ GameObject:
   - component: {fileID: -3286654645523602001}
   - component: {fileID: 405750062756542371}
   - component: {fileID: 4631015268379912101}
-  - component: {fileID: -4178993104142267786}
-  - component: {fileID: -6679159161891568930}
-  - component: {fileID: 4307854276083760037}
   - component: {fileID: 7665041360199550109}
   - component: {fileID: 8831260624227440291}
   - component: {fileID: -3914291464238476782}
@@ -6317,12 +6314,15 @@ GameObject:
   - component: {fileID: 4985591705230908815}
   - component: {fileID: 5699010687790935417}
   - component: {fileID: -6513057251519961642}
-  - component: {fileID: 4514828066661524775}
   - component: {fileID: -2847607520688559525}
   - component: {fileID: -240555879967539623}
   - component: {fileID: 9110659512164721787}
-  - component: {fileID: 6955111207712578860}
   - component: {fileID: 542410396589951312}
+  - component: {fileID: -4178993104142267786}
+  - component: {fileID: 4307854276083760037}
+  - component: {fileID: -6679159161891568930}
+  - component: {fileID: 6955111207712578860}
+  - component: {fileID: 4514828066661524775}
   m_Layer: 0
   m_Name: Basic Minion
   m_TagString: Enemy
@@ -6535,59 +6535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220d281bb475c3b47bad741151c3fb7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-4178993104142267786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7073972598165122598}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a64e066eb804542af5c780a39d6010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SurgingDistance: 10
-  SurgingDistanceRemaining: 0
-  SurgingSpeed: 5
-  CanSurge: 1
-  CanStartSurge: 0
---- !u!114 &-6679159161891568930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7073972598165122598}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84e415bbd5bee8043ac705e341f440b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DodgeDistance: 2
-  DodgeDistanceRemaining: 0
-  DodgeSpeed: 10
-  CanDodge: 1
-  IsDodging: 0
-  NoOfAdditionalDodge: 1
-  NoOfAdditionalDodgeRemaining: 0
-  dummyEnemyPrefab: {fileID: 2772235752551165461, guid: 24b7dee6a49522c459d854ceaf949680,
-    type: 3}
---- !u!114 &4307854276083760037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7073972598165122598}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c57bbc20bdeb848a74f5395a399e34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dodgeBehaviour: {fileID: -6679159161891568930}
-  trails:
-  - {fileID: 8818312006314098199}
 --- !u!114 &7665041360199550109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6738,22 +6685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9434c7d111c5f84c86168b3fc070dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4514828066661524775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7073972598165122598}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d44a620941dafa4c84b9b3dfaa782f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bar: {fileID: 3329563098199901535}
-  BarFill: {fileID: 111999184039109298}
-  CurrentValue: 0
-  MaxValue: 0
 --- !u!114 &-2847607520688559525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6798,7 +6729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaitingIncomingAttackers: []
   IncomingAttackers: []
---- !u!114 &6955111207712578860
+--- !u!114 &542410396589951312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6806,6 +6737,74 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7073972598165122598}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f3499681b4de94ab5e05d91bcf467b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthIconUp: {fileID: 4895337249576407118}
+  healthIconLeft: {fileID: 392256566050375392}
+  skullIcon: {fileID: 568765578947378666}
+--- !u!114 &-4178993104142267786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a64e066eb804542af5c780a39d6010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SurgingDistance: 10
+  SurgingDistanceRemaining: 0
+  SurgingSpeed: 5
+  CanSurge: 1
+  CanStartSurge: 0
+--- !u!114 &4307854276083760037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c57bbc20bdeb848a74f5395a399e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dodgeBehaviour: {fileID: -6679159161891568930}
+  trails:
+  - {fileID: 8818312006314098199}
+--- !u!114 &-6679159161891568930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e415bbd5bee8043ac705e341f440b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DodgeDistance: 2
+  DodgeDistanceRemaining: 0
+  DodgeSpeed: 10
+  CanDodge: 1
+  IsDodging: 0
+  NoOfAdditionalDodge: 1
+  NoOfAdditionalDodgeRemaining: 0
+  dummyEnemyPrefab: {fileID: 2772235752551165461, guid: 24b7dee6a49522c459d854ceaf949680,
+    type: 3}
+--- !u!114 &6955111207712578860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073972598165122598}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 922215cb9c03a134c9a8dfca26c643a6, type: 3}
   m_Name: 
@@ -6833,21 +6832,22 @@ MonoBehaviour:
     alphaWhenNotTargeted: 0
   alphaWhenTargeted: 1
   alphaWhenNotTargeted: 0.1
---- !u!114 &542410396589951312
+--- !u!114 &4514828066661524775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7073972598165122598}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f3499681b4de94ab5e05d91bcf467b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d44a620941dafa4c84b9b3dfaa782f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthIconUp: {fileID: 4895337249576407118}
-  healthIconLeft: {fileID: 392256566050375392}
-  skullIcon: {fileID: 568765578947378666}
+  Bar: {fileID: 3329563098199901535}
+  BarFill: {fileID: 111999184039109298}
+  CurrentValue: 0
+  MaxValue: 0
 --- !u!1 &7188661910718379307
 GameObject:
   m_ObjectHideFlags: 0
@@ -6929,7 +6929,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7263374133343135978
@@ -8524,7 +8524,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8929872823098490175

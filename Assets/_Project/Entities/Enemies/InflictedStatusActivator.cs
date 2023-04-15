@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TD.StatusSystem;
 using UnityEngine;
@@ -12,8 +11,7 @@ namespace TD.Entities.Enemies
         private WindedBehaviour windedBehaviour;
         private Dictionary<StatusType, bool[]> booleansToActivateOnStatusInflicted;
 
-      
-
+     
         private void Awake()
         {
             burnBehaviour = GetComponent<BurnBehaviour>();

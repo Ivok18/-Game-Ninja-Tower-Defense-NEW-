@@ -39,14 +39,16 @@ namespace TD.Entities.Enemies
 
             enemyMovement.CurrentSpeed = 0;
 
-            if (noOfStuckStrikesRemaining <= 0)
+            bool hasInflictedAllStuckStrikes = noOfStuckStrikesRemaining <= 0 ? true : false;
+            if (hasInflictedAllStuckStrikes)
             {
                 ValueContainer[0] = false;
                 noOfStuckStrikesRemaining = noOfStuckStrikes;
                 return;
             }
 
-            if (TimeUntilNextStuckDamage > 0)
+            bool isWaitingForNextStuckStrike = TimeUntilNextStuckDamage > 0 ? true : false;
+            if (isWaitingForNextStuckStrike)
             {
                 TimeUntilNextStuckDamage -= Time.deltaTime;
             }

@@ -17,7 +17,8 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!stuckBehaviour.IsStuck())
+            bool isStuck = stuckBehaviour.IsStuck() ? true : false;
+            if (!isStuck)
                 return;
 
             float currentValue = stuckBehaviour.TimeUntilNextStuckDamage;
@@ -28,14 +29,14 @@ namespace TD.Entities.Enemies
             float localScaleZ = bar.localScale.z;
             bool uiStuckBarDealsWithPositiveValues = currentValue > 0 && maxValue > 0;
 
-            if (uiStuckBarDealsWithPositiveValues)
-            {
-                if (stuckBehaviour.TimeUntilNextStuckDamage > 0)
-                {
-                    bar.localScale = new Vector3(1 - (currentValue / maxValue), localScaleY, localScaleZ);
-                }
-            }
+            if (!uiStuckBarDealsWithPositiveValues)
+                return;
 
+            bool isWaitingForNextStuckStrike = stuckBehaviour.TimeUntilNextStuckDamage > 0 ? true : false;
+            if (!isWaitingForNextStuckStrike)
+                return;
+
+            bar.localScale = new Vector3(1 - (currentValue / maxValue), localScaleY, localScaleZ);
         }
     }
 }

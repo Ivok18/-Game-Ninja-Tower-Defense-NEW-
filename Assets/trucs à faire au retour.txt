@@ -1,0 +1,11 @@
+- régler le bug ou si je donne un élément  pendant que la tower attaque en ayant activé un élement (tornade, feu, ou stuck),
+ça remplace l'anim par la tornade quelque soit l'élément donné
+objectif => faire en sorte que l'anim du statut actif pendant l'attaque reste jusqu'à la fin de l'attaque même si je change d'élement 
+pendant
+
+- la barre d'activation (=|=) dans la luckbar, faudrait lui donner une couleur en fonction du statut lié
+(jaune pour burned, vert pour stucked, et gris pour winded par exemple)
+
+- changer l'icone de elemental points (ying yang orange bleu)
+
+- changer l'icone de training points (dumbel gif tenor)

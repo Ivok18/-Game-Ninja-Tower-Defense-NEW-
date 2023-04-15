@@ -783,6 +783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextPattern: {fileID: 0}
   IndexOfNextAttackPattern: -1
+  NbOfBonusDash: 0
   NbOfBonusDashRemaining: 0
   NbOfHitLanded: 0
   CurrentDamagePerDash: 0
@@ -792,7 +793,6 @@ MonoBehaviour:
   BaseDashSpeed: 0
   BoostDashSpeed: 0
   BoostDamagePerDash: 0
-  NbOfBonusDash: 0
 --- !u!114 &8288046361631016245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -912,7 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf1a2fe537187448956b5f81cfb35d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TowerType: 0
+  TowerType: 1
 --- !u!114 &1952646614
 MonoBehaviour:
   m_ObjectHideFlags: 0

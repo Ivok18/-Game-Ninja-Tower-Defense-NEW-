@@ -11,7 +11,8 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!windedBehaviour.IsWinded())
+            bool isWinded = windedBehaviour.IsWinded() ? true : false;
+            if (!isWinded)
             {
                 windedEffect.SetActive(false);
                 return;

@@ -20,11 +20,13 @@ namespace TD.Entities.Enemies
         }
         private void Update()
         {
-            if (!stuckBehaviour.IsStuck())
+            bool isStuck = stuckBehaviour.IsStuck() ? true : false;
+            bool isWinded = windedBehaviour.IsWinded() ? true : false;
+            if (!isStuck)
             {
-                if (!stuckBehaviour.IsStuck()
-                || (stuckBehaviour.IsStuck() && windedBehaviour.IsWinded()))
+                if (!isStuck || (isStuck && isWinded))
                 {
+
                     stuckEffect.SetActive(false);
                     return;
                 }

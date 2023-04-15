@@ -22,10 +22,12 @@ namespace TD.StatusSystem
 
         private void Update()
         {
-            if (listOfTargets.EnemiesToAttack.Count <= 0)
+            bool hasTargets = listOfTargets.EnemiesToAttack.Count > 0 ? true : false;
+            if (!hasTargets)
                 return;
 
-            if (statusToInflictTracker.CurrentStatusToInflict.Count <= 0)
+            bool hasGotAtLeastOneStatus = statusToInflictTracker.CurrentStatusToInflict.Count > 0 ? true : false;
+            if (!hasGotAtLeastOneStatus)
                 return;
 
 

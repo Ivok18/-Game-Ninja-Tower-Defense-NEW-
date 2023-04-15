@@ -27,14 +27,14 @@ namespace TD.Entities.Enemies
             float localScaleZ = bar.localScale.z;
             bool uiBurnBarDealsWithPositiveValues = currentValue > 0 && maxValue > 0;
 
-            if(uiBurnBarDealsWithPositiveValues)
-            {
-                if (burnBehaviour.TimeUntilNextBurnDamage > 0)
-                {
-                    bar.localScale = new Vector3(1 - (currentValue / maxValue), localScaleY, localScaleZ);
-                }
-            }
-            
+            if (!uiBurnBarDealsWithPositiveValues)
+                return;
+
+            bool isWaitingForNextBurnStrike = burnBehaviour.TimeUntilNextBurnDamage > 0 ? true : false;
+            if (!isWaitingForNextBurnStrike)
+                return;
+
+            bar.localScale = new Vector3(1 - (currentValue / maxValue), localScaleY, localScaleZ);
         }
 
     }

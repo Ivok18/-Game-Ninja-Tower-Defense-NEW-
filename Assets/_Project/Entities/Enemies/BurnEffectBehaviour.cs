@@ -18,8 +18,9 @@ namespace TD.Entities.Enemies
 
         private void Update()
         {
-            if (!burnBehaviour.IsBurning()
-               || (burnBehaviour.IsBurning() && windedBehaviour.IsWinded()))
+            bool isBurning = burnBehaviour.IsBurning() ? true : false;
+            bool isWinded = windedBehaviour.IsWinded() ? true : false;
+            if (!isBurning || (isBurning && isWinded))
             {
                 burnEffect.SetActive(false);
                 return;

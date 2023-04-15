@@ -5852,7 +5852,7 @@ PrefabInstance:
     - target: {fileID: 1819737130331769148, guid: 608e3163f0c544349862d17ed9cd1aea,
         type: 3}
       propertyPath: money
-      value: 9999
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 1819737130331769148, guid: 608e3163f0c544349862d17ed9cd1aea,
         type: 3}

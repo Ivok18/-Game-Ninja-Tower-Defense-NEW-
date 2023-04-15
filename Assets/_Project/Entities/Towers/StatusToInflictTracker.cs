@@ -8,6 +8,5 @@ namespace TD.StatusSystem
     public class StatusToInflictTracker : MonoBehaviour
     {
         public List<Status> CurrentStatusToInflict;
-
     }
 }

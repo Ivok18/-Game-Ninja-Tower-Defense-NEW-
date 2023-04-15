@@ -35,43 +35,45 @@ namespace TD.Entities.Enemies
                 return;
 
 
-            if (!hasCalculatedDestinationNode)
-            {
-                if (resistance > 0)
-                {
-                    if(attackerPushPower > resistance)
-                    {
-                        int diff = attackerPushPower - resistance;
-                        Node currentNode = NodeManager.Instance.GetNodeAtPosition(transform.position);
-                        int destionationNodeIndex = currentNode.nodeIndex - diff;
-                        
-                        if(destionationNodeIndex <= 0)
-                        {
-                            destinationNode = NodeManager.Instance.GetNodeAtIndex(0);
-                        }
-                        else
-                        {
-                            destinationNode = NodeManager.Instance.GetNodeAtIndex(currentNode.nodeIndex - diff);
-                        }
-                       
+            if (hasCalculatedDestinationNode)
+                return;
 
+            bool canResistToWindEffect = resistance > 0 ? true : false;
+            if (canResistToWindEffect)
+            {
+                bool hasLowerResistanceThanAttackerPushPower = attackerPushPower > resistance ? true : false;
+                if (hasLowerResistanceThanAttackerPushPower)
+                {
+                    int diff = attackerPushPower - resistance;
+                    Node currentNode = NodeManager.Instance.GetNodeAtPosition(transform.position);
+                    int destionationNodeIndex = currentNode.nodeIndex - diff;
+
+                    bool isDestinatioNodeTheStartNode = destionationNodeIndex <= 0 ? true : false;
+                    if (isDestinatioNodeTheStartNode)
+                    {
+                        destinationNode = NodeManager.Instance.GetNodeAtIndex(0);
                     }
                     else
                     {
-                        ValueContainer[0] = false;
-                        ShakeBehaviour shakeBehaviour = GetComponent<ShakeBehaviour>();
-                        shakeBehaviour.StartShake();
-                        return;
+                        destinationNode = NodeManager.Instance.GetNodeAtIndex(currentNode.nodeIndex - diff);
                     }
+
+
                 }
                 else
                 {
-                    destinationNode = NodeManager.Instance.GetNodeAtIndex(0);
+                    ValueContainer[0] = false;
+                    ShakeBehaviour shakeBehaviour = GetComponent<ShakeBehaviour>();
+                    shakeBehaviour.StartShake();
+                    return;
                 }
-
-                hasCalculatedDestinationNode = true;
-               
             }
+            else
+            {
+                destinationNode = NodeManager.Instance.GetNodeAtIndex(0);
+            }
+
+            hasCalculatedDestinationNode = true;
         }
 
         private void FixedUpdate()
