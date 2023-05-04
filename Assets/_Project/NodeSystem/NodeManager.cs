@@ -1,18 +1,17 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using TD.WaypointSystem;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
-namespace TD.Map
+namespace TD.NodeSystem
 {
     [Serializable]
     public class Node
     {
         public Vector2 center;
         public int nodeIndex;
+
+        //index of the waypoint after this node
         public int nextWaypointIndex;
 
         public Node(Vector2 _center, int _index)
@@ -40,13 +39,7 @@ namespace TD.Map
 
         private void Start()
         {
-            for(int i = 0; i < transform.childCount; i++)
-            {
-                Vector2 center = transform.GetChild(i).position;
-                int index = i;
-                Nodes[i].center = center;
-                Nodes[i].nodeIndex = index;
-            }
+            Setup();
         }
 
         public Node GetNodeAtPosition(Vector2 position)
@@ -70,20 +63,29 @@ namespace TD.Map
         {
             foreach (Node node in Nodes)
             {
-                if(node.nodeIndex == index)
-                {
-                    return node;
-                }
+                if (node.nodeIndex != index)
+                    continue;
+                
+                return node;              
             }
-
             return null;
         }
 
-        public Node GetNodeBeforeVillageDoors()
+        public Node GetNodeJustBeforeLastNode()
         {
-            return Nodes[Nodes.Count - 2];
+            int indexOfNodeBeforeLastNode = Nodes.Count - 2;
+            return Nodes[indexOfNodeBeforeLastNode];
         }
 
-       
+        public void Setup()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Vector2 center = transform.GetChild(i).position;
+                int index = i;
+                Nodes[i].center = center;
+                Nodes[i].nodeIndex = index;
+            }
+        }
     }
 }

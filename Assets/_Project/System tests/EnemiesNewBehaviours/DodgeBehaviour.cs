@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TD.Entities.Towers.States;
-using TD.Map;
-using TD.WaypointSystem;
+using TD.NodeSystem;
 using UnityEngine;
 
 namespace TD.Entities.Enemies
@@ -138,7 +135,7 @@ namespace TD.Entities.Enemies
             }
             else
             {
-                destinationNode = NodeManager.Instance.GetNodeBeforeVillageDoors();
+                destinationNode = NodeManager.Instance.GetNodeJustBeforeLastNode();
             }
 
 

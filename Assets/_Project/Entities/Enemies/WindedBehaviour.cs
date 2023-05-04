@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TD.Map;
-using TD.WaypointSystem;
+using TD.NodeSystem;
 using UnityEngine;
 
 namespace TD.Entities.Enemies
@@ -86,7 +82,6 @@ namespace TD.Entities.Enemies
 
             MoveToDestinationNode();
         }
-
 
         public bool IsWinded()
         {

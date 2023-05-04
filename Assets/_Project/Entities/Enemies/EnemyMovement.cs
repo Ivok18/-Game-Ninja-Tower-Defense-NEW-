@@ -7,7 +7,6 @@ namespace TD.Entities.Enemies
 {
     public class EnemyMovement : MonoBehaviour
     {
-
         public WaypointStorer WaypointStorer;
         private WindedBehaviour windedBehaviour;
         public int NextWaypointIndex;
@@ -70,7 +69,6 @@ namespace TD.Entities.Enemies
                     if (element == TowerElement.Wind)
                     {
                         findWind = true;
-
                     }
                 }
             }
