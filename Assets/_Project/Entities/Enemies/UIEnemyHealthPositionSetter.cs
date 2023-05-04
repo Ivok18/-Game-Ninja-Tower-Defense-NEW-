@@ -33,7 +33,7 @@ namespace TD.Entities.Enemies
             if (healthBehaviour == null)
                 return;
 
-            if(enemyMovement.HasHorizontalDirection)
+            if(enemyMovement.IsMovingHorizontally)
             {
                 if(almostDeadSignaler.IsAlmostDead)
                 {
@@ -49,7 +49,7 @@ namespace TD.Entities.Enemies
                 }
             }
 
-            if(enemyMovement.HasVerticalDirection)
+            if(enemyMovement.IsMovingVertically)
             {
                 if (almostDeadSignaler.IsAlmostDead)
                 {

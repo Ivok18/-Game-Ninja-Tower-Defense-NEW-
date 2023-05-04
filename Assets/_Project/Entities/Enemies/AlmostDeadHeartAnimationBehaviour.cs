@@ -31,7 +31,7 @@ namespace TD.Entities.Enemies
                 //currentSkullIconSpriteRenderer.gameObject.SetActive(false);
                 //currentHeartIconSpriteRenderer.gameObject.SetActive(true);
                 // currentHeartIconSpriteRenderer.color = new Color(currentHeartIconSpriteRenderer.color.r, currentHeartIconSpriteRenderer.color.g, currentHeartIconSpriteRenderer.color.b, glowAlphaMax);
-                if (enemyMovement.HasHorizontalDirection)
+                if (enemyMovement.IsMovingHorizontally)
                 {
                     SetCurrentIconSpriteRenderer(healthIconUp);            
                 }
@@ -44,7 +44,7 @@ namespace TD.Entities.Enemies
             }
 
 
-            if (enemyMovement.HasHorizontalDirection)
+            if (enemyMovement.IsMovingHorizontally)
             {
                 SetCurrentIconSpriteRenderer(skullIcon);
             }

@@ -3655,7 +3655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &568765578947378666
 Transform:
   m_ObjectHideFlags: 0
@@ -6411,8 +6411,8 @@ MonoBehaviour:
   CurrentSpeed: 0
   CanMove: 0
   CurrentDirection: {x: 0, y: 0}
-  HasHorizontalDirection: 0
-  HasVerticalDirection: 0
+  IsMovingHorizontally: 0
+  IsMovingVertically: 0
 --- !u!114 &5307909232459915969
 MonoBehaviour:
   m_ObjectHideFlags: 0
