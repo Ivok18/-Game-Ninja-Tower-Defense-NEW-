@@ -18,6 +18,7 @@ namespace TD.Entities.Towers
     }
 
 
+
     [Serializable]
     public class LuckbarGoData
     {
@@ -27,8 +28,12 @@ namespace TD.Entities.Towers
         public RollSuccessAnim fireAnim;
         public RollSuccessAnim earthAnim;
         public RollSuccessAnim windAnim;
+        public bool wasThePreviousRollASuccess;
 
-
+        public void SaveSuccess()
+        {
+            wasThePreviousRollASuccess = true;
+        }
         public void PlayRollSuccessAnim(StatusType statusType)
         {
             rollSuccessObj.SetActive(true);
@@ -82,23 +87,24 @@ namespace TD.Entities.Towers
 
         private void OnEnable()
         {
-            StatusManager.OnStatusAddedOnTower += TryActivateLuckbarAndLinkItToStatus;
+            StatusManager.OnStatusAddedOnTower += TryActivateLuckbarAndLinkItToStatusAndManageSave;
             StatusManager.OnStatusRemovedFromTower += TryDesactivateLinkedLuckbar;
             StatusManager.OnStatusOddsForActivationBoost += TryUpdateAllActivationPointHeights;
             StatusRollMaker.OnRollPerformed += TryUpdateLuckbars;
             EnemyHitDetection.OnEnemyHit += TryReactivateLuckbar;
         }
 
+       
         private void OnDisable()
         {
-            StatusManager.OnStatusAddedOnTower -= TryActivateLuckbarAndLinkItToStatus;
+            StatusManager.OnStatusAddedOnTower -= TryActivateLuckbarAndLinkItToStatusAndManageSave;
             StatusManager.OnStatusRemovedFromTower -= TryDesactivateLinkedLuckbar;
             StatusManager.OnStatusOddsForActivationBoost -= TryUpdateAllActivationPointHeights;
             StatusRollMaker.OnRollPerformed -= TryUpdateLuckbars;
             EnemyHitDetection.OnEnemyHit -= TryReactivateLuckbar;
         }
 
-        public void TryActivateLuckbarAndLinkItToStatus(Transform targetTower, int idOfAddedStatus)
+        public void TryActivateLuckbarAndLinkItToStatusAndManageSave(Transform targetTower, int idOfAddedStatus)
         {
             if (targetTower != towerHolder)
                 return;
@@ -106,8 +112,7 @@ namespace TD.Entities.Towers
             StatusToInflictTracker statusToInflictTracker = targetTower.GetComponent<StatusToInflictTracker>();
             if (statusToInflictTracker == null)
                 return;
-
-
+        
             foreach (var luckbar in luckbars)
             {
                 //Goal is to find an inactive luckbar
@@ -117,7 +122,7 @@ namespace TD.Entities.Towers
                 //found !
                 foreach (var status in statusToInflictTracker.CurrentStatusToInflict)
                 {
-                    //Goal is to get the data of added status using targetTower in param
+                    //Goal is to get the data of added status using id in param
                     if (status.id != idOfAddedStatus)
                         continue;
 
@@ -132,11 +137,27 @@ namespace TD.Entities.Towers
 
                     //we link the luckbar to the status 
                     luckbarBehaviour.Link(idOfAddedStatus);
+
+                    //we check if the tower is charging its attack while we give it the status..
+                    //and we check if the roll that was made before the tower started to charge its attack was a success..
+                    //meaning there is a save for this succees that we must apply 
+                    TowerStateSwitcher towerStateSwitcher = towerHolder.GetComponent<TowerStateSwitcher>();
+                    bool isTowerInChargingAttackState = towerStateSwitcher.CurrentTowerState == TowerState.ChargingAttack;
+                    bool isTowerInAttackState = towerStateSwitcher.CurrentTowerState == TowerState.Attacking;
+                    bool wasThePreviousRollASuccess = luckbar.wasThePreviousRollASuccess == true ? true : false;
+                    if ( (isTowerInChargingAttackState  || isTowerInAttackState) && wasThePreviousRollASuccess)
+                    {
+                        status.rollOutcome = RollOutcome.SUCCESS;
+                        status.canInflict = true;
+                        luckbar.PlayRollSuccessAnim(status.type);
+                    }
                     break;
                 }
                 break;
             }
         }
+
+       
         public void TryDesactivateLinkedLuckbar(Transform targetTower, int idOfRemovedStatus)
         {
             if (targetTower != towerHolder)
@@ -161,7 +182,7 @@ namespace TD.Entities.Towers
             if (statusToInflictTracker == null)
                 return;
 
-            //Goal is to find the luckbar linked to te target status id in function param
+            //Goal is to find the luckbar linked to the target status id in function param
             foreach (var luckbar in luckbars)
             {
                 LuckbarBehaviour luckbarBehaviour = luckbar.wholeObj.GetComponent<LuckbarBehaviour>();
@@ -186,13 +207,13 @@ namespace TD.Entities.Towers
                             luckbarBehaviour.UpdateBarGauge(rollResultGaugeConversion);
                             break;
                         case RollOutcome.SUCCESS:
-
                             luckbar.PlayRollSuccessAnim(status.type);
                             luckbar.rollFailObj.SetActive(false);
+                            luckbar.SaveSuccess();
                             break;
                         default:
                             break;
-                    }
+                    }   
                 }
             }
 
@@ -230,8 +251,18 @@ namespace TD.Entities.Towers
                     {
                         luckbar.rollSuccessObj.SetActive(false);
                         luckbar.rollFailObj.SetActive(true);
-                        break;
 
+                        //Reset roll success save after last dash
+                        AttackState attackState = towerHolder.GetComponent<AttackState>();
+                        if (attackState == null)
+                            break;
+
+                        bool hasTowerLandedAllItsDashes = attackState.NbOfHitLanded >= attackState.NbOfBonusDash + 1;
+                        if (!hasTowerLandedAllItsDashes)
+                            break;
+
+                        luckbar.wasThePreviousRollASuccess = false;
+                        break;
                     }
                 }
                 break;
