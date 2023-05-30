@@ -12,11 +12,12 @@ namespace TD.Entities.Towers
         [SerializeField] private Transform activationPoint;
         [SerializeField] private Transform activationPointStartMarker;
         [SerializeField] private Transform activationPointEndMarker;
+        [SerializeField] private SpriteRenderer diceIconSR;
         
 
-        public void Link(int index)
+        public void Link(int id)
         {
-            IdOfLinkedStatus = index;
+            IdOfLinkedStatus = id;
         }
         public void UpdateBarGauge(float newValue)
         {
@@ -31,6 +32,11 @@ namespace TD.Entities.Towers
         {
             return Mathf.Abs(activationPointEndMarker.localPosition.y - activationPointStartMarker.localPosition.y);
         }
+        public void SetDiceIconColor(Color newColor)
+        {
+            diceIconSR.color = newColor;
+        }
+
        
     }
 }

@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using TD.Entities.Enemies;
 using TD.Entities.Towers.States;
 using TD.StatusSystem;
 using UnityEngine;
+using TD.Utilities;
 
 namespace TD.Entities.Towers
 {
@@ -84,6 +83,13 @@ namespace TD.Entities.Towers
         [SerializeField] private Transform towerHolder;
         [SerializeField] private LuckbarGoData[] luckbars;
 
+       
+        
+        [Header("Luckbars dice icon colors match table")]
+        [SerializeField] private List<StatusType> statusTypeKeys;
+        [SerializeField] private List<Color> colorsValues;
+
+       
 
         private void OnEnable()
         {
@@ -134,12 +140,17 @@ namespace TD.Entities.Towers
                     LuckbarBehaviour luckbarBehaviour = luckbar.wholeObj.GetComponent<LuckbarBehaviour>();
                     float percentageOfBarHeightToReach = 1 - status.currentOddsForActivation;
                     luckbarBehaviour.UpdateActivationPointHeight(percentageOfBarHeightToReach);
-
+           
                     //we link the luckbar to the status 
                     luckbarBehaviour.Link(idOfAddedStatus);
 
-                    //we check if the tower is charging its attack while we give it the status..
-                    //and we check if the roll that was made before the tower started to charge its attack was a success..
+                    //we set the color of the luckbar dice icon based on its linked status
+                    Dictionary<StatusType, Color> luckbarDiceIconColorsMatchTable =
+                        Utils.CreateDictionary(statusTypeKeys, colorsValues);
+                    luckbarBehaviour.SetDiceIconColor(luckbarDiceIconColorsMatchTable[status.type]);
+
+                    //we check if the tower (is charging its attack/is in attack state) while we give it the status..
+                    //and we check if the roll that was made before the tower started to (charge its attack, dash on target) was a success..
                     //meaning there is a save for this succees that we must apply 
                     TowerStateSwitcher towerStateSwitcher = towerHolder.GetComponent<TowerStateSwitcher>();
                     bool isTowerInChargingAttackState = towerStateSwitcher.CurrentTowerState == TowerState.ChargingAttack;

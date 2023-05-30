@@ -12125,6 +12125,7 @@ MonoBehaviour:
   activationPoint: {fileID: 4755841476307951387}
   activationPointStartMarker: {fileID: 5185383925708237352}
   activationPointEndMarker: {fileID: 5824876805177256824}
+  diceIconSR: {fileID: 5170932133038413558}
 --- !u!1 &2403997250393787673
 GameObject:
   m_ObjectHideFlags: 0
@@ -20626,6 +20627,7 @@ MonoBehaviour:
     windAnim:
       rollSuccessAnimObj: {fileID: 6274969225809704466}
       animator: {fileID: 2136733971128188277}
+    wasThePreviousRollASuccess: 0
   - wholeObj: {fileID: 8359729425355159901}
     rollSuccessObj: {fileID: 0}
     rollFailObj: {fileID: 0}
@@ -20638,6 +20640,12 @@ MonoBehaviour:
     windAnim:
       rollSuccessAnimObj: {fileID: 0}
       animator: {fileID: 0}
+    wasThePreviousRollASuccess: 0
+  statusTypeKeys: 010000000200000003000000
+  colorsValues:
+  - {r: 1, g: 0.73333335, b: 0.050980393, a: 1}
+  - {r: 0.050980393, g: 1, b: 0.14901961, a: 1}
+  - {r: 0.7647059, g: 0.7647059, b: 0.87058824, a: 1}
 --- !u!1 &6186180294361999346
 GameObject:
   m_ObjectHideFlags: 0
@@ -24758,6 +24766,7 @@ MonoBehaviour:
   activationPoint: {fileID: 6471540262419259504}
   activationPointStartMarker: {fileID: 4662460681408006208}
   activationPointEndMarker: {fileID: 720890362500946495}
+  diceIconSR: {fileID: 0}
 --- !u!1 &8361688448083436737
 GameObject:
   m_ObjectHideFlags: 0
